@@ -25,6 +25,7 @@ namespace VenusDigital.Models
         //Nav
         [ForeignKey("ProductId")]
         public Products Products { get; set; }
+        [ForeignKey("CategoryId")]
         public Categories Category { get; set; }
 
     }
