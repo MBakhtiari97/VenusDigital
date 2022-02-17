@@ -47,8 +47,18 @@
             <li class="myaccount"><a href="#"><span>My Account</span></a></li>
             <li class="wishlist"><a href="#"><span>Wishlist</span></a></li>
             <li class="header_cart hidden-xs"><a href="#"><span>My Cart</span></a></li>
-            <li class="check"><a href="#"><span>Checkout</span></a></li>
-            <li class="login"><a href="#"><span>Login</span></a></li>
+              <li class="check"><a href="#"><span>Checkout</span></a></li>
+              @if (User.Identity.IsAuthenticated)
+              {
+                  <li class="login"><a href="#"><span>@User.Identity.Name</span></a></li>
+                  <li class="login"><a href="#"><span>Sign Out</span></a></li>
+              }
+              else
+              {
+                  <li class="login"><a href="/Register"><span>Sign Up</span></a></li>
+                  <li class="login"><a href="/login"><span>Sign In</span></a></li>   
+              }
+             
           </ul>
         </div>
         <!-- /.cnt-account -->
@@ -1513,7 +1523,27 @@
       <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder"> 
         <!-- ========================================== SECTION – HERO ========================================= -->
         
-        <div id="hero">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!--SLIDER HERE-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <div id="hero">
           <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
             <div class="item" style="background-image: url(assets/images/sliders/01.jpg);">
               <div class="container-fluid">
