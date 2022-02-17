@@ -1,0 +1,181 @@
+﻿@model VenusDigital.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_MainLayout";
+}
+
+<h2 id="RGTitle">Sign Up</h2>
+
+<hr />
+@*<div id="RGFrm" class="row">
+    <div class="col-12">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input asp-for="RePassword" class="form-control" />
+                <span asp-validation-for="RePassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+*@
+
+<div class="body-content">
+    <div class="container">
+        <div class="sign-in-page">
+            <div class="row">
+                <!-- create a new account -->
+                <div class="col-md-12 col-sm-12 create-new-account">
+                    <h4 class="checkout-subtitle">Create a new account</h4>
+                    <p class="text title-tag-line">Create your new account.</p>
+                    <form class="register-form outer-top-xs" role="form" asp-action="Register">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
+                            <input type="email" asp-for="Email" class="form-control unicase-form-control text-input" id="exampleInputEmail2">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
+                            <input asp-for="UserName" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                        </div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
+                            <input asp-for="Password" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
+                            <input asp-for="RePassword" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <span asp-validation-for="RePassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+                    </form>
+                </div>
+                <!-- create a new account -->
+            </div><!-- /.row -->
+        </div><!-- /.sigin-in-->
+        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+        <div id="brands-carousel" class="logo-slider wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+
+            <div class="logo-slider-inner">
+                <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme" style="opacity: 1; display: block;">
+                    <div class="owl-wrapper-outer">
+                        <div class="owl-wrapper" style="width: 4080px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+                            <div class="owl-item" style="width: 204px;">
+                                <div class="item m-t-15">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand1.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item m-t-10">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand2.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand3.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand4.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand5.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand6.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img src="assets/images/brands/brand2.png" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
+                                    </a>
+                                </div>
+                            </div><div class="owl-item" style="width: 204px;">
+                                <div class="item">
+                                    <a href="#" class="image">
+                                        <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <!--/.item-->
+                    <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div>
+                </div><!-- /.owl-carousel #logo-slider -->
+            </div><!-- /.logo-slider-inner -->
+
+        </div><!-- /.logo-slider -->
+        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+    </div><!-- /.container -->
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

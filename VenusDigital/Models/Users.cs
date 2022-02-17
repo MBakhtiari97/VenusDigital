@@ -13,9 +13,6 @@ namespace VenusDigital.Models
         public string UserName { get; set; }
         [Required]
         [MaxLength(250)]
-        public string UserFullName { get; set; }
-        [Required]
-        [MaxLength(250)]
         public string EmailAddress { get; set; }
         [MaxLength(50)]
         public string PhoneNumber { get; set; }
@@ -29,6 +26,7 @@ namespace VenusDigital.Models
         [Required]
         public int WishListId { get; set; }
         public bool IsAdmin { get; set; }
+        public DateTime RegisterDate { get; set; }
 
         //Nav
         public List<PostalInformations> PostalInformations { get; set; }
