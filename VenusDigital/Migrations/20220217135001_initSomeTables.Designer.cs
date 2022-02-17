@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VenusDigital.Data;
 
 namespace VenusDigital.Migrations
 {
     [DbContext(typeof(VenusDigitalContext))]
-    partial class VenusDigitalContextModelSnapshot : ModelSnapshot
+    [Migration("20220217135001_initSomeTables")]
+    partial class initSomeTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,15 +34,18 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal>("TotallPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsersUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("CartId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersUserId");
 
                     b.ToTable("Cart");
                 });
@@ -76,39 +81,16 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("CategoryId");
 
                     b.HasIndex("CategoryId1");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("VenusDigital.Models.Coupons", b =>
-                {
-                    b.Property<int>("CouponId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CouponCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("CouponCodeCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CouponPercent")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CouponValue")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("CouponId");
-
-                    b.ToTable("Coupons");
                 });
 
             modelBuilder.Entity("VenusDigital.Models.Features", b =>
@@ -131,9 +113,12 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("FeatureId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("Features");
                 });
@@ -157,30 +142,16 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemId");
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("VenusDigital.Models.Newsletters", b =>
-                {
-                    b.Property<int>("NewsletterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NewslettersSubedUserEmail")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("NewsletterId");
-
-                    b.ToTable("Newsletters");
                 });
 
             modelBuilder.Entity("VenusDigital.Models.PostalInformations", b =>
@@ -239,9 +210,12 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("GalleryId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("ProductGalleries");
                 });
@@ -320,6 +294,9 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ReviewDescription")
                         .IsRequired()
                         .HasMaxLength(800)
@@ -336,50 +313,16 @@ namespace VenusDigital.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsersUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ReviewId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersUserId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("VenusDigital.Models.Supports", b =>
-                {
-                    b.Property<int>("ContactId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RequestCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("RequestDescription")
-                        .IsRequired()
-                        .HasMaxLength(1500)
-                        .HasColumnType("nvarchar(1500)");
-
-                    b.Property<string>("RequestTitle")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("UserEmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("UserFullName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("ContactId");
-
-                    b.ToTable("Supports");
                 });
 
             modelBuilder.Entity("VenusDigital.Models.Tags", b =>
@@ -392,6 +335,9 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Tag")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -399,7 +345,7 @@ namespace VenusDigital.Migrations
 
                     b.HasKey("TagId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("Tags");
                 });
@@ -465,9 +411,12 @@ namespace VenusDigital.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsersUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("WishListId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersUserId");
 
                     b.ToTable("WishLists");
                 });
@@ -476,9 +425,7 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Users", "Users")
                         .WithMany("Carts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersUserId");
 
                     b.Navigation("Users");
                 });
@@ -491,9 +438,7 @@ namespace VenusDigital.Migrations
 
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("Categories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.Navigation("Category");
 
@@ -504,9 +449,7 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("Features")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.Navigation("Products");
                 });
@@ -519,9 +462,7 @@ namespace VenusDigital.Migrations
 
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("Items")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.Navigation("Cart");
 
@@ -543,9 +484,7 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("ProductGalleries")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.Navigation("Products");
                 });
@@ -554,15 +493,11 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("Reviews")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.HasOne("VenusDigital.Models.Users", "Users")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersUserId");
 
                     b.Navigation("Products");
 
@@ -573,9 +508,7 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Products", "Products")
                         .WithMany("Tags")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductId");
 
                     b.Navigation("Products");
                 });
@@ -584,9 +517,7 @@ namespace VenusDigital.Migrations
                 {
                     b.HasOne("VenusDigital.Models.Users", "Users")
                         .WithMany("WishLists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersUserId");
 
                     b.Navigation("Users");
                 });

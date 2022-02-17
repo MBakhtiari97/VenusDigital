@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VenusDigital.Models
@@ -29,5 +30,10 @@ namespace VenusDigital.Models
         public int WishListId { get; set; }
         public bool IsAdmin { get; set; }
 
+        //Nav
+        public List<PostalInformations> PostalInformations { get; set; }
+        public List<WishLists> WishLists { get; set; }
+        public List<Reviews> Reviews { get; set; }
+        public List<Cart> Carts { get; set; }
     }
 }
