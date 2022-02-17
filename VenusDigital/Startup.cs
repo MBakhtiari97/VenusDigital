@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Data;
+using VenusDigital.Data.Repositories;
+
 
 namespace VenusDigital
 {
@@ -28,10 +30,16 @@ namespace VenusDigital
 
             #region DbContext
 
-            services.AddDbContext<VenusDigital_DBContext>(options =>
+            services.AddDbContext<VenusDigitalContext>(options =>
             {
-                options.UseSqlServer("Data Source=.;Initial Catalog=VenusDigital_DB;Integrated Security=true");
+                options.UseSqlServer("Data Source=.;Initial Catalog=VenusDigitalCore_DB;Integrated Security=true");
             });
+
+            #endregion
+
+            #region IoC
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             #endregion
         }
