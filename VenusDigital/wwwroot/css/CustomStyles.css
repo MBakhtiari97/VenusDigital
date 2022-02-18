@@ -6,3 +6,6 @@
     width: 150px; 
     height: 150px;
 }
+#mainPrice {
+    text-decoration: line-through;
+}

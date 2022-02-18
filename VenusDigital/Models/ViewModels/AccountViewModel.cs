@@ -59,6 +59,8 @@ namespace VenusDigital.Models.ViewModels
         public decimal ProductOffPrice { get; set; }
         [Required]
         public int ReviewsCount { get; set; }
+        [Required]
+        public int QuantityInStock { get; set; }
 
     }
 }

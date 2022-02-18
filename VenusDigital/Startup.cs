@@ -40,6 +40,7 @@ namespace VenusDigital
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IReviewsRepository, ReviewRepository>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
 
             #endregion
 
