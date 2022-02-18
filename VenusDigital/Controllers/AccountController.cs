@@ -68,7 +68,6 @@ namespace VenusDigital.Controllers
                 return View(login);
 
 
-
             var user = _userRepository.GetUserForLogin(login.Email.ToLower(),login.Password);
             if (user == null)
             {
@@ -106,5 +105,6 @@ namespace VenusDigital.Controllers
             return RedirectToAction("Login");
         }
         #endregion
+
     }
 }

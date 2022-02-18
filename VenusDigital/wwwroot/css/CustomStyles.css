@@ -2,3 +2,7 @@
 #RGTitle, #RGFrm {
     text-align: center;
 }
+#imgWishlist {
+    width: 150px; 
+    height: 150px;
+}

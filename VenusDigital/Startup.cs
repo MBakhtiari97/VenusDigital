@@ -38,6 +38,8 @@ namespace VenusDigital
             #region IoC
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IReviewsRepository, ReviewRepository>();
+            services.AddScoped<IWishlistRepository, WishlistRepository>();
 
             #endregion
 

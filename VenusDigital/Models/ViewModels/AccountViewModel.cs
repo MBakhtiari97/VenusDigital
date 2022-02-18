@@ -43,4 +43,22 @@ namespace VenusDigital.Models.ViewModels
         public string Password { get; set; }
         public bool RememberMe { get; set; }
     }
+
+    public class WishlistViewModel
+    {
+        [Required]
+        [MaxLength(250)]
+        public string ProductName { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string ProductImage { get; set; }
+        [Required]
+        public float ProductScore { get; set; }
+        [Required]
+        public decimal ProductMainPrice { get; set; }
+        public decimal ProductOffPrice { get; set; }
+        [Required]
+        public int ReviewsCount { get; set; }
+
+    }
 }
