@@ -17,8 +17,8 @@ namespace VenusDigital.Models
         [MaxLength(50)]
         public string PhoneNumber { get; set; }
         [Required]
-        [MaxLength(1024)]
-        public Byte[] Password { get; set; }
+        [MaxLength(100)]
+        public string Password { get; set; }
         [Required]
         public int PostalInformationId { get; set; }
         [Required]

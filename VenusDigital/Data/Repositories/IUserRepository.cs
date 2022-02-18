@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using VenusDigital.Models;
 
 namespace VenusDigital.Data.Repositories
@@ -9,7 +7,7 @@ namespace VenusDigital.Data.Repositories
     {
         bool IsExistedUserByEmail(string email);
         void AddUser(Users user);
-        Users GetUserForLogin(string email, byte[] password);
+        Users GetUserForLogin(string email, string password);
     }
 
 
@@ -28,15 +26,10 @@ namespace VenusDigital.Data.Repositories
             _context.SaveChanges();
         }
 
-        public Users GetUserForLogin(string email, byte[] password)
+        public Users GetUserForLogin(string email, string password)
         {
-
-            var md5 = new MD5CryptoServiceProvider();
-            var md5data = md5.ComputeHash(password);
-
-
             return _context.Users
-                .SingleOrDefault(u => u.EmailAddress == email && u.Password == md5data);
+                .SingleOrDefault(u => u.EmailAddress == email && u.Password == password);
         }
 
         public bool IsExistedUserByEmail(string email)

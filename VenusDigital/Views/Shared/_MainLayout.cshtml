@@ -51,12 +51,12 @@
               @if (User.Identity.IsAuthenticated)
               {
                   <li class="login"><a href="#"><span>@User.Identity.Name</span></a></li>
-                  <li class="login"><a href="#"><span>Sign Out</span></a></li>
+                  <li class="login"><a href="/Logout"><span>Sign Out</span></a></li>
               }
               else
               {
                   <li class="login"><a href="/Register"><span>Sign Up</span></a></li>
-                  <li class="login"><a href="/login"><span>Sign In</span></a></li>   
+                  <li class="login"><a href="/Login"><span>Sign In</span></a></li>   
               }
              
           </ul>

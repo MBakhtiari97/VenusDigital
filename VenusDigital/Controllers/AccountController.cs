@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
+using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using VenusDigital.Data.Repositories;
 using VenusDigital.Models;
 using VenusDigital.Models.ViewModels;
@@ -37,23 +38,11 @@ namespace VenusDigital.Controllers
                 return View(register);
             }
 
-            if (register.PhoneNumber == "")
-                register.PhoneNumber = "0";
-            //Hashing password
-            var password = Encoding.ASCII
-                .GetBytes(register.Password);
-
-            var md5 = new MD5CryptoServiceProvider();
-
-            var hashedPassword = md5
-                .ComputeHash(password);
-
-
             Users user = new Users()
             {
                 EmailAddress = register.Email.ToLower(),
                 IsAdmin = false,
-                Password = hashedPassword,
+                Password = register.Password,
                 PhoneNumber = register.PhoneNumber,
                 UserName = register.UserName,
                 RegisterDate = DateTime.Now
@@ -75,11 +64,47 @@ namespace VenusDigital.Controllers
         [Route("Login")]
         public IActionResult Login(LoginViewModel login)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(login);
+
+
+
+            var user = _userRepository.GetUserForLogin(login.Email.ToLower(),login.Password);
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "Cannot find any user with these credentials !");
+                return View(login);
+            }
+
+            //Logging user codes
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name, user.EmailAddress),
+                new Claim("IsAdmin", user.IsAdmin.ToString())
+            };
+
+            var identifier = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identifier);
+            var properties = new AuthenticationProperties()
+            {
+                IsPersistent = login.RememberMe
+            };
+
+            HttpContext.SignInAsync(principal, properties);
+
+            return Redirect("/");
         }
 
         #endregion
 
-        //TODO:Complete Login Code
+        #region Logout
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+        #endregion
     }
 }
