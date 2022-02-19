@@ -31,7 +31,8 @@ namespace VenusDigital.Controllers
                 Score = product.ProductScore,
                 ShortDescription = product.ProductShortDescription,
                 Title = product.ProductTitle,
-                MainImage = product.ProductGalleries.First().ImageName
+                MainImage = product.ProductGalleries.First().ImageName,
+                Quantiny = product.ProductQuantityInStock
             };
 
             ViewBag.ImageGallery = product.ProductGalleries;

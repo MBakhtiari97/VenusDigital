@@ -27,6 +27,8 @@ namespace VenusDigital.Models
         public int WishListId { get; set; }
         public bool IsAdmin { get; set; }
         public DateTime RegisterDate { get; set; }
+        [MaxLength(50)]
+        public string UserIdentifierCode { get; set; }
 
         //Nav
         public List<PostalInformations> PostalInformations { get; set; }

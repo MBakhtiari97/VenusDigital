@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Data;
 using VenusDigital.Data.Repositories;
+using VenusDigital.Utilities;
 
 
 namespace VenusDigital
@@ -41,6 +42,7 @@ namespace VenusDigital
             services.AddScoped<IReviewsRepository, ReviewRepository>();
             services.AddScoped<IWishlistRepository, WishlistRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
 
             #endregion
 

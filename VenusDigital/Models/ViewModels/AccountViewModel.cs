@@ -63,4 +63,9 @@ namespace VenusDigital.Models.ViewModels
         public int QuantityInStock { get; set; }
 
     }
+
+    public class RecoverPasswordViewModel
+    {
+        public string Email { get; set; }
+    }
 }

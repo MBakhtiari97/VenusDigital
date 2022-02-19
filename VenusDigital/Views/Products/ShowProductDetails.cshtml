@@ -28,16 +28,15 @@
                             </div>
                         </div><!-- /.single-product-gallery-item -->
 
-
-                        <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                    </div><!-- /.single-product-slider -->
+                        @* <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
+                    *@</div><!-- /.single-product-slider -->
 
 
                     <div class="single-product-gallery-thumbs gallery-thumbs">
 
                         <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                             <div class="owl-wrapper-outer">
-                                <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
+                                <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px); margin-top: 10px;">
 
                                     @foreach (ProductGalleries pic in ViewBag.ImageGallery)
                                     {
@@ -107,8 +106,15 @@
 
                             <div class="col-sm-6 col-xs-6">
                                 <div class="price-box" id="Price-Box">
-                                    <span class="price" id="new-price">$@Model.SalePrice</span>
-                                    <span class="price-strike" id="Old-Price">$@Model.MainPrice</span>
+                                    @if (@Model.SalePrice != 0)
+                                    {
+                                        <span class="price" id="new-price">$@Model.SalePrice</span>
+                                        <span class="price-strike" id="Old-Price">$@Model.MainPrice</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-strike" id="new-price">$@Model.MainPrice</span>
+                                    }
                                 </div>
                             </div>
 
@@ -130,16 +136,24 @@
                         <div class="row">
                             <div class="qty-count">
                                 <div class="cart-quantity">
-                                    <div class="quant-input">
+                                    <div class="quant-input" style="margin-top: 10px;">
                                         <input type="number" value="1">
                                     </div>
                                 </div>
                             </div>
                             <br />
-                            <div class="add-btn">
-                                <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
-                            </div>
-
+                            @if (Model.Quantiny!=0)
+                            {
+                                <div class="add-btn">
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="add-btn">
+                                    <a class="btn btn-danger"><i class="fa fa-times inner-right-vs"></i> Out Of Stock</a>
+                                </div>
+                            }
                         </div><!-- /.row -->
                     </div><!-- /.quantity-container -->
 

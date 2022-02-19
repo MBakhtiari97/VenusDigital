@@ -25,6 +25,7 @@ namespace VenusDigital.Data.Repositories
         {
             return _context.Products
                 .OrderByDescending(p => p.CreateDate)
+                .Where(p=>p.ProductQuantityInStock!=0)
                 .Include(p=>p.ProductGalleries)
                 .Take(9)
                 .ToList();

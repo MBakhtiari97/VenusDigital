@@ -32,7 +32,8 @@ namespace VenusDigital.Controllers
                     MainPrice = product.ProductMainPrice,
                     Score = product.ProductScore,
                     Title = product.ProductTitle,
-                    ProductId = product.ProductId
+                    ProductId = product.ProductId,
+                    Quantiny = product.ProductQuantityInStock
                 });
             }
             

@@ -14,6 +14,7 @@ namespace VenusDigital.Models.ViewModels
         public string FullDescription { get; set; }
         public decimal MainPrice { get; set; }
         public decimal SalePrice { get; set; }
+        public int Quantiny { get; set; }
     }
 
     public class SingleProductViewModel
@@ -23,5 +24,6 @@ namespace VenusDigital.Models.ViewModels
         public string Title { get; set; }
         public float Score { get; set; }
         public decimal MainPrice { get; set; }
+        public int Quantiny { get; set; }
     }
 }

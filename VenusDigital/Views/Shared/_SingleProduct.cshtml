@@ -64,7 +64,12 @@
 
 </div>
 <!-- /.product-info -->
-
-<a class="btn btn-primary" style="margin: 10px;">Add to cart</a>
-
+@if (Model.Quantiny != 0)
+{
+    <a class="btn btn-primary" style="margin: 10px;">Add to cart</a>
+}
+else
+{
+    <a class="btn btn-danger" style="margin: 10px;">Out Of Stock</a>
+}
 <!-- /.action -->
