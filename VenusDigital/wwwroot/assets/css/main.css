@@ -485,7 +485,7 @@ img[src="assets/images/blank.gif"] {
 .logo-slider .owl-controls .owl-prev,
 .logo-slider .owl-controls .owl-next {
   top: -57px;
-  display:none
+  display:block
 }
 .featured-product {
   margin-bottom:30px;
@@ -2558,7 +2558,7 @@ header{
   width: 100%;
 }
 .home-page-slider4 .owl-controls .owl-buttons {
-  display: none !important;
+  display: block !important;
 }
 .home-page-slider4 .owl-controls .owl-pagination .owl-page {
   display: inline-block;

@@ -60,3 +60,10 @@
     overflow: hidden;
     border-radius: 5px;
 }
+#single-pr {
+    text-align: center !important;
+}
+#img-single-product {
+    height: 150px;
+    width: 150px;
+}

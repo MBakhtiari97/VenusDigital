@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VenusDigital.Models
@@ -36,6 +37,7 @@ namespace VenusDigital.Models
         public int CategoryId { get; set; }
         [Required]
         public int ItemId { get; set; }
+        public DateTime CreateDate { get; set; }
 
         //Nav
         public List<ProductGalleries> ProductGalleries { get; set; }

@@ -1,0 +1,70 @@
+﻿@model VenusDigital.Models.ViewModels.SingleProductViewModel
+@*<div class="product-image">
+    <div class="image" >
+    <a href="/@Model.ProductId">
+    <img src="/images/pics/@Model.MainImage" alt="@Model.Title" style="width: 300px; height: 300px;" class="img-thumbnail">
+    </a>
+    </div>
+    <!-- /.image -->
+
+    <div class="tag new"><span>new</span></div>
+    </div>
+    <!-- /.product-image -->
+
+    <div class="product-info text-left" id="single-pr">
+    <h3 class="name"><a href="/@Model.ProductId">@Model.Title</a></h3>
+    <div>
+    <i class="fa fa-star rate"></i>
+    <span class="review">@Model.Score</span>
+    </div>
+    <div class="description"></div>
+    <div class="product-price"> <span class="price"> @Model.MainPrice </span></div>
+    <!-- /.product-price -->
+
+    </div>
+    <!-- /.product-info -->
+    <div class="cart clearfix animate-effect">
+    <div class="action">
+    <ul class="list-unstyled">
+    <li class="add-cart-button btn-group">
+    <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="" data-original-title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+    </li>
+    <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="" data-original-title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="" data-original-title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+    </ul>
+    </div>
+    <!-- /.action -->
+    </div>  <!-- /.cart --> *@
+
+
+
+
+
+
+<div class="product-image">
+    <div class="image">
+        <a href="/@Model.ProductId">
+            <img src="/images/pics/@Model.MainImage" alt="@Model.Title" style="width: 300px; height: 300px;" class="img-thumbnail">
+        </a>
+    </div>
+    <!-- /.image -->
+</div>
+<!-- /.product-image -->
+
+<div class="product-info text-left" id="single-pr">
+    <h3 class="name"><a href="/@Model.ProductId">@Model.Title</a></h3>
+    <div>
+        <i class="fa fa-star rate"></i>
+        <span class="review">@Model.Score</span>
+    </div>
+    <div class="description"></div>
+    <div class="product-price"> <span class="price">$ @Model.MainPrice </span></div>
+    <!-- /.product-price -->
+
+</div>
+<!-- /.product-info -->
+
+<a class="btn btn-primary" style="margin: 10px;">Add to cart</a>
+
+<!-- /.action -->
