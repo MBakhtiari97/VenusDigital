@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "ShowProductDetails";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+
 }
 
 <div class="col-xs-12 col-sm-12 col-md-9 rht-col">
@@ -15,71 +16,18 @@
                     <div id="owl-single-product" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                         <div class="owl-wrapper-outer">
                             <div class="owl-wrapper" style="width: 5796px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
+                                
+                                <!--Showing Main Photo-->
                                 <div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide1">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p1.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p1.jpg">
-                                        </a>
+                                        <div class="single-product-gallery-item">
+                                            <a href="/images/pics/@Model.MainImage">
+                                                <img class="img-responsive" alt="@Model.Title" src="/images/pics/@Model.MainImage">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide2">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p2.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p2.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide3">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p3.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p3.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide4">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p4.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p4.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide5">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p5.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p5.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide6">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p6.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/products/p6.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide7">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p7.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p7.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide8">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p8.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p8.jpg">
-                                        </a>
-                                    </div>
-                                </div><div class="owl-item" style="width: 322px;">
-                                    <div class="single-product-gallery-item" id="slide9">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p9.jpg">
-                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p9.jpg">
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div><!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
-                        <!-- /.single-product-gallery-item -->
+
 
                         <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
                     </div><!-- /.single-product-slider -->
@@ -90,68 +38,17 @@
                         <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                             <div class="owl-wrapper-outer">
                                 <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
-                                    <div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-                                            <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p1.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p2.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
 
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p3.jpg">
+                                    @foreach (ProductGalleries pic in ViewBag.ImageGallery)
+                                    {
+                                        <div style="width: 81px;">
+                                            @*<div class="item">*@
+                                            <a href="/images/pics/@pic.ImageName">
+                                                <img class="img-responsive" alt="@pic.ImageAltName" src="/images/pics/@pic.ImageName">
                                             </a>
+                                            @*</div>*@
                                         </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p4.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p5.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p6.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p7.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p8.jpg">
-                                            </a>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 81px;">
-                                        <div class="item">
-
-                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">
-                                                <img class="img-responsive" alt="" src="assets/images/products/p9.jpg">
-                                            </a>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
                             </div>
 
