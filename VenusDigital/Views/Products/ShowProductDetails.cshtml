@@ -2,11 +2,8 @@
 
 @{
     ViewData["Title"] = "ShowProductDetails";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
-<h2>ShowProductDetails</h2>
-
-<hr />
 
 <div class="col-xs-12 col-sm-12 col-md-9 rht-col">
     <div class="detail-block">
@@ -17,200 +14,277 @@
 
                     <div id="owl-single-product" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                         <div class="owl-wrapper-outer">
-                            <div class="owl-wrapper" style="width: 5796px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+                            <div class="owl-wrapper" style="width: 5796px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
                                 <div class="owl-item" style="width: 322px;">
                                     <div class="single-product-gallery-item" id="slide1">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="/images/pics/@Model.MainImage">
-                                            <img class="img-responsive" alt="" src="/images/pics/@Model.MainImage">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.single-product-gallery-item -->
-
-
-
-                    <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                </div><!-- /.single-product-slider -->
-
-
-                <div class="single-product-gallery-thumbs gallery-thumbs">
-
-                    <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
-                        <div class="owl-wrapper-outer">
-                            <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                                <div class="owl-item" style="width: 81px;">
-                                    <div class="item">
-                                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p1.jpg">
                                             <img class="img-responsive" alt="" src="assets/images/products/p1.jpg">
                                         </a>
                                     </div>
-                                </div><div class="owl-item" style="width: 81px;">
-                                    <div class="item">
-                                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide2">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p2.jpg">
                                             <img class="img-responsive" alt="" src="assets/images/products/p2.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide3">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p3.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/products/p3.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide4">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p4.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/products/p4.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide5">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p5.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/products/p5.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide6">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p6.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/products/p6.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide7">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p7.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p7.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide8">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p8.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p8.jpg">
+                                        </a>
+                                    </div>
+                                </div><div class="owl-item" style="width: 322px;">
+                                    <div class="single-product-gallery-item" id="slide9">
+                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p9.jpg">
+                                            <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p9.jpg">
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div><!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+                        <!-- /.single-product-gallery-item -->
+
+                        <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
+                    </div><!-- /.single-product-slider -->
 
 
-                    <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                </div><!-- /#owl-single-product-thumbnails -->
+                    <div class="single-product-gallery-thumbs gallery-thumbs">
 
+                        <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                            <div class="owl-wrapper-outer">
+                                <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
+                                    <div class="owl-item" style="width: 81px;">
+                                        <div class="item">
+                                            <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p1.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p2.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p3.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-            </div><!-- /.gallery-thumbs -->
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p4.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-        </div><!-- /.single-product-gallery -->
-    </div><!-- /.gallery-holder -->
-    <div class="col-sm-12 col-md-8 col-lg-8 product-info-block">
-        <div class="product-info">
-            <h1 class="name">@Model.Title</h1>
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p5.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-            <div class="rating-reviews m-t-20">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="pull-left">
-                            <div class="rating rateit-small rateit"><button id="rateit-reset-5" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-5" style="display: none;"></button><div id="rateit-range-5" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-5" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
-                        </div>
-                        <div class="pull-left">
-                            <div class="reviews">
-                                <a href="#" class="lnk">(@Model.ReviewsCount Reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.rating-reviews -->
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p6.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-            <div class="stock-container info-container m-t-10">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="pull-left">
-                            <div class="stock-box">
-                                <span class="label">Availability :</span>
-                            </div>
-                        </div>
-                        <div class="pull-left">
-                            <div class="stock-box">
-                                <span class="value">@Model.Availability</span>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.stock-container -->
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p7.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-            <div class="description-container m-t-20">
-                @Model.ShortDescription
-            </div><!-- /.description-container -->
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p8.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 81px;">
+                                        <div class="item">
 
-            <div class="price-container info-container m-t-30">
-                <div class="row">
-
-
-                    <div class="col-sm-6 col-xs-6">
-                        <div class="price-box">
-                            <span class="price">$@Model.SalePrice</span>
-                            <span class="price-strike">$@Model.MainPrice</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xs-6">
-                        <div class="favorite-button m-t-5">
-                            <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Wishlist">
-                                <i class="fa fa-heart"></i>
-                            </a>
-                            <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Add to Compare">
-                                <i class="fa fa-signal"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div><!-- /.row -->
-            </div><!-- /.price-container -->
-
-            <div class="quantity-container info-container">
-                <div class="row">
-
-                    <div class="qty">
-                        <span class="label">Qty :</span>
-                    </div>
-
-                    <div class="qty-count">
-                        <div class="cart-quantity">
-                            <div class="quant-input">
-                                <div class="arrows">
-                                    <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                    <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">
+                                                <img class="img-responsive" alt="" src="assets/images/products/p9.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="number" value="1">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="add-btn">
-                        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
-                    </div>
 
 
-                </div><!-- /.row -->
-            </div><!-- /.quantity-container -->
+                            <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
+                        </div><!-- /#owl-single-product-thumbnails -->
 
 
 
+                    </div><!-- /.gallery-thumbs -->
+
+                </div><!-- /.single-product-gallery -->
+            </div><!-- /.gallery-holder -->
+            <div class="col-sm-12 col-md-8 col-lg-8 product-info-block">
+                <div class="product-info">
+                    <h1 class="name">@Model.Title</h1>
+
+                    <div class="rating-reviews m-t-20">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pull-left">
+                                    <div class="reviews">
+                                        <i class="fa fa-star rate"></i>
+                                        <a href="#" class="lnk">(@Model.ReviewsCount Reviews)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.rating-reviews -->
+
+                    <div class="stock-container info-container m-t-10">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pull-left">
+                                    <div class="stock-box">
+                                        <span class="label" id="lableAvailable">Availability :</span>
+                                    </div>
+                                </div>
+                                <div class="pull-left">
+                                    <div class="stock-box">
+                                        <span class="value">@Model.Availability</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.stock-container -->
+
+                    <div class="description-container m-t-20">
+                        Description:<br />
+                        @Model.ShortDescription
+                    </div><!-- /.description-container -->
+
+                    <div class="price-container info-container m-t-30" id="price-container">
+                        <div class="row">
 
 
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="price-box" id="Price-Box">
+                                    <span class="price" id="new-price">$@Model.SalePrice</span>
+                                    <span class="price-strike" id="Old-Price">$@Model.MainPrice</span>
+                                </div>
+                            </div>
 
-        </div><!-- /.product-info -->
-    </div><!-- /.col-sm-7 -->
-</div><!-- /.row -->
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="favorite-button m-t-5">
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Wishlist" id="wishlist-compare-buttons">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Add to Compare" id="wishlist-compare-buttons">
+                                        <i class="fa fa-signal"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div><!-- /.row -->
+                    </div><!-- /.price-container -->
+
+                    <div class="quantity-container info-container">
+                        <div class="row">
+                            <div class="qty-count">
+                                <div class="cart-quantity">
+                                    <div class="quant-input">
+                                        <input type="number" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="add-btn">
+                                <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                            </div>
+
+                        </div><!-- /.row -->
+                    </div><!-- /.quantity-container -->
+
+                </div><!-- /.product-info -->
+            </div><!-- /.col-sm-7 -->
+        </div><!-- /.row -->
+    </div>
+
+    <div class="product-tabs inner-bottom-xs">
+      
+    </div><!-- /.product-tabs -->
+</div>
 
 
-<div class="product-tabs inner-bottom-xs">
-    <div class="row">
-        <div class="col-sm-12 col-md-3 col-lg-3">
-            <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
-                <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-                <li class=""><a data-toggle="tab" href="#review">REVIEW</a></li>
-                <li class=""><a data-toggle="tab" href="#tags">TAGS</a></li>
-            </ul><!-- /.nav-tabs #product-tabs -->
-        </div>
-        <div class="col-sm-12 col-md-9 col-lg-9">
+    <div class="col-sm-12 col-md-12 col-lg-12" >
+        <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+            <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
+            <li><a data-toggle="tab" href="#review">REVIEW</a></li>
+            <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+        </ul><!-- /.nav-tabs #product-tabs -->
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" id="more-details">
 
-            <div class="tab-content">
+        <div class="tab-content">
 
-                <div id="description" class="tab-pane active">
-                    <div class="product-tab">
-                        @Model.FullDescription
-                    </div>
-                </div><!-- /.tab-pane -->
+            <div id="description" class="tab-pane in active">
+                <div class="product-tab">
+                    @Model.FullDescription
+                </div>
+            </div><!-- /.tab-pane -->
 
-                <div id="review" class="tab-pane">
-                    <div class="product-tab">
+            <div id="review" class="tab-pane">
+                <div class="product-tab">
 
-                        <partial name="_Reviews" />
+                    <partial name="_Reviews"/>
 
-                    </div><!-- /.product-tab -->
-                </div><!-- /.tab-pane -->
+                </div><!-- /.product-tab -->
+            </div><!-- /.tab-pane -->
 
-                <div id="tags" class="tab-pane">
-                    <div class="product-tag">
+            <div id="tags" class="tab-pane">
+                <partial name="_Tags"/>
+            </div><!-- /.tab-pane -->
 
-                        <partial name="_Tags" />
-
-                    </div><!-- /.product-tab -->
-                </div><!-- /.tab-pane -->
-
-            </div><!-- /.tab-content -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-</div><!-- /.product-tabs -->
-@section Scripts {
-    @{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
-}
-
+        </div><!-- /.tab-content -->
+    </div><!-- /.col -->

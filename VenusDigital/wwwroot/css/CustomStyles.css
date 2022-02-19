@@ -9,3 +9,54 @@
 #mainPrice {
     text-decoration: line-through;
 }
+#lableAvailable{
+    color: #666666 !important;
+    font-size: 14px !important;
+}
+#Price-Box {
+    font-size: 16px;
+    font-weight: bold;
+}
+#Old-Price {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 50px;
+    text-decoration: line-through;
+    vertical-align: top;
+    margin-left: 10px;
+}
+#new-price {
+    color: #ff7878;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 50px;
+}
+#wishlist-compare-buttons {
+    background: #ddd;
+    border-radius: 999px;
+    padding: 10px 14px;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+#price-container {
+    border-bottom: 1px solid #F2F2F2;
+    border-top: 1px solid #F2F2F2;
+    margin-bottom: 0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+#more-details {
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 5px;
+}
