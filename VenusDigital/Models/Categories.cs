@@ -11,22 +11,15 @@ namespace VenusDigital.Models
         [Required]
         [MaxLength(150)]
         public string CategoryName { get; set; }
-        [Required]
         public int ParentId { get; set; }
-        [Required]
-        [MaxLength(150)]
-        public string ParentName { get; set; }
-        [Required]
         [MaxLength(150)]
         public string ParentCategoryBanner { get; set; }
-        [Required]
-        public int ProductId { get; set; }
 
         //Nav
-        [ForeignKey("ProductId")]
-        public Products Products { get; set; }
         [ForeignKey("CategoryId")]
         public Categories Category { get; set; }
+
+        public List<SelectedCategory> SelectedCategory { get; set; }
 
     }
 }

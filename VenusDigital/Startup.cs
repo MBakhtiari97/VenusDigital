@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Data;
@@ -25,6 +27,7 @@ namespace VenusDigital
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
             services.AddControllersWithViews();
 
             #region DbContext
@@ -43,6 +46,7 @@ namespace VenusDigital
             services.AddScoped<IWishlistRepository, WishlistRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
+            services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
 
             #endregion
 
@@ -76,6 +80,8 @@ namespace VenusDigital
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseNotyf();
 
             app.UseEndpoints(endpoints =>
             {

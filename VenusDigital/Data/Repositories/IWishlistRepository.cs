@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using VenusDigital.Models;
 
@@ -15,10 +17,12 @@ namespace VenusDigital.Data.Repositories
     public class WishlistRepository:IWishlistRepository
     {
         private VenusDigitalContext _contexct;
+        public INotyfService _notifyService { get; }
 
-        public WishlistRepository(VenusDigitalContext contexct)
+        public WishlistRepository(VenusDigitalContext contexct, INotyfService notifyService)
         {
             _contexct = contexct;
+            _notifyService = notifyService;
         }
 
         public void AddToWishlist(int userId, int productId)
@@ -31,7 +35,13 @@ namespace VenusDigital.Data.Repositories
                     UserId = userId
                 });
                 _contexct.SaveChanges();
+                _notifyService.Success("Item has successfully added to your Wishlist");
             }
+            else
+            {
+                _notifyService.Error("This item Existed is in your Wishlist!");
+            }
+
         }
 
         public IEnumerable<int> GetAllWishlistProductsForUser(int userId)
@@ -51,6 +61,7 @@ namespace VenusDigital.Data.Repositories
             {
                 _contexct.WishLists.Remove(wishlist);
                 _contexct.SaveChanges();
+                _notifyService.Success("Item has successfully removed from your wish list");
             }
         }
     }

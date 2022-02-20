@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VenusDigital.Data;
 
 namespace VenusDigital.Migrations
 {
     [DbContext(typeof(VenusDigitalContext))]
-    partial class VenusDigitalContextModelSnapshot : ModelSnapshot
+    [Migration("20220220140235_initialNewSelectedCategoryTable")]
+    partial class initialNewSelectedCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +66,12 @@ namespace VenusDigital.Migrations
                     b.Property<int>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("CategoryId");
+
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("Categories");
                 });
@@ -236,6 +243,9 @@ namespace VenusDigital.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -499,6 +509,10 @@ namespace VenusDigital.Migrations
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
+                    b.HasOne("VenusDigital.Models.Products", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("ProductsProductId");
+
                     b.Navigation("Category");
                 });
 
@@ -624,6 +638,8 @@ namespace VenusDigital.Migrations
 
             modelBuilder.Entity("VenusDigital.Models.Products", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("Features");
 
                     b.Navigation("Items");

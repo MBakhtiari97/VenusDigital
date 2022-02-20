@@ -25,5 +25,6 @@ namespace VenusDigital.Data
         public DbSet<Tags> Tags { get; set; }
         public DbSet<Supports> Supports { get; set; }
         public DbSet<WishLists> WishLists { get; set; }
+        public DbSet<SelectedCategory> SelectedCategory { get; set; }
     }
 }

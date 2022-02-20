@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +18,17 @@ namespace VenusDigital.Controllers
         private IWishlistRepository _wishlistRepository;
         private IProductsRepository _productsRepository;
         private IReviewsRepository _reviewsRepository;
+        
 
         public WishlistController(IWishlistRepository wishlistRepository
             , IProductsRepository productsRepository
-            , IReviewsRepository reviewsRepository)
+            , IReviewsRepository reviewsRepository
+            )
         {
             _wishlistRepository = wishlistRepository;
             _productsRepository = productsRepository;
             _reviewsRepository = reviewsRepository;
+            
         }
 
         #region Wishlist
@@ -76,7 +80,7 @@ namespace VenusDigital.Controllers
         public IActionResult AddToWishlist(int productId)
         {
             _wishlistRepository.AddToWishlist(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()),productId);
-            return RedirectToAction("WishList");
+            return Redirect($"/Product-{productId}");
         }
 
         public IActionResult RemoveFromWishlist(int productId)

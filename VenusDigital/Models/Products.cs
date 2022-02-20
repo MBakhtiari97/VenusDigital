@@ -34,17 +34,15 @@ namespace VenusDigital.Models
         [Required]
         public int FeatureId { get; set; }
         [Required]
-        public int CategoryId { get; set; }
-        [Required]
         public int ItemId { get; set; }
         public DateTime CreateDate { get; set; }
 
         //Nav
         public List<ProductGalleries> ProductGalleries { get; set; }
         public List<Features> Features { get; set; }
-        public List<Categories> Categories { get; set; }
         public List<Tags> Tags { get; set; }
         public List<Reviews> Reviews { get; set; }
         public List<Items> Items { get; set; }
+        public List<SelectedCategory> SelectedCategory { get; set; }
     }
 }
