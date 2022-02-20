@@ -15,6 +15,8 @@ namespace VenusDigital.Models.ViewModels
         public decimal MainPrice { get; set; }
         public decimal SalePrice { get; set; }
         public int Quantiny { get; set; }
+        public int ProductId { get; set; }
+        
     }
 
     public class SingleProductViewModel

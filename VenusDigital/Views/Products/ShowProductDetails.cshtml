@@ -120,7 +120,7 @@
 
                             <div class="col-sm-6 col-xs-6">
                                 <div class="favorite-button m-t-5">
-                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Wishlist" id="wishlist-compare-buttons">
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-productId="@Model.ProductId" data-original-title="Wishlist" id="wishlist-compare-buttons">
                                         <i class="fa fa-heart"></i>
                                     </a>
                                     <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Add to Compare" id="wishlist-compare-buttons">

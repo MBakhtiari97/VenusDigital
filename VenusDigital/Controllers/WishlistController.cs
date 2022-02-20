@@ -53,20 +53,36 @@ namespace VenusDigital.Controllers
                 reviewCount = _reviewsRepository.GetTotalReviewsCount(productId);
 
 
-                    wishList.Add(new WishlistViewModel
-                    {
-                        ProductImage = product.ProductGalleries.First().ImageName,
-                        ProductMainPrice = product.ProductMainPrice,
-                        ProductName = product.ProductTitle,
-                        ProductOffPrice = product.ProductOnSalePrice,
-                        ProductScore = product.ProductScore,
-                        ReviewsCount = reviewCount,
-                        QuantityInStock = product.ProductQuantityInStock
-                    }
-                    );
+                wishList.Add(new WishlistViewModel
+                {
+                    ProductImage = product.ProductGalleries.First().ImageName,
+                    ProductMainPrice = product.ProductMainPrice,
+                    ProductName = product.ProductTitle,
+                    ProductOffPrice = product.ProductOnSalePrice,
+                    ProductScore = product.ProductScore,
+                    ReviewsCount = reviewCount,
+                    QuantityInStock = product.ProductQuantityInStock,
+                    ProductId = product.ProductId
+                }
+                );
 
             }
             return View(wishList);
+        }
+
+        #endregion
+
+        #region WishlistOperations
+        public IActionResult AddToWishlist(int productId)
+        {
+            _wishlistRepository.AddToWishlist(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()),productId);
+            return RedirectToAction("WishList");
+        }
+
+        public IActionResult RemoveFromWishlist(int productId)
+        {
+            _wishlistRepository.RemoveFromWishlist(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()), productId);
+            return RedirectToAction("WishList");
         }
 
         #endregion

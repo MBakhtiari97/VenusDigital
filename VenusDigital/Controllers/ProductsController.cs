@@ -15,7 +15,7 @@ namespace VenusDigital.Controllers
             _productsRepository = productsRepository;
             _reviewsRepository = reviewsRepository;
         }
-        [Route("{productId}")]
+        [Route("Product-{productId}")]
         public IActionResult ShowProductDetails(int productId)
         {
             var product = _productsRepository.GetProduct(productId);
@@ -32,7 +32,8 @@ namespace VenusDigital.Controllers
                 ShortDescription = product.ProductShortDescription,
                 Title = product.ProductTitle,
                 MainImage = product.ProductGalleries.First().ImageName,
-                Quantiny = product.ProductQuantityInStock
+                Quantiny = product.ProductQuantityInStock,
+                ProductId = product.ProductId
             };
 
             ViewBag.ImageGallery = product.ProductGalleries;

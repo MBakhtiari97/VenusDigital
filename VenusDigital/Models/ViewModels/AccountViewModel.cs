@@ -62,6 +62,8 @@ namespace VenusDigital.Models.ViewModels
         [Required]
         public int QuantityInStock { get; set; }
 
+        public int ProductId { get; set; }
+
     }
 
     public class ForgetPasswordViewModel

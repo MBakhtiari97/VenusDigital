@@ -44,7 +44,7 @@
 
 <div class="product-image">
     <div class="image">
-        <a href="/@Model.ProductId">
+        <a href="/Product-@Model.ProductId">
             <img src="/images/pics/@Model.MainImage" alt="@Model.Title" style="width: 300px; height: 300px;" class="img-thumbnail">
         </a>
     </div>
@@ -53,7 +53,7 @@
 <!-- /.product-image -->
 
 <div class="product-info text-left" id="single-pr">
-    <h3 class="name"><a href="/@Model.ProductId">@Model.Title</a></h3>
+    <h3 class="name"><a href="/Product-@Model.ProductId">@Model.Title</a></h3>
     <div>
         <i class="fa fa-star rate"></i>
         <span class="review">@Model.Score</span>

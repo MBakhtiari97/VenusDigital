@@ -18,9 +18,9 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="col-md-2 col-sm-6 col-xs-6"><img src="/images/pics/@item.ProductImage" alt="@item.ProductName" id="imgWishlist" class="img-thumbnail"></td>
+                        <td class="col-md-2 col-sm-6 col-xs-6"><a href="/Product-@item.ProductId"><img src="/images/pics/@item.ProductImage" alt="@item.ProductName" id="imgWishlist" class="img-thumbnail"></a></td>
                         <td class="col-md-7 col-sm-6 col-xs-6">
-                            <div class="product-name"><a href="#">@item.ProductName</a></div>
+                            <div class="product-name"><a href="/Product-@item.ProductId">@item.ProductName</a></div>
                             <div >
                                 <i class="fa fa-star rate"></i>
                                 <span class="review">( @item.ReviewsCount Reviews )</span>
@@ -56,7 +56,7 @@
                         }
                       
                         <td class="col-md-1 close-btn">
-                            <a href="#" class=""><i class="fa fa-times"></i></a>
+                            <a asp-action="RemoveFromWishlist" asp-controller="Wishlist" asp-route-productId="@item.ProductId" class=""><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 }
