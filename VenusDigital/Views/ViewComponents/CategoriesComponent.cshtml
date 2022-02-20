@@ -1,37 +1,35 @@
 ﻿@model IEnumerable<Categories>
 <li class="active dropdown"> <a href="/">Home</a> </li>
 <li class="dropdown yamm mega-menu">
-    @foreach (var group in Model.Where(c => c.ParentId == null))
-    {
-        <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@group.CategoryName</a>
-        @if (Model.Any(c => c.ParentId == group.CategoryId))
+    <div class="row">
+        @foreach (var group in Model.Where(c => c.ParentId == null))
         {
-            <ul class="dropdown-menu container">
-                <li>
-                    <div class="yamm-content ">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                <ul class="links">
-                                    @foreach (var subGroup in Model.Where(c => c.ParentId == group.CategoryId))
-                                    {
-                                        <li><a href="#">@subGroup.CategoryName</a></li>
-                                    }
-                                </ul>
+            <a href="/category-@group.CategoryId" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@group.CategoryName</a>
+            @if (Model.Any(c => c.ParentId == group.CategoryId))
+            {
+                <ul class="dropdown-menu container">
+                    <li>
+                        <div class="yamm-content ">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                                    <ul class="links">
+                                        @foreach (var subGroup in Model.Where(c => c.ParentId == group.CategoryId))
+                                        {
+                                            <li><a href="#">@subGroup.CategoryName</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image"> <img class="img-responsive" src="/images/categoriesBanner/@group.ParentCategoryBanner" alt=""> </div>
+                                <!-- /.yamm-content -->
                             </div>
-                            <!-- /.col -->
-
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image"> <img class="img-responsive" src="assets/images/banners/top-menu-banner.jpg" alt=""> </div>
-                            <!-- /.yamm-content -->
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            }
         }
-      
-
-
-    }
-
+    </div>
 </li>
 
 @*                                    <li class="dropdown mega-menu">
