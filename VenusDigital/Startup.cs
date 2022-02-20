@@ -34,7 +34,7 @@ namespace VenusDigital
 
             services.AddDbContext<VenusDigitalContext>(options =>
             {
-                options.UseSqlServer("Data Source=.;Initial Catalog=VenusDigitalCore_DB;Integrated Security=true");
+                options.UseSqlServer("Data Source=.;Initial Catalog=VenusDigitalCore_DB;Integrated Security=true;MultipleActiveResultSets=true");
             });
 
             #endregion
@@ -47,6 +47,7 @@ namespace VenusDigital
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
             services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             #endregion
 

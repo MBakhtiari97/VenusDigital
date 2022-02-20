@@ -14,7 +14,9 @@ namespace VenusDigital.Controllers
         private IProductsRepository _productsRepository;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger,IProductsRepository productsRepository)
+        public HomeController(ILogger<HomeController> logger
+            ,IProductsRepository productsRepository
+            )
         {
             _logger = logger;
             _productsRepository = productsRepository;
@@ -55,6 +57,5 @@ namespace VenusDigital.Controllers
         {
             return View("NotFoundPG");
         }
-
     }
 }

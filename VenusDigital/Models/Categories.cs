@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace VenusDigital.Models
         [Required]
         [MaxLength(150)]
         public string CategoryName { get; set; }
-        public int ParentId { get; set; }
+        public Nullable<int> ParentId { get; set; }
         [MaxLength(150)]
         public string ParentCategoryBanner { get; set; }
 
