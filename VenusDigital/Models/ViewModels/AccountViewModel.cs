@@ -64,8 +64,21 @@ namespace VenusDigital.Models.ViewModels
 
     }
 
-    public class RecoverPasswordViewModel
+    public class ForgetPasswordViewModel
     {
         public string Email { get; set; }
+    }
+
+    public class RecoverPasswordViewModel
+    {
+        [Required]
+        [MaxLength(50)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [Required]
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        [Compare("Password",ErrorMessage = "Password and ConfirmPassword does not match")]
+        public string ConfirmPassword { get; set; }
     }
 }

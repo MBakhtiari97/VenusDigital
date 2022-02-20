@@ -8,8 +8,9 @@ namespace VenusDigital.Data.Repositories
         bool IsExistedUserByEmail(string email);
         void AddUser(Users user);
         Users GetUserForLogin(string email, string password);
-        Users RecoverPasswordByEmail(string email, string identifierCode);
+        Users RecoverPasswordByIdentifier(string identifierCode);
         Users GetUserByEmail(string email);
+        void SaveChanges();
     }
 
 
@@ -30,7 +31,8 @@ namespace VenusDigital.Data.Repositories
 
         public Users GetUserByEmail(string email)
         {
-            return _context.Users.First(u => u.EmailAddress == email);
+            return _context.Users
+                .First(u => u.EmailAddress == email);
         }
 
         public Users GetUserForLogin(string email, string password)
@@ -41,13 +43,26 @@ namespace VenusDigital.Data.Repositories
 
         public bool IsExistedUserByEmail(string email)
         {
-            return _context.Users.Any(u => u.EmailAddress == email);
+            return _context.Users
+                .Any(u => u.EmailAddress == email);
         }
 
-        public Users RecoverPasswordByEmail(string email,string identifierCode)
+        public Users RecoverPasswordByIdentifier(string identifierCode)
         {
-            return _context.Users.FirstOrDefault(u =>
-                u.EmailAddress == email && u.UserIdentifierCode == identifierCode);
+            if (_context.Users.Any(u =>
+                    u.UserIdentifierCode == identifierCode))
+            {
+                return _context.Users.Single(u =>
+                    u.UserIdentifierCode == identifierCode);
+            }
+
+            return null;
+
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

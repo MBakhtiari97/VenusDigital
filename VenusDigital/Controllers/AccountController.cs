@@ -122,30 +122,63 @@ namespace VenusDigital.Controllers
 
         [HttpPost]
         [Route("ForgetPassword")]
-        public async Task<IActionResult> ForgetPasswordAsync(RecoverPasswordViewModel recover)
+        public async Task<IActionResult> ForgetPasswordAsync(ForgetPasswordViewModel forget)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(forget);
+            }
+
+            var user = _userRepository.GetUserByEmail(forget.Email);
+            if (user!=null)
+            {
+                var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_RecoverPassword", user);
+                SendEmail.Send(forget.Email,"Recover Password",body);
+                return View("SuccesForgotPassword", user);
+
+            }
+            else
+            {
+                ModelState.AddModelError("Email","Cannot find any user with this email address !");
+                return View(forget);
+            }
+        }
+       
+        [Route("RecoverPassword/{id}")]
+        public IActionResult RecoverPassword(string id)
+        {
+            var user = _userRepository.RecoverPasswordByIdentifier(id);
+            if (user == null)
+                return RedirectToAction("NotFound", "Home");
+
+            return View();
+        }
+        [HttpPost]
+        [Route("RecoverPassword/{id}")]
+        public async Task<IActionResult> RecoverPassword(string id,RecoverPasswordViewModel recover)
         {
             if (!ModelState.IsValid)
             {
                 return View(recover);
             }
 
-            var user = _userRepository.GetUserByEmail(recover.Email);
-            if (user!=null)
+            var user = _userRepository.RecoverPasswordByIdentifier(id);
+            if (user != null)
             {
-                var body = await _viewRenderService.RenderToStringAsync("Account/_RecoverPassword", user);
-                SendEmail.Send(recover.Email,"Recover Password",body);
-                return View("SuccesForgotPassword", user);
+                user.Password=recover.Password;
+                user.UserIdentifierCode = Guid.NewGuid().ToString();
+                _userRepository.SaveChanges();
 
-                //TODO: COMPLETE SEND RECOVER EMAIL COMMANDS AND CODES
+                var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_RecoveryPasswordNotification", user);
+                SendEmail.Send(user.EmailAddress, "Recover Password", body);
+
+                return View("_SuccessRecovery");
             }
             else
             {
-                ModelState.AddModelError("Email","Cannot find any user with this email address !");
-                return View(recover);
+                return RedirectToAction("NotFound", "Home");
             }
         }
-
-
         #endregion
 
     }
