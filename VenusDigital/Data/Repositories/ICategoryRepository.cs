@@ -10,6 +10,7 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<Categories> GetCategories();
         IEnumerable<int> GetSelectedCategories(int productId);
         Categories GetCategoryByCategoryId(int categoryId);
+        IEnumerable<int> GetProductsByCategory(int categotyId);
     }
 
     public class CategoryRepository : ICategoryRepository
@@ -30,6 +31,14 @@ namespace VenusDigital.Data.Repositories
         {
             return _context.Categories
                 .First(c => c.CategoryId == categoryId);
+        }
+
+        public IEnumerable<int> GetProductsByCategory(int categotyId)
+        {
+            return _context.SelectedCategory
+                .Where(p => p.CategoryId == categotyId)
+                .Select(p => p.ProductId)
+                .ToList();
         }
 
         public IEnumerable<int> GetSelectedCategories(int productId)

@@ -9,18 +9,25 @@ namespace VenusDigital.Controllers
 {
     public class ProductsController : Controller
     {
+        #region InjectionRepository
+
         private IProductsRepository _productsRepository;
         private IReviewsRepository _reviewsRepository;
         private ICategoryRepository _categoryRepository;
 
         public ProductsController(IProductsRepository productsRepository
-            ,IReviewsRepository reviewsRepository
-            ,ICategoryRepository categoryRepository)
+            , IReviewsRepository reviewsRepository
+            , ICategoryRepository categoryRepository)
         {
             _productsRepository = productsRepository;
             _reviewsRepository = reviewsRepository;
             _categoryRepository = categoryRepository;
         }
+
+        #endregion
+
+        #region ShowProduct
+
         [Route("Product-{productId}")]
         public IActionResult ShowProductDetails(int productId)
         {
@@ -45,15 +52,18 @@ namespace VenusDigital.Controllers
             List<Categories> categories = new List<Categories>();
             foreach (var categoryId in _categoryRepository.GetSelectedCategories(productId))
             {
-               categories.Add(_categoryRepository.GetCategoryByCategoryId(categoryId)); 
+                categories.Add(_categoryRepository.GetCategoryByCategoryId(categoryId));
             }
-            
+
 
             ViewBag.ProductCategories = categories;
             ViewBag.ImageGallery = product.ProductGalleries;
             ViewBag.Tags = _productsRepository.GetProductTags(productId);
             return View(Product);
         }
+
+
+        #endregion
 
         #region Search
         [Route("Search")]
@@ -65,6 +75,22 @@ namespace VenusDigital.Controllers
             ViewBag.Search = q.ToUpper();
             return View(ResultProduct.Distinct());
         }
+
+        #endregion
+
+        #region Products
+        [Route("Category-{categoryId}")]
+        public IActionResult ShowProductsByCategory(int categoryId)
+        {
+            List<Products> productsByCategory = new List<Products>();
+            foreach (var productId in _categoryRepository.GetProductsByCategory(categoryId))
+            {
+                productsByCategory.Add(_productsRepository.GetProduct(productId));
+            }
+
+            return View(productsByCategory);
+        }
+
 
         #endregion
     }

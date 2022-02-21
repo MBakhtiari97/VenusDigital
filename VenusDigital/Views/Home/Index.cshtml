@@ -4,46 +4,50 @@
 }
 <partial name="_Slider" />
 
+@section SideBar
+{
+    <partial name="_LeftSideBar"/>
+}
 @*<div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
     <div class="more-info-tab clearfix ">
-        <h3 class="new-product-title pull-left">New Products</h3>
-        <!-- /.nav-tabs -->
+    <h3 class="new-product-title pull-left">New Products</h3>
+    <!-- /.nav-tabs -->
     </div>
     <div class="tab-content outer-top-xs">
-        <div class="tab-pane in active" id="all">
-            <div class="product-slider">
-                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" style="opacity: 1; display: block;">
-                    <div class="owl-wrapper-outer">
-                        <div class="owl-wrapper" style="width: 2100px; left: 0px; display: block;">
+    <div class="tab-pane in active" id="all">
+    <div class="product-slider">
+    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" style="opacity: 1; display: block;">
+    <div class="owl-wrapper-outer">
+    <div class="owl-wrapper" style="width: 2100px; left: 0px; display: block;">
 
-                            @foreach (var item in Model)
-                            {
-                                <div class="owl-item" style="width: 175px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-                                            <div class="product">
-                                                <partial name="_SingleProduct" model="item" />
-                                            </div>
-                                            <!-- /.product -->
-                                    </div>
-                                        <!-- /.products -->
-                                </div>
-                                </div>
-                            }
-
-                            <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div>
-                        </div>
-                        <!-- /.home-owl-carousel -->
-                    </div>
-                    <!-- /.product-slider -->
-                </div>
-                <!-- /.tab-pane -->
-
-            </div>
-            <!-- /.tab-content -->
-        </div>
+    @foreach (var item in Model)
+    {
+    <div class="owl-item" style="width: 175px;">
+    <div class="item item-carousel">
+    <div class="products">
+    <div class="product">
+    <partial name="_SingleProduct" model="item" />
     </div>
-</div>*@
+    <!-- /.product -->
+    </div>
+    <!-- /.products -->
+    </div>
+    </div>
+    }
+
+    <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div>
+    </div>
+    <!-- /.home-owl-carousel -->
+    </div>
+    <!-- /.product-slider -->
+    </div>
+    <!-- /.tab-pane -->
+
+    </div>
+    <!-- /.tab-content -->
+    </div>
+    </div>
+    </div>*@
 
 
 <div class="col-md-12" style="text-align: center; font-size: 16px;font-weight: bold;">
@@ -52,7 +56,7 @@
         @foreach (var item in Model)
         {
             <div class="col-md-3" style="margin: 20px 0 20px 0; ">
-                <partial name="_SingleProduct" model="@item"/>
+                <partial name="_SingleProduct" model="@item" />
             </div>
         }
     </div>
