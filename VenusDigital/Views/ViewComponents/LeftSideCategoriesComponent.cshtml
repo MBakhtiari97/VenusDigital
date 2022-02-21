@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Categories>
+<nav class="yamm megamenu-horizontal">
+    <ul class="nav">
+        @foreach (var group in Model.Where(c => c.ParentId == null))
+        {
+            <li class="dropdown menu-item">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-diamond" aria-hidden="true"></i>@group.CategoryName</a>
+                <!-- ================================== MEGAMENU VERTICAL ================================== -->
+                <ul class="dropdown-menu mega-menu" >
+                    <li class="yamm-content">
+                        <div class="row" >
+                            <div class="col-xs-12 col-sm-12 col-lg-4" >
+                                <ul>
+                                    @foreach (var subGroup in Model.Where(c => c.ParentId == group.CategoryId))
+                                    {
+                                        <li><a href="#">@subGroup.CategoryName</a></li> 
+                                    }
+                                </ul>
+                            </div>
+                            <div class="dropdown-banner-holder"> <a href="#"><img alt="@group.CategoryName" style="width: 200px; margin: 16px;" src="/images/categoriesBanner/@group.ParentCategoryBanner"></a> </div>
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                    <!-- /.yamm-content -->
+                </ul>
+                <!-- /.dropdown-menu -->
+                <!-- ================================== MEGAMENU VERTICAL ================================== -->
+            </li>
+        }
+    </ul>
+    <!-- /.nav -->
+</nav>
+<!-- /.megamenu-horizontal -->

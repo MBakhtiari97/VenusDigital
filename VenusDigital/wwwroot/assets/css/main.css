@@ -1563,7 +1563,7 @@ header{
 }
 
 .yamm .dropdown-menu .custom-banner a {padding:0px}
-.yamm .dropdown-menu .banner-image { margin-bottom:0px}
+.yamm .dropdown-menu .banner-image { margin-bottom: 0px}
 
 .navbar-nav .open a{
     float: none;
@@ -1748,7 +1748,7 @@ header{
   left: 100%;
   margin: 0;
   min-width: 330%;
-  /*338%;*/
+    /*338%;*/
   position: absolute;
   top: 0px;
   -webkit-border-radius: 0px;
