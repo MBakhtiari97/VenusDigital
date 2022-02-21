@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "ShowProductDetails";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    List<Categories> SelectedCategories = ViewBag.ProductCategories;
 
 }
 
@@ -16,20 +17,20 @@
                     <div id="owl-single-product" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                         <div class="owl-wrapper-outer">
                             <div class="owl-wrapper" style="width: 5796px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
-                                
+
                                 <!--Showing Main Photo-->
                                 <div class="owl-item" style="width: 322px;">
-                                        <div class="single-product-gallery-item">
-                                            <a href="/images/pics/@Model.MainImage">
-                                                <img class="img-responsive" alt="@Model.Title" src="/images/pics/@Model.MainImage">
-                                            </a>
-                                        </div>
+                                    <div class="single-product-gallery-item">
+                                        <a href="/images/pics/@Model.MainImage">
+                                            <img class="img-responsive" alt="@Model.Title" src="/images/pics/@Model.MainImage">
+                                        </a>
                                     </div>
+                                </div>
                             </div>
                         </div><!-- /.single-product-gallery-item -->
-
                         @* <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                    *@</div><!-- /.single-product-slider -->
+                        *@
+                    </div><!-- /.single-product-slider -->
 
 
                     <div class="single-product-gallery-thumbs gallery-thumbs">
@@ -131,71 +132,79 @@
 
                         </div><!-- /.row -->
                     </div><!-- /.price-container -->
-
-                    <div class="quantity-container info-container">
-                        <div class="row">
-                            <div class="qty-count">
-                                <div class="cart-quantity">
-                                    <div class="quant-input" style="margin-top: 10px;">
-                                        <input type="number" value="1">
+                    <div class="row">
+                        <div class="quantity-container info-container col col-md-6">
+                            <div class="row">
+                                <div class="qty-count">
+                                    <div class="cart-quantity">
+                                        <div class="quant-input" style="margin-top: 10px;">
+                                            <input type="number" value="1">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br />
-                            @if (Model.Quantiny!=0)
-                            {
-                                <div class="add-btn">
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="add-btn">
-                                    <a class="btn btn-danger"><i class="fa fa-times inner-right-vs"></i> Out Of Stock</a>
-                                </div>
-                            }
-                        </div><!-- /.row -->
-                    </div><!-- /.quantity-container -->
-
+                                <br />
+                                @if (Model.Quantiny != 0)
+                                {
+                                    <div class="add-btn">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="add-btn">
+                                        <a class="btn btn-danger"><i class="fa fa-times inner-right-vs"></i> Out Of Stock</a>
+                                    </div>
+                                }
+                            </div><!-- /.row -->
+                        </div><!-- /.quantity-container -->
+                        <div class="col col-md-6">
+                            <ul  style="margin: 10px; font-weight: bold; font-size: 14px;">
+                                Categories:
+                                @foreach (var category in SelectedCategories)
+                                {
+                                    <li>@category.CategoryName</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </div><!-- /.product-info -->
             </div><!-- /.col-sm-7 -->
         </div><!-- /.row -->
     </div>
 
     <div class="product-tabs inner-bottom-xs">
-      
     </div><!-- /.product-tabs -->
 </div>
 
 
-    <div class="col-sm-12 col-md-12 col-lg-12" >
-        <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
-            <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-            <li><a data-toggle="tab" href="#review">REVIEW</a></li>
-            <li><a data-toggle="tab" href="#tags">TAGS</a></li>
-        </ul><!-- /.nav-tabs #product-tabs -->
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-12" id="more-details">
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+        <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
+        <li><a data-toggle="tab" href="#review">REVIEW</a></li>
+        <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+    </ul><!-- /.nav-tabs #product-tabs -->
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12" id="more-details">
 
-        <div class="tab-content">
+    <div class="tab-content">
 
-            <div id="description" class="tab-pane in active">
-                <div class="product-tab">
-                    @Model.FullDescription
-                </div>
-            </div><!-- /.tab-pane -->
+        <div id="description" class="tab-pane in active">
+            <div class="product-tab">
+                @Model.FullDescription
+            </div>
+        </div><!-- /.tab-pane -->
 
-            <div id="review" class="tab-pane">
-                <div class="product-tab">
+        <div id="review" class="tab-pane">
+            <div class="product-tab">
 
-                    <partial name="_Reviews"/>
+                <partial name="_Reviews" />
 
-                </div><!-- /.product-tab -->
-            </div><!-- /.tab-pane -->
+            </div><!-- /.product-tab -->
+        </div><!-- /.tab-pane -->
 
-            <div id="tags" class="tab-pane">
-                <partial name="_Tags"/>
-            </div><!-- /.tab-pane -->
+        <div id="tags" class="tab-pane">
+            <partial name="_Tags" />
+        </div><!-- /.tab-pane -->
 
-        </div><!-- /.tab-content -->
-    </div><!-- /.col -->
+    </div><!-- /.tab-content -->
+</div><!-- /.col -->

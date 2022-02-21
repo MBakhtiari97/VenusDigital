@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using VenusDigital.Data.Repositories;
+using VenusDigital.Models;
 using VenusDigital.Models.ViewModels;
 
 namespace VenusDigital.Controllers
@@ -9,11 +11,15 @@ namespace VenusDigital.Controllers
     {
         private IProductsRepository _productsRepository;
         private IReviewsRepository _reviewsRepository;
+        private ICategoryRepository _categoryRepository;
 
-        public ProductsController(IProductsRepository productsRepository,IReviewsRepository reviewsRepository)
+        public ProductsController(IProductsRepository productsRepository
+            ,IReviewsRepository reviewsRepository
+            ,ICategoryRepository categoryRepository)
         {
             _productsRepository = productsRepository;
             _reviewsRepository = reviewsRepository;
+            _categoryRepository = categoryRepository;
         }
         [Route("Product-{productId}")]
         public IActionResult ShowProductDetails(int productId)
@@ -36,6 +42,14 @@ namespace VenusDigital.Controllers
                 ProductId = product.ProductId
             };
 
+            List<Categories> categories = new List<Categories>();
+            foreach (var categoryId in _categoryRepository.GetSelectedCategories(productId))
+            {
+               categories.Add(_categoryRepository.GetCategoryByCategoryId(categoryId)); 
+            }
+            
+
+            ViewBag.ProductCategories = categories;
             ViewBag.ImageGallery = product.ProductGalleries;
             ViewBag.Tags = _productsRepository.GetProductTags(productId);
             return View(Product);
