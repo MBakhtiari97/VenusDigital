@@ -1,0 +1,25 @@
+﻿@model IEnumerable<VenusDigital.Models.ViewModels.SingleProductViewModel>
+@{
+    ViewData["Title"] = "Search";
+}
+@if (ViewBag.Count!=0)
+{
+    <div class="col-md-12" style="text-align: center; font-size: 16px;font-weight: bold;">
+     <div class="row" style="background: #fff; border-radius: 5px;margin: 10px;">
+         <p style="font-size: 24px; margin-top: 10px;">Items founded with '@ViewBag.Search' keyword</p>
+         @foreach (var item in Model)
+         {
+             <div class="col-md-3" style="margin: 20px 0 20px 0; ">
+                 <partial name="_SingleProduct" model="@item"/>
+             </div>
+         }
+     </div>
+ </div>
+}
+else
+{
+    <div class="col-md-12" style="text-align: center; font-size: 16px; font-weight: bold;">
+        <p style="color: #CD0737">No results were obtained with '@ViewBag.Search' keyword.</p>
+        <a class="btn btn-primary" href="/">Home</a>
+    </div>
+}

@@ -54,5 +54,18 @@ namespace VenusDigital.Controllers
             ViewBag.Tags = _productsRepository.GetProductTags(productId);
             return View(Product);
         }
+
+        #region Search
+        [Route("Search")]
+        public IActionResult Search(string q)
+        {
+            List<SingleProductViewModel> ResultProduct = new List<SingleProductViewModel>();
+            ResultProduct.AddRange(_productsRepository.GetProductByString(q));
+            ViewBag.Count=ResultProduct.Count;
+            ViewBag.Search = q.ToUpper();
+            return View(ResultProduct.Distinct());
+        }
+
+        #endregion
     }
 }
