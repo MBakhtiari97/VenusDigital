@@ -29,3 +29,4 @@ namespace VenusDigital.Models.ViewModels
         public int Quantiny { get; set; }
     }
 }
+

@@ -88,6 +88,7 @@ namespace VenusDigital.Controllers
                 productsByCategory.Add(_productsRepository.GetProduct(productId));
             }
 
+            //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
             return View(productsByCategory);
         }
 
