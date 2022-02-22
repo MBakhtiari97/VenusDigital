@@ -78,11 +78,12 @@ namespace VenusDigital.Controllers
 
         #endregion
 
-        #region Products
+        #region ProductsInCategories
         [Route("Category-{categoryId}")]
         public IActionResult ShowProductsByCategory(int categoryId)
         {
             List<Products> productsByCategory = new List<Products>();
+            
             foreach (var productId in _categoryRepository.GetProductsByCategory(categoryId))
             {
                 productsByCategory.Add(_productsRepository.GetProduct(productId));
@@ -90,6 +91,15 @@ namespace VenusDigital.Controllers
 
             //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
             return View(productsByCategory);
+        }
+        #endregion
+
+        #region ShowOnSaleProducts
+
+        [Route("ShowOnSaleProducts")]
+        public IActionResult ShowOnSaleProducts()
+        {
+            return View("ShowProductsByCategory", _productsRepository.GetOnSaleProducts());
         }
 
 

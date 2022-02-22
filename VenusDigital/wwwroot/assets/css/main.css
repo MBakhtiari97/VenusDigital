@@ -2418,15 +2418,17 @@ header{
 #owl-main .item .caption.bg-color .big-text {
   background: rgba(0, 0, 0, 0);
   padding: 0px;
-  color: #000;
+  /*color: #000;*/
+  color: #fff;
 }
-#owl-main .item .caption.bg-color .excerpt,
-#owl-main .item .caption.bg-color .small {
-  background: rgba(0, 0, 0, 0);
-  padding: 0px;
-  color: #000;
-  margin-top: 10px;
-}
+    #owl-main .item .caption.bg-color .excerpt,
+    #owl-main .item .caption.bg-color .small {
+        background: rgba(0, 0, 0, 0);
+        padding: 0px;
+        /*color: #000;*/
+        color: #fff;
+        margin-top: 10px;
+    }
 #owl-main .item .caption.bg-color .excerpt span,
 #owl-main .item .caption.bg-color .small span {
   background: rgba(0, 0, 0, 0);
@@ -2527,7 +2529,7 @@ header{
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
   text-shadow: 2px 2px #c3c3c3;
-  color: #000;
+  color: #fff;
 }
 .homepage-slider3 #owl-main .item .caption .excerpt {
   font-size: 13px;

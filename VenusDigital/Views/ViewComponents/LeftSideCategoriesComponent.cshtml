@@ -4,16 +4,17 @@
         @foreach (var group in Model.Where(c => c.ParentId == null))
         {
             <li class="dropdown menu-item">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-diamond" aria-hidden="true"></i>@group.CategoryName</a>
+                <a href="/category-@group.CategoryId" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-arrow-circle-right" aria-hidden="true"></i>@group.CategoryName</a>
                 <!-- ================================== MEGAMENU VERTICAL ================================== -->
                 <ul class="dropdown-menu mega-menu" >
                     <li class="yamm-content">
                         <div class="row" >
                             <div class="col-xs-12 col-sm-12 col-lg-4" >
                                 <ul>
+                                    <a href="/category-@group.CategoryId"><i class="icon fa fa-arrow-circle-down" aria-hidden="true"></i>&nbsp; @group.CategoryName</a>
                                     @foreach (var subGroup in Model.Where(c => c.ParentId == group.CategoryId))
                                     {
-                                        <li><a href="#">@subGroup.CategoryName</a></li> 
+                                        <li><a href="/category-@subGroup.CategoryId">@subGroup.CategoryName</a></li>
                                     }
                                 </ul>
                             </div>
