@@ -1,0 +1,50 @@
+﻿@model IEnumerable<VenusDigital.Models.ViewModels.SpecialOffersViewModel>
+
+<!-- ============================================== SPECIAL OFFER ============================================== -->
+
+
+<div class="sidebar-widget outer-bottom-small">
+    <h3 class="section-title">Special Offer</h3>
+    <div class="sidebar-widget-body outer-top-xs">
+        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+            <div class="item">
+                <div class="products special-product">
+                    @foreach (var product in Model)
+                    {
+                        <div class="product">
+                            <div class="product-micro">
+                                <div class="row product-micro-row">
+                                    <div class="col col-xs-5">
+                                        <div class="product-image">
+                                            <div class="image"> <a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@product.ProductId"><img src="/images/pics/@product.ImageName" alt=""> </a> </div>
+                                            <!-- /.image -->
+
+                                    </div>
+                                        <!-- /.product-image -->
+                                </div>
+                                    <!-- /.col -->
+                                <div class="col col-xs-7">
+                                        <div class="product-info">
+                                            <h3 class="name"><a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@product.ProductId">@product.ProductTitle</a></h3>
+                                            <i class="fa fa-star rate"></i>
+                                            <span class="review"> @product.ProductScore </span>
+                                            <div class="product-price"> <span class="price"> $@product.Price </span> </div>
+                                            <!-- /.product-price -->
+
+                                    </div>
+                                    </div>
+                                    <!-- /.col -->
+                            </div>
+                                <!-- /.product-micro-row -->
+                        </div>
+                            <!-- /.product-micro -->
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.sidebar-widget-body -->
+</div>
+<!-- /.sidebar-widget -->
+<!-- ============================================== SPECIAL OFFER : END ============================================== -->

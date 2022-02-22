@@ -104,5 +104,15 @@ namespace VenusDigital.Controllers
 
 
         #endregion
+
+        #region FilterProducts
+        [Route("Filter/{min}/{max}")]
+        public IActionResult FilterProductsByPrice(decimal min, decimal max)
+        {
+            return View("ShowProductsByCategory", _productsRepository.GetProductsByPriceFilter(min, max));
+        }
+
+        #endregion
+
     }
 }

@@ -13,6 +13,8 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<Products> GetNewProducts();
         IEnumerable<SingleProductViewModel> GetProductByString(string q);
         IEnumerable<Products> GetOnSaleProducts();
+        IEnumerable<SpecialOffersViewModel> GetSpecialOffers();
+        IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max);
     }
 
     public class ProductsRepository : IProductsRepository
@@ -68,12 +70,36 @@ namespace VenusDigital.Data.Repositories
                 }).ToList();
         }
 
+        public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max)
+        {
+            return _context.Products
+                .Include(p => p.ProductGalleries)
+                .Where(p => p.ProductMainPrice >= min && p.ProductMainPrice <= max)
+                .ToList();
+        }
+
         public List<string> GetProductTags(int productId)
         {
             return _context.Tags
                 .Where(t => t.ProductId == productId)
                 .Select(t => t.Tag)
                 .ToList();
+        }
+
+        public IEnumerable<SpecialOffersViewModel> GetSpecialOffers()
+        {
+            return _context.Products
+                .Include(p => p.ProductGalleries)
+                .Where(p => p.ProductOnSalePrice != 0)
+                .OrderByDescending(p => p.CreateDate)
+                .Select(p => new SpecialOffersViewModel()
+                {
+                    ImageName = p.ProductGalleries.First().ImageName,
+                    Price = p.ProductMainPrice,
+                    ProductScore = p.ProductScore,
+                    ProductTitle = p.ProductTitle,
+                    ProductId = p.ProductId
+                }).Take(3).ToList();
         }
     }
 }

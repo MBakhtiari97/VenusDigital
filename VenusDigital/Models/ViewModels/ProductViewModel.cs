@@ -28,5 +28,14 @@ namespace VenusDigital.Models.ViewModels
         public decimal MainPrice { get; set; }
         public int Quantiny { get; set; }
     }
+
+    public class SpecialOffersViewModel
+    {
+    public string ProductTitle { get; set; }
+    public float ProductScore { get; set; }
+    public decimal Price { get; set; }
+    public string ImageName { get; set; }
+    public int ProductId { get; set; }
+    }
 }
 
