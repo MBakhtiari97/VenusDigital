@@ -3,19 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VenusDigital.Models
 {
-    public class Items
+    public class OrderDetails
     {
         [Key]
-        public int ItemId { get; set; }
+        public int DetailId { get; set; }
         [Required]
-        public int ItemCount { get; set; }
+        public int OrderId { get; set; }
         [Required]
         public int ProductId { get; set; }
         [Required]
-        public decimal ItemTotalPrice { get; set; }
+        public int Count { get; set; }
 
         //Nav
         [ForeignKey("ProductId")]
-        public Products Products { get; set; }
+        public Products Product { get; set; }
+        public Order Order { get; set; }
     }
 }

@@ -34,6 +34,6 @@ namespace VenusDigital.Models
         public List<PostalInformations> PostalInformations { get; set; }
         public List<WishLists> WishLists { get; set; }
         public List<Reviews> Reviews { get; set; }
-        public List<Cart> Carts { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<SingleProductViewModel> GetProductByString(string q);
         IEnumerable<Products> GetOnSaleProducts();
         IEnumerable<SpecialOffersViewModel> GetSpecialOffers();
-        IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max);
+        IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId);
     }
 
     public class ProductsRepository : IProductsRepository
@@ -70,10 +70,18 @@ namespace VenusDigital.Data.Repositories
                 }).ToList();
         }
 
-        public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max)
+        public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId)
         {
-            return _context.Products
-                .Include(p => p.ProductGalleries)
+            //return _context.Products
+            //    .Include(p => p.ProductGalleries)
+            //    .Where(p => p.ProductMainPrice >= min && p.ProductMainPrice <= max)
+            //    .ToList();
+
+            return _context.SelectedCategory
+                .Where(c => c.CategoryId == categoryId)
+                .Include(p => p.Products)
+                .ThenInclude(p=>p.ProductGalleries)
+                .Select(c => c.Products)
                 .Where(p => p.ProductMainPrice >= min && p.ProductMainPrice <= max)
                 .ToList();
         }

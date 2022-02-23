@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VenusDigital.Models
 {
-    public class Cart
+    public class Order
     {
         [Key]
-        public int CartId { get; set; }
+        public int OrderId { get; set; }
         [Required]
         public int UserId { get; set; }
-        [Required]
-        public int ItemId { get; set; }
-        [Required]
-        public decimal TotalPrice { get; set; }
+        public DateTime CreateDate { get; set; }
         [Required]
         public bool IsFinally { get; set; }
         
         //Nav
         [ForeignKey("UserId")]
         public Users Users { get; set; }
-        public List<Items> Items { get; set; }
+
+        public List<OrderDetails> OrderDetails { get; set; }
     }
 }

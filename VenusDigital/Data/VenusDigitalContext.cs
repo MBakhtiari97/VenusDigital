@@ -12,7 +12,7 @@ namespace VenusDigital.Data
         }
 
         public DbSet<Users> Users { get; set; }
-        public DbSet<Cart> Cart { get; set; }
+        public DbSet<Order> Order { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Coupons> Coupons { get; set; }
         public DbSet<Features> Features { get; set; }
@@ -26,5 +26,6 @@ namespace VenusDigital.Data
         public DbSet<Supports> Supports { get; set; }
         public DbSet<WishLists> WishLists { get; set; }
         public DbSet<SelectedCategory> SelectedCategory { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

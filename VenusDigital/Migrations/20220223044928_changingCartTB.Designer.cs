@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VenusDigital.Data;
 
 namespace VenusDigital.Migrations
 {
     [DbContext(typeof(VenusDigitalContext))]
-    partial class VenusDigitalContextModelSnapshot : ModelSnapshot
+    [Migration("20220223044928_changingCartTB")]
+    partial class changingCartTB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,31 +159,6 @@ namespace VenusDigital.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("VenusDigital.Models.OrderDetails", b =>
-                {
-                    b.Property<int>("DetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DetailId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("VenusDigital.Models.PostalInformations", b =>
@@ -541,25 +518,6 @@ namespace VenusDigital.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("VenusDigital.Models.OrderDetails", b =>
-                {
-                    b.HasOne("VenusDigital.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VenusDigital.Models.Products", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("VenusDigital.Models.PostalInformations", b =>
                 {
                     b.HasOne("VenusDigital.Models.Users", "User")
@@ -647,18 +605,11 @@ namespace VenusDigital.Migrations
                     b.Navigation("SelectedCategory");
                 });
 
-            modelBuilder.Entity("VenusDigital.Models.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
             modelBuilder.Entity("VenusDigital.Models.Products", b =>
                 {
                     b.Navigation("Features");
 
                     b.Navigation("Items");
-
-                    b.Navigation("OrderDetails");
 
                     b.Navigation("ProductGalleries");
 

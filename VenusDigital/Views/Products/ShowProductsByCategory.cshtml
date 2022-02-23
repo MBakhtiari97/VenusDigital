@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "ShowProductsByCategory";
 }
+
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -35,27 +36,29 @@
                                 <h4 class="widget-title">Price</h4>
                             </div>
                             <div class="sidebar-widget-body m-t-10" align="center">
-                              @*  <div class="price-range-holder">
+                                @*  <div class="price-range-holder">
 
                                     <span class="min-max"> <span class="pull-left">$0.00</span> <span class="pull-right">$10000.00</span> </span>
                                     <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
                                     <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-selection" style="left: 16.6667%; width: 50%;"></div><div class="slider-handle min-slider-handle" tabindex="0" style="left: 16.6667%;"></div><div class="slider-handle max-slider-handle" tabindex="0" style="left: 66.6667%;"></div></div><div class="tooltip tooltip-main top" style="left: 41.6667%; margin-left: -35px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">0 : 10000</div></div><div class="tooltip tooltip-min top" style="left: 16.6667%; margin-left: -35px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">0</div></div><div class="tooltip tooltip-max bottom" style="top: 18px; left: 66.6667%; margin-left: -35px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">10000</div></div></div><input type="text" class="price-slider" value="0,10000" data="value: '0,10000'" style="display: none;">
-                                </div>*@
-                              <!-- /.price-range-holder -->
-                              <form asp-action="FilterProductsByPrice" method="post">
-                                  Min Price ($)<br/>
-                                  <input class="form-control" type="number" value="0" /><br/>
-                                  Max Price ($)<br/>
-                                  <input class="form-control" type="number" value="10000"/><br/>
-                                  <input type="submit" value="Filter" class="lnk btn btn-primary form-control">
-                              </form>
+                                    </div>*@
+                                <!-- /.price-range-holder -->
+                                <form action="/Filter" id="filterForm">
+                                    <input type="hidden" value="@ViewBag.pageId" id="pageId" name="pageId" />
+                                    <input type="hidden" value="@ViewBag.CategoryId" name="categoryId" />
+                                    Min Price ($)<br />
+                                    <input class="form-control" name="min" type="number" value="0" /><br />
+                                    Max Price ($)<br />
+                                    <input class="form-control" name="max" type="number" value="10000" /><br />
+                                    <button type="submit" class="lnk btn btn-primary form-control">Filter</button>
+                                </form>
                             </div>
                             <!-- /.sidebar-widget-body -->
                         </div>
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== PRICE SILDER : END ============================================== -->
                         <!-- ============================================== MANUFACTURES============================================== -->
-                        <div class="sidebar-widget">
+                        <div class="sidebar-widget" style="margin-bottom: 20px;">
                             <div class="widget-header">
                                 <h4 class="widget-title">Manufactures</h4>
                             </div>
@@ -154,22 +157,15 @@
                             <!-- /.col -->
                             <div class="col col-sm-6 col-md-6 no-padding hidden-sm hidden-md">
                                 <div class="lbl-cnt">
-
                                     <span class="lbl">Show</span>
                                     <div class="fld inline">
                                         <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                             <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1 <span class="caret"></span> </button>
                                             <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">1</a></li>
-                                                <li role="presentation"><a href="#">2</a></li>
-                                                <li role="presentation"><a href="#">3</a></li>
-                                                <li role="presentation"><a href="#">4</a></li>
-                                                <li role="presentation"><a href="#">5</a></li>
-                                                <li role="presentation"><a href="#">6</a></li>
-                                                <li role="presentation"><a href="#">7</a></li>
-                                                <li role="presentation"><a href="#">8</a></li>
-                                                <li role="presentation"><a href="#">9</a></li>
-                                                <li role="presentation"><a href="#">10</a></li>
+                                                @for (int i = 1; i <= ViewBag.PageCount; i++)
+                                                {
+                                                    <li role="presentation"><a onclick="changePage(@i)">@i</a></li>
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -180,22 +176,7 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.col -->
-                        <div class="col col-sm-6 col-md-4 col-xs-6 col-lg-4 text-right">
-                            <div class="pagination-container">
-                                <ul class="list-inline list-unstyled">
-                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                                <!-- /.list-inline -->
-                            </div>
-                            <!-- /.pagination-container -->
 
-                        </div>
-                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -281,7 +262,7 @@
                                             <!-- /.col -->
                                         <div class="col col-sm-9 col-lg-9">
                                                 <div class="product-info">
-                                                    <h3 class="name"><a href="detail.html">@product.ProductTitle</a></h3>
+                                                    <h3 class="name"><a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@product.ProductId">@product.ProductTitle</a></h3>
                                                     <i class="fa fa-star rate"></i>
                                                     <span class="review">( @product.ProductScore )</span>
                                                     @if (product.ProductOnSalePrice != 0)
@@ -338,20 +319,22 @@
                     </div>
                     <!-- /.tab-content -->
                     <div class="clearfix filters-container bottom-row">
-                        <div class="text-right">
-                            <div class="pagination-container">
-                                <ul class="list-inline list-unstyled">
-                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                                <!-- /.list-inline -->
+                        <div align="center">
+                            @if (ViewBag.PageCount > 1)
+                            {
+                                <div class="pagination-container">
+                                    <ul class="list-inline list-unstyled">
+                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                                        {
+                                            <li><a onclick="changePage(@i)">@i</a></li>
+                                        }
+                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                    </ul>
+                                    <!-- /.list-inline -->
                             </div>
-                            <!-- /.pagination-container -->
-
+                                <!-- /.pagination-container -->
+                            }
                         </div>
                         <!-- /.text-right -->
 
@@ -370,3 +353,11 @@
     <!-- /.container -->
 
 </div>
+
+<script>
+    function changePage(pageId)
+    {
+        $("#pageId").val(pageId);
+        $("#filterForm").submit();
+    }
+</script>
