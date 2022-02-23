@@ -67,9 +67,7 @@ namespace VenusDigital.Controllers
                     ReviewsCount = reviewCount,
                     QuantityInStock = product.ProductQuantityInStock,
                     ProductId = product.ProductId
-                }
-                );
-
+                });
             }
             return View(wishList);
         }

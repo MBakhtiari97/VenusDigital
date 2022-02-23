@@ -15,6 +15,7 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<Products> GetOnSaleProducts();
         IEnumerable<SpecialOffersViewModel> GetSpecialOffers();
         IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId);
+        Products GetProductForCart(int productId);
     }
 
     public class ProductsRepository : IProductsRepository
@@ -68,6 +69,12 @@ namespace VenusDigital.Data.Repositories
                     Score = p.ProductScore,
                     Title = p.ProductTitle
                 }).ToList();
+        }
+
+        public Products GetProductForCart(int productId)
+        {
+            return _context.Products
+                .Find(productId);
         }
 
         public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId)

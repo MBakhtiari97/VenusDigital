@@ -66,7 +66,7 @@
 <!-- /.product-info -->
 @if (Model.Quantiny != 0)
 {
-    <a class="btn btn-primary" style="margin: 10px;">Add to cart</a>
+    <a class="btn btn-primary" style="margin: 10px;" asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@Model.ProductId">Add to cart</a>
 }
 else
 {

@@ -46,12 +46,10 @@ namespace VenusDigital.Data.Repositories
 
         public IEnumerable<int> GetAllWishlistProductsForUser(int userId)
         {
-            var allProductIds = _contexct.WishLists
+            return _contexct.WishLists
                 .Where(w => w.UserId == userId)
                 .Select(w => w.ProductId)
-                .ToList();
-
-            return allProductIds;
+                .ToList(); ;
         }
 
         public void RemoveFromWishlist(int userId, int productId)

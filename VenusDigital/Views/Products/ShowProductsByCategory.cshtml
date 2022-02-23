@@ -107,14 +107,14 @@
                 <div id="category" class="category-carousel hidden-xs">
                     <div class="item">
                         <div class="image"> <img src="/images/categoriesBigBanner/@ViewBag.Banner" alt="" class="img-responsive"> </div>
-                       @* <div class="container-fluid">
+                        @* <div class="container-fluid">
                             <div class="caption vertical-top text-left">
-                                <div class="big-text"> Big Sale </div>
-                                <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
-                                <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+                            <div class="big-text"> Big Sale </div>
+                            <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
+                            <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
                             </div>
                             <!-- /.caption -->
-                        </div>*@
+                            </div>*@
                         <!-- /.container-fluid -->
                     </div>
                 </div>
@@ -281,11 +281,13 @@
                                                                 @if (product.ProductQuantityInStock != 0)
                                                                 {
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@product.ProductId">
+                                                                            <button class="btn btn-primary icon" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                                            <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                                                        </a>
                                                                     </li>
                                                                 }
-                                                                <li class="lnk wishlist"> <a class="add-to-cart" asp-action="AddToWishlist" asp-controller="Wishlist" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                                                <li class="lnk wishlist"> <a class="add-to-cart" asp-action="AddToWishlist" asp-controller="Wishlist" asp-route-productId="@product.ProductId" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                                                                 <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
                                                             </ul>
                                                         </div>
