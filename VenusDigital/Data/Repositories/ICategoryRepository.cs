@@ -13,6 +13,7 @@ namespace VenusDigital.Data.Repositories
         Categories GetCategoryByCategoryId(int categoryId);
         IEnumerable<int> GetProductsByCategory(int categoryId);
         string GetCategoryName(int categoryId);
+        string GetCategoryBannerName(int categoryId);
     }
 
     public class CategoryRepository : ICategoryRepository
@@ -27,6 +28,13 @@ namespace VenusDigital.Data.Repositories
         public IEnumerable<Categories> GetCategories()
         {
             return _context.Categories;
+        }
+
+        public string GetCategoryBannerName(int categoryId)
+        {
+            return _context.Categories
+                .Find(categoryId)
+                .CategoryBanner;
         }
 
         public Categories GetCategoryByCategoryId(int categoryId)

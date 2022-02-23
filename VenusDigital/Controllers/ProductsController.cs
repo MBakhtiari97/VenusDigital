@@ -91,6 +91,8 @@ namespace VenusDigital.Controllers
                 productsByCategory.Add(_productsRepository.GetProduct(productId));
             }
 
+            ViewBag.Banner = _categoryRepository.GetCategoryBannerName(categoryId);
+            
             //ViewBag.CategoryId = categoryId;
             //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
 

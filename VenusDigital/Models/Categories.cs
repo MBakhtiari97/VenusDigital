@@ -15,6 +15,8 @@ namespace VenusDigital.Models
         public Nullable<int> ParentId { get; set; }
         [MaxLength(150)]
         public string ParentCategoryBanner { get; set; }
+        [MaxLength(150)]
+        public string CategoryBanner { get; set; }
 
         //Nav
         [ForeignKey("CategoryId")]
