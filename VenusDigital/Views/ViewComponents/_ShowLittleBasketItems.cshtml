@@ -1,0 +1,58 @@
+﻿@model Order
+<div class="dropdown dropdown-cart">
+    <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+        <div class="items-cart-inner">
+
+            <div class="basket">
+                <div class="basket-item-count"><span class="count">@Model.OrderDetails.Count</span></div>
+            </div>
+
+        </div>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li>
+            <div class="cart-item product-summary">
+                @foreach (var item in Model.OrderDetails)
+                {
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="image"> <a href="detail.html"><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" alt="@item.Product.ProductTitle"></a> </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <h3 class="name"><a href="index8a95.html?page-detail">@item.Product.ProductTitle</a></h3>
+                            @if (@item.Product.ProductOnSalePrice != 0)
+                            {
+                                <div class="price">$@item.Product.ProductOnSalePrice</div>
+                            }
+                            else
+                            {
+                                <div class="price">$@item.Product.ProductMainPrice</div>
+                            }
+                        </div>
+                        <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                    </div>
+                }
+            </div>
+            <!-- /.cart-item -->
+            <div class="clearfix"></div>
+            <hr>
+            <div class="clearfix cart-total">
+                @if (Model.OrderDetails.First().Product.ProductOnSalePrice != 0)
+                {
+                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$@Model.OrderDetails.Sum(p => p.Product.ProductOnSalePrice * p.Count)</span> </div>
+                }
+                else
+                {
+                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$@Model.OrderDetails.Sum(p => p.Product.ProductMainPrice * p.Count)</span> </div>
+                }
+                <div class="clearfix"></div>
+                <a href="/Cart" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+            </div>
+            <!-- /.cart-total-->
+
+        </li>
+    </ul>
+    <!-- /.dropdown-menu-->
+
+</div>
