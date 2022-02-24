@@ -26,7 +26,7 @@
                             @foreach (var item in @Model.OrderDetails)
                             {
                                 <tr>
-                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+                                    <td class="romove-item"><a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-detailId="@item.DetailId" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
                                     <td class="cart-image">
                                         <a class="entry-thumbnail" asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@item.ProductId">
                                             <img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" alt="@item.Product.ProductTitle">

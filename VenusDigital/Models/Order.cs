@@ -14,6 +14,8 @@ namespace VenusDigital.Models
         public DateTime CreateDate { get; set; }
         [Required]
         public bool IsFinally { get; set; }
+        public DateTime? PaymentDate { get; set; }
+        public string? PaymentTraceCode { get; set; }
         
         //Nav
         [ForeignKey("UserId")]

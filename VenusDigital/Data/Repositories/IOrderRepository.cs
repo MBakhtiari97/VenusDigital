@@ -15,6 +15,8 @@ namespace VenusDigital.Data.Repositories
         void AddOrderDetails(OrderDetails orderDetail);
         void AddOrder(Order order);
         void SaveChanges();
+        OrderDetails getOrderDetail(int detailId);
+        void RemoveOrderDetail(OrderDetails detail);
     }
 
     public class OrderRepository : IOrderRepository
@@ -58,10 +60,22 @@ namespace VenusDigital.Data.Repositories
                 .FirstOrDefault();
         }
 
+        public OrderDetails getOrderDetail(int detailId)
+        {
+            return _context.OrderDetails
+                .Find(detailId);
+        }
+
         public OrderDetails GetOrderDetails(int orderId, int productId)
         {
             return _context.OrderDetails
                 .FirstOrDefault(d => d.OrderId == orderId && d.ProductId == productId);
+        }
+
+        public void RemoveOrderDetail(OrderDetails detail)
+        {
+            _context.OrderDetails
+                .Remove(detail);
         }
 
         public void SaveChanges()

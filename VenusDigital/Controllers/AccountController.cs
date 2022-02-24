@@ -16,7 +16,9 @@ namespace VenusDigital.Controllers
 {
     public class AccountController : Controller
     {
-        private IUserRepository _userRepository; 
+        #region InjectionRepository
+
+        private IUserRepository _userRepository;
         private IViewRenderService _viewRenderService;
 
         public AccountController(IUserRepository userRepository, IViewRenderService viewRenderService)
@@ -24,6 +26,8 @@ namespace VenusDigital.Controllers
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
         }
+
+        #endregion
 
         #region RegisterUser
 
@@ -179,6 +183,17 @@ namespace VenusDigital.Controllers
                 return RedirectToAction("NotFound", "Home");
             }
         }
+        #endregion
+
+        #region MyAccount
+
+        public IActionResult ShowMyAccount()
+        {
+            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+
+            return View(_userRepository.GetUserInfo(userId));
+        }
+
         #endregion
 
     }

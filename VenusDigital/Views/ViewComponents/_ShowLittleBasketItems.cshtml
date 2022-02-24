@@ -17,10 +17,10 @@
                 {
                     <div class="row">
                         <div class="col-xs-4">
-                            <div class="image"> <a href="detail.html"><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" alt="@item.Product.ProductTitle"></a> </div>
+                            <div class="image"> <a><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" alt="@item.Product.ProductTitle"></a> </div>
                         </div>
                         <div class="col-xs-7">
-                            <h3 class="name"><a href="index8a95.html?page-detail">@item.Product.ProductTitle</a></h3>
+                            <h3 class="name"><a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@item.ProductId">@item.Product.ProductTitle</a></h3>
                             @if (@item.Product.ProductOnSalePrice != 0)
                             {
                                 <div class="price">$@item.Product.ProductOnSalePrice</div>
@@ -29,23 +29,21 @@
                             {
                                 <div class="price">$@item.Product.ProductMainPrice</div>
                             }
+                            <div >@item.Count</div><br/>
                         </div>
-                        <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                        <div class="col-xs-1 action"> <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-detailId="@item.DetailId"><i class="fa fa-trash"></i></a> </div>
                     </div>
                 }
+                <p style="font-size: 10px;text-align: center">*Note:For more specific details please check your cart from MyCart </p>
             </div>
             <!-- /.cart-item -->
             <div class="clearfix"></div>
             <hr>
             <div class="clearfix cart-total">
-                @if (Model.OrderDetails.First().Product.ProductOnSalePrice != 0)
-                {
-                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$@Model.OrderDetails.Sum(p => p.Product.ProductOnSalePrice * p.Count)</span> </div>
-                }
-                else
-                {
-                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$@Model.OrderDetails.Sum(p => p.Product.ProductMainPrice * p.Count)</span> </div>
-                }
+
+                <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$@Model.OrderDetails.Sum(p => p.Product.ProductMainPrice * p.Count)</span> </div>
+
+
                 <div class="clearfix"></div>
                 <a href="/Cart" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
             </div>

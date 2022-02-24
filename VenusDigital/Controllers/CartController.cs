@@ -13,10 +13,10 @@ namespace VenusDigital.Controllers
         private IOrderRepository _orderRepository;
         private IProductsRepository _productsRepository;
 
-        public CartController(IOrderRepository orderRepository,IProductsRepository productsRepository)
+        public CartController(IOrderRepository orderRepository, IProductsRepository productsRepository)
         {
             _orderRepository = orderRepository;
-            _productsRepository = productsRepository;   
+            _productsRepository = productsRepository;
         }
 
         #region ShowCart
@@ -92,7 +92,27 @@ namespace VenusDigital.Controllers
 
         #endregion
 
-        //TODO:Remove From Cart
-        //TODO:FIX SHOW TOTAL PRICE VALUE
+        #region RemoveFromCart
+
+        public IActionResult RemoveFromCart(int detailId)
+        {
+            var orderDetail = _orderRepository
+                .getOrderDetail(detailId);
+
+            if(orderDetail.Count<=1)
+                _orderRepository.RemoveOrderDetail(orderDetail);
+
+            else if(orderDetail.Count>1)
+            {
+                orderDetail.Count -= 1;
+            }
+
+            _orderRepository.SaveChanges();
+            return RedirectToAction("ShowCart");
+        }
+
+        #endregion
+
+        
     }
 }
