@@ -17,6 +17,7 @@ namespace VenusDigital.Data.Repositories
         void SaveChanges();
         OrderDetails getOrderDetail(int detailId);
         void RemoveOrderDetail(OrderDetails detail);
+        void EmptyCart(int orderId);
     }
 
     public class OrderRepository : IOrderRepository
@@ -48,6 +49,22 @@ namespace VenusDigital.Data.Repositories
                 OrderId = orderDetail.OrderId
             });
             _context.SaveChanges();
+        }
+
+        public void EmptyCart(int orderId)
+        {
+            foreach (var detail in _context.OrderDetails.Where(o=>o.OrderId==orderId))
+            {
+                _context.OrderDetails.Remove(detail);
+            }
+
+            _context.SaveChanges();
+
+            Order order = _context.Order.Find(orderId);
+            _context.Order.Remove(order);
+
+            _context.SaveChanges();
+
         }
 
         public Order GetOrderByUserId(int userId)

@@ -4,3 +4,9 @@
 .userInfoTB {
     margin: 50px;
 }
+.TitleCenter {
+    margin: 50px;
+    text-align: center;
+    font-size: 50px;
+    padding-left: 280px;
+}

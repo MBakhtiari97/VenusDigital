@@ -1,6 +1,8 @@
 ﻿@model Order
 <div class="dropdown dropdown-cart">
-    <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+    @if (Model != null)
+    {
+        <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
         <div class="items-cart-inner">
 
             <div class="basket">
@@ -34,7 +36,7 @@
                         <div class="col-xs-1 action"> <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-detailId="@item.DetailId"><i class="fa fa-trash"></i></a> </div>
                     </div>
                 }
-                <p style="font-size: 10px;text-align: center">*Note:For more specific details please check your cart from MyCart </p>
+                <p style="font-size: 10px; text-align: center">*Note:For more specific details please check your cart from MyCart </p>
             </div>
             <!-- /.cart-item -->
             <div class="clearfix"></div>
@@ -48,9 +50,8 @@
                 <a href="/Cart" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
             </div>
             <!-- /.cart-total-->
-
         </li>
     </ul>
     <!-- /.dropdown-menu-->
-
+    }
 </div>

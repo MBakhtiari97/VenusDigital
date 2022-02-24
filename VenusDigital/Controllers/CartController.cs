@@ -111,8 +111,14 @@ namespace VenusDigital.Controllers
             return RedirectToAction("ShowCart");
         }
 
+
+        public IActionResult EmptyCart(int orderId)
+        {
+           _orderRepository.EmptyCart(orderId);
+            return RedirectToAction("ShowCart");
+        }
         #endregion
 
-        
+
     }
 }
