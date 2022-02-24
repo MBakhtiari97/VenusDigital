@@ -7,7 +7,7 @@
 
 }
 
-<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 250px; ">
     <div class="detail-block">
         <div class="row">
 
@@ -28,8 +28,6 @@
                                 </div>
                             </div>
                         </div><!-- /.single-product-gallery-item -->
-                         @*<div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                        *@
                     </div><!-- /.single-product-slider -->
 
 
@@ -51,15 +49,8 @@
                                     }
                                 </div>
                             </div>
-
-
-                          @*  <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div>
-                       *@ </div><!-- /#owl-single-product-thumbnails -->
-
-
-
+                        </div><!-- /#owl-single-product-thumbnails -->
                     </div><!-- /.gallery-thumbs -->
-
                 </div><!-- /.single-product-gallery -->
             </div><!-- /.gallery-holder -->
             <div class="col-sm-12 col-md-8 col-lg-8 product-info-block">
@@ -146,7 +137,7 @@
                                 @if (Model.Quantiny != 0)
                                 {
                                     <div class="add-btn">
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@Model.ProductId" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
                                     </div>
                                 }
                                 else
@@ -158,7 +149,7 @@
                             </div><!-- /.row -->
                         </div><!-- /.quantity-container -->
                         <div class="col col-md-6">
-                            <ul  style="margin: 10px; font-weight: bold; font-size: 14px;">
+                            <ul style="margin: 10px; font-weight: bold; font-size: 14px;">
                                 Categories:
                                 @foreach (var category in SelectedCategories)
                                 {
@@ -176,35 +167,37 @@
     </div><!-- /.product-tabs -->
 </div>
 
+<div style="padding-left: 220px;">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+            <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
+            <li><a data-toggle="tab" href="#review">REVIEW</a></li>
+            <li><a data-toggle="tab" href="#tags">TAGS</a></li>
+        </ul><!-- /.nav-tabs #product-tabs -->
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" id="more-details" style="margin-bottom: 20px;">
 
-<div class="col-sm-12 col-md-12 col-lg-12">
-    <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
-        <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-        <li><a data-toggle="tab" href="#review">REVIEW</a></li>
-        <li><a data-toggle="tab" href="#tags">TAGS</a></li>
-    </ul><!-- /.nav-tabs #product-tabs -->
+        <div class="tab-content">
+
+            <div id="description" class="tab-pane in active">
+                <div class="product-tab">
+                    @Model.FullDescription
+                </div>
+            </div><!-- /.tab-pane -->
+
+            <div id="review" class="tab-pane">
+                <div class="product-tab">
+
+                    <partial name="_Reviews" />
+
+                </div><!-- /.product-tab -->
+            </div><!-- /.tab-pane -->
+
+            <div id="tags" class="tab-pane">
+                <partial name="_Tags" />
+            </div><!-- /.tab-pane -->
+
+        </div><!-- /.tab-content -->
+    </div><!-- /.col -->
+
 </div>
-<div class="col-sm-12 col-md-12 col-lg-12" id="more-details"  style="margin-bottom: 20px;">
-
-    <div class="tab-content">
-
-        <div id="description" class="tab-pane in active">
-            <div class="product-tab">
-                @Model.FullDescription
-            </div>
-        </div><!-- /.tab-pane -->
-
-        <div id="review" class="tab-pane">
-            <div class="product-tab">
-
-                <partial name="_Reviews" />
-
-            </div><!-- /.product-tab -->
-        </div><!-- /.tab-pane -->
-
-        <div id="tags" class="tab-pane">
-            <partial name="_Tags" />
-        </div><!-- /.tab-pane -->
-
-    </div><!-- /.tab-content -->
-</div><!-- /.col -->

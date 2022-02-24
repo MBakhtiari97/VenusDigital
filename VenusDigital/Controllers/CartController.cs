@@ -52,6 +52,16 @@ namespace VenusDigital.Controllers
                     if (orderDetail != null)
                     {
                         orderDetail.Count += 1;
+
+                        //Increasing order price
+                        if (product.ProductOnSalePrice != 0)
+                        {
+                            order.TotalOrderPrice += product.ProductOnSalePrice;
+                        }
+                        else
+                        {
+                            order.TotalOrderPrice += product.ProductMainPrice;
+                        }
                     }
                     else
                     {
@@ -61,6 +71,14 @@ namespace VenusDigital.Controllers
                             Count = 1,
                             OrderId = order.OrderId
                         };
+                        if (product.ProductOnSalePrice != 0)
+                        {
+                            order.TotalOrderPrice += product.ProductOnSalePrice;
+                        }
+                        else
+                        {
+                            order.TotalOrderPrice += product.ProductMainPrice;
+                        }
                         _orderRepository.AddOrderDetails(newDetails);
                     }
 
@@ -96,15 +114,50 @@ namespace VenusDigital.Controllers
 
         public IActionResult RemoveFromCart(int detailId)
         {
+            //Getting UserId , Order and Product For Total Price
+            int userId = int.Parse
+            (User.FindFirstValue(ClaimTypes.NameIdentifier)
+                .ToString());
+
+            var order = _orderRepository.
+                GetOrderByUserId(userId);
+
+            
             var orderDetail = _orderRepository
                 .getOrderDetail(detailId);
 
-            if(orderDetail.Count<=1)
+            var product = _productsRepository.GetProductForCart(orderDetail.ProductId);
+
+
+            if (orderDetail.Count <= 1)
+            {
                 _orderRepository.RemoveOrderDetail(orderDetail);
+
+                //Decreasing order price
+                if (product.ProductOnSalePrice != 0)
+                {
+                    order.TotalOrderPrice -= product.ProductOnSalePrice;
+                }
+                else
+                {
+                    order.TotalOrderPrice -= product.ProductMainPrice;
+                }
+            }
+
+            
 
             else if(orderDetail.Count>1)
             {
                 orderDetail.Count -= 1;
+
+                if (product.ProductOnSalePrice != 0)
+                {
+                    order.TotalOrderPrice -= product.ProductOnSalePrice;
+                }
+                else
+                {
+                    order.TotalOrderPrice -= product.ProductMainPrice;
+                }
             }
 
             _orderRepository.SaveChanges();
@@ -114,7 +167,22 @@ namespace VenusDigital.Controllers
 
         public IActionResult EmptyCart(int orderId)
         {
-           _orderRepository.EmptyCart(orderId);
+            //Getting UserId , Order For Total Price
+            int userId = int.Parse
+            (User.FindFirstValue(ClaimTypes.NameIdentifier)
+                .ToString());
+
+            var order = _orderRepository.
+                GetOrderByUserId(userId);
+
+            if (order != null)
+            {
+                order.TotalOrderPrice = 0;
+                _orderRepository.SaveChanges();
+            }
+
+            _orderRepository.EmptyCart(orderId);
+
             return RedirectToAction("ShowCart");
         }
         #endregion
