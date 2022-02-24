@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyEshop;
@@ -79,7 +81,7 @@ namespace VenusDigital.Controllers
                 return View(login);
 
 
-            var user = _userRepository.GetUserForLogin(login.Email.ToLower(),login.Password);
+            var user = _userRepository.GetUserForLogin(login.Email.ToLower(), login.Password);
             if (user == null)
             {
                 ModelState.AddModelError("Email", "Cannot find any user with these credentials !");
@@ -134,20 +136,20 @@ namespace VenusDigital.Controllers
             }
 
             var user = _userRepository.GetUserByEmail(forget.Email);
-            if (user!=null)
+            if (user != null)
             {
                 var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_RecoverPassword", user);
-                SendEmail.Send(forget.Email,"Recover Password",body);
+                SendEmail.Send(forget.Email, "Recover Password", body);
                 return View("SuccesForgotPassword", user);
 
             }
             else
             {
-                ModelState.AddModelError("Email","Cannot find any user with this email address !");
+                ModelState.AddModelError("Email", "Cannot find any user with this email address !");
                 return View(forget);
             }
         }
-       
+
         [Route("RecoverPassword/{id}")]
         public IActionResult RecoverPassword(string id)
         {
@@ -159,7 +161,7 @@ namespace VenusDigital.Controllers
         }
         [HttpPost]
         [Route("RecoverPassword/{id}")]
-        public async Task<IActionResult> RecoverPassword(string id,RecoverPasswordViewModel recover)
+        public async Task<IActionResult> RecoverPassword(string id, RecoverPasswordViewModel recover)
         {
             if (!ModelState.IsValid)
             {
@@ -169,7 +171,7 @@ namespace VenusDigital.Controllers
             var user = _userRepository.RecoverPasswordByIdentifier(id);
             if (user != null)
             {
-                user.Password=recover.Password;
+                user.Password = recover.Password;
                 user.UserIdentifierCode = Guid.NewGuid().ToString();
                 _userRepository.SaveChanges();
 
@@ -186,12 +188,22 @@ namespace VenusDigital.Controllers
         #endregion
 
         #region MyAccount
-
-        public IActionResult ShowMyAccount()
+        [Authorize]
+        public IActionResult ShowUserInfo()
         {
-            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            //Getting UserId
+            int userId = int.Parse(User
+                .FindFirstValue(ClaimTypes.NameIdentifier)
+                .ToString());
 
-            return View(_userRepository.GetUserInfo(userId));
+            //Getting Additional Posting User Information's In ViewBag
+            ViewBag.PostalInfo = _userRepository
+                 .GetPostalInformation(userId);
+            //Getting User
+            var user = _userRepository
+                .GetUserByUserId(userId);
+
+            return View(user);
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.AccessControl;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VenusDigital.Models.ViewModels
 {
@@ -82,5 +83,16 @@ namespace VenusDigital.Models.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage = "Password and ConfirmPassword does not match")]
         public string ConfirmPassword { get; set; }
+    }
+    public class ShowUserInformation
+    {
+        public int userId { get; set; }
+        public string Username { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public string Address { get; set; }
+        public string ZipCode { get; set; }
+        public string TelephoneNumber { get; set; }
     }
 }

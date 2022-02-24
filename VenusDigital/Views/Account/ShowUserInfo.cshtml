@@ -1,0 +1,32 @@
+﻿@using System.Collections
+@model Users
+@{
+    ViewData["Title"] = "My Account";
+    PostalInformations informations = ViewBag.PostalInfo;
+}
+
+<h1 class="centerIt">My Information's</h1><br/>
+<table class="table col col-12 userInfoTB">
+    <thead>
+        <tr>
+            <th >Username</th>
+            <th >Email Address</th>
+            <th >Phone Number</th>
+            <th >Register Date</th>
+            <th >Address</th>
+            <th >Zip Code</th>
+            <th >Telephone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.UserName</td>
+            <td>@Model.EmailAddress</td>
+            <td>@Model.PhoneNumber</td>
+            <td>@Model.RegisterDate</td>
+            <td>@informations.Address</td>
+            <td>@informations.ZipCode</td>
+            <td>@informations.TelephoneNumber</td>
+        </tr>
+    </tbody>
+</table>

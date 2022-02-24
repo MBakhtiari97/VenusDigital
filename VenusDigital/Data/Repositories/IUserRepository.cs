@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Models;
+using VenusDigital.Models.ViewModels;
 
 namespace VenusDigital.Data.Repositories
 {
@@ -12,7 +14,8 @@ namespace VenusDigital.Data.Repositories
         Users RecoverPasswordByIdentifier(string identifierCode);
         Users GetUserByEmail(string email);
         void SaveChanges();
-        Users GetUserInfo(int userId);
+        Users GetUserByUserId(int userId);
+        PostalInformations GetPostalInformation(int userId);
     }
 
 
@@ -43,17 +46,23 @@ namespace VenusDigital.Data.Repositories
                 .SingleOrDefault(u => u.EmailAddress == email && u.Password == password);
         }
 
-        public Users GetUserInfo(int userId)
+        public Users GetUserByUserId(int userId)
         {
+            
             return _context.Users
-                .Include(u => u.PostalInformations)
-                .FirstOrDefault(u => u.UserId == userId);
+                .Find(userId);
         }
 
         public bool IsExistedUserByEmail(string email)
         {
             return _context.Users
                 .Any(u => u.EmailAddress == email);
+        }
+
+        public PostalInformations GetPostalInformation(int userId)
+        {
+            return _context.PostalInformations
+                .FirstOrDefault(p=>p.UserId==userId);
         }
 
         public Users RecoverPasswordByIdentifier(string identifierCode)
