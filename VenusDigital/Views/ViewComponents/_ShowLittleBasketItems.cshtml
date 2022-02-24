@@ -1,6 +1,6 @@
 ﻿@model Order
 <div class="dropdown dropdown-cart">
-    @if (Model != null)
+    @if (Model.OrderDetails.Count!=0)
     {
         <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
         <div class="items-cart-inner">

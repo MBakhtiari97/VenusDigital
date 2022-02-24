@@ -60,11 +60,6 @@ namespace VenusDigital.Data.Repositories
 
             _context.SaveChanges();
 
-            Order order = _context.Order.Find(orderId);
-            _context.Order.Remove(order);
-
-            _context.SaveChanges();
-
         }
 
         public Order GetOrderByUserId(int userId)
