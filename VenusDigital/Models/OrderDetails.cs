@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Permissions;
 
 namespace VenusDigital.Models
 {
@@ -13,6 +14,8 @@ namespace VenusDigital.Models
         public int ProductId { get; set; }
         [Required]
         public int Count { get; set; }
+
+        public string? Color { get; set; }
 
         //Nav
         [ForeignKey("ProductId")]

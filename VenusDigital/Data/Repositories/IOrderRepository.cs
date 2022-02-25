@@ -53,7 +53,7 @@ namespace VenusDigital.Data.Repositories
 
         public void EmptyCart(int orderId)
         {
-            foreach (var detail in _context.OrderDetails.Where(o=>o.OrderId==orderId))
+            foreach (var detail in _context.OrderDetails.Where(o => o.OrderId == orderId))
             {
                 _context.OrderDetails.Remove(detail);
             }
@@ -68,7 +68,7 @@ namespace VenusDigital.Data.Repositories
                 .Where(o => o.UserId == userId && !o.IsFinally)
                 .Include(o => o.OrderDetails)
                 .ThenInclude(o => o.Product)
-                .ThenInclude(p=>p.ProductGalleries)
+                .ThenInclude(p => p.ProductGalleries)
                 .FirstOrDefault();
         }
 
@@ -81,7 +81,7 @@ namespace VenusDigital.Data.Repositories
         public OrderDetails GetOrderDetails(int orderId, int productId)
         {
             return _context.OrderDetails
-                .FirstOrDefault(d => d.OrderId == orderId && d.ProductId == productId);
+                    .FirstOrDefault(d => d.OrderId == orderId && d.ProductId == productId);
         }
 
         public void RemoveOrderDetail(OrderDetails detail)

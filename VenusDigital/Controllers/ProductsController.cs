@@ -14,14 +14,17 @@ namespace VenusDigital.Controllers
         private IProductsRepository _productsRepository;
         private IReviewsRepository _reviewsRepository;
         private ICategoryRepository _categoryRepository;
+        private IFeaturesRepository _featuresRepository;
 
         public ProductsController(IProductsRepository productsRepository
             , IReviewsRepository reviewsRepository
-            , ICategoryRepository categoryRepository)
+            , ICategoryRepository categoryRepository
+            , IFeaturesRepository featuresRepository)
         {
             _productsRepository = productsRepository;
             _reviewsRepository = reviewsRepository;
             _categoryRepository = categoryRepository;
+            _featuresRepository = featuresRepository;
         }
 
         #endregion
@@ -55,10 +58,10 @@ namespace VenusDigital.Controllers
                 categories.Add(_categoryRepository.GetCategoryByCategoryId(categoryId));
             }
 
-
             ViewBag.ProductCategories = categories;
             ViewBag.ImageGallery = product.ProductGalleries;
             ViewBag.Tags = _productsRepository.GetProductTags(productId);
+            ViewBag.Features = _featuresRepository.GetAllFeaturesByProductId(productId);
             return View(Product);
         }
 
@@ -71,7 +74,7 @@ namespace VenusDigital.Controllers
         {
             List<SingleProductViewModel> ResultProduct = new List<SingleProductViewModel>();
             ResultProduct.AddRange(_productsRepository.GetProductByString(q));
-            ViewBag.Count=ResultProduct.Count;
+            ViewBag.Count = ResultProduct.Count;
             ViewBag.Search = q.ToUpper();
             return View(ResultProduct.Distinct());
         }
@@ -80,19 +83,19 @@ namespace VenusDigital.Controllers
 
         #region ProductsInCategories
         [Route("Category-{categoryId}")]
-        public IActionResult ShowProductsByCategory(int categoryId , int pageId = 1)
+        public IActionResult ShowProductsByCategory(int categoryId, int pageId = 1)
         {
             ViewBag.pageId = pageId;
 
             List<Products> productsByCategory = new List<Products>();
-            
+
             foreach (var productId in _categoryRepository.GetProductsByCategory(categoryId))
             {
                 productsByCategory.Add(_productsRepository.GetProduct(productId));
             }
 
             ViewBag.Banner = _categoryRepository.GetCategoryBannerName(categoryId);
-            
+
             //ViewBag.CategoryId = categoryId;
             //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
 
@@ -118,7 +121,7 @@ namespace VenusDigital.Controllers
 
         #region FilterProducts
         [Route("Filter")]
-        public IActionResult FilterProductsByPrice(decimal min, decimal max ,int categoryId)
+        public IActionResult FilterProductsByPrice(decimal min, decimal max, int categoryId)
         {
             //TODO:FIX CATEGORY ID BUG
             return View("ShowProductsByCategory", _productsRepository.GetProductsByPriceFilter(min, max, categoryId));

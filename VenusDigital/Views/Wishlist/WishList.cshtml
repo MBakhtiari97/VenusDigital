@@ -6,19 +6,19 @@
 
 @if (Model != null)
 {
-    <div class="col-md-12 my-wishlist">
+    <div class="col-md-12 my-wishlist" style="padding-left: 300px;">
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th colspan="4" class="heading-title">My Wishlist</th>
+                    <th colspan="4" class="heading-title" >My Wishlist</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="col-md-2 col-sm-6 col-xs-6"><a href="/Product-@item.ProductId"><img src="/images/pics/@item.ProductImage" alt="@item.ProductName" id="imgWishlist" class="img-thumbnail"></a></td>
+                        <td class="col-md-3 col-sm-6 col-xs-6"><a href="/Product-@item.ProductId"><img src="/images/pics/@item.ProductImage" alt="@item.ProductName" id="imgWishlist" class="img-thumbnail"></a></td>
                         <td class="col-md-7 col-sm-6 col-xs-6">
                             <div class="product-name"><a href="/Product-@item.ProductId">@item.ProductName</a></div>
                             <div >

@@ -1,10 +1,11 @@
-﻿@model VenusDigital.Models.ViewModels.ProductDetailsViewModel
+﻿@using System.Drawing
+@model VenusDigital.Models.ViewModels.ProductDetailsViewModel
 
 @{
     ViewData["Title"] = "ShowProductDetails";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
     List<Categories> SelectedCategories = ViewBag.ProductCategories;
-
+    List<Features> ListFeatures = ViewBag.Features;
 }
 
 <div class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 250px; ">
@@ -108,6 +109,15 @@
                                         <span class="price-strike" id="new-price">$@Model.MainPrice</span>
                                     }
                                 </div>
+                                @if (ListFeatures.Any(f => f.FeatureTitle == "Color"))
+                                {
+                                    <p>Colors:</p>
+                                    @foreach (var color in ListFeatures.Where(f => f.FeatureTitle == "Color").Select(f => f.FeatureValue))
+                                    {
+                                        <span>&nbsp; @color</span><br/>
+                                    }
+                                }
+                              
                             </div>
 
                             <div class="col-sm-6 col-xs-6">

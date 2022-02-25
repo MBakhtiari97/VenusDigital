@@ -205,7 +205,8 @@ namespace VenusDigital.Controllers
 
             return View(user);
         }
-
+        [Authorize]
+        [Route("MyAccount")]
         public IActionResult MyAccount()
         {
             return View();

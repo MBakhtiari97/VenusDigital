@@ -32,7 +32,7 @@ namespace VenusDigital.Controllers
 
         #region AddToCart
 
-        public IActionResult AddToCart(int productId)
+        public IActionResult AddToCart(int productId, string? color="")
         {
             var product = _productsRepository.GetProductForCart(productId);
 
@@ -122,7 +122,7 @@ namespace VenusDigital.Controllers
             var order = _orderRepository.
                 GetOrderByUserId(userId);
 
-            
+
             var orderDetail = _orderRepository
                 .getOrderDetail(detailId);
 
@@ -144,9 +144,9 @@ namespace VenusDigital.Controllers
                 }
             }
 
-            
 
-            else if(orderDetail.Count>1)
+
+            else if (orderDetail.Count > 1)
             {
                 orderDetail.Count -= 1;
 

@@ -50,6 +50,7 @@ namespace VenusDigital
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICouponRepository, CouponRepository>();
+            services.AddScoped<IFeaturesRepository, FeatureRepository>();
 
             #endregion
 
