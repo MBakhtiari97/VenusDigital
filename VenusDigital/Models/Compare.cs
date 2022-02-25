@@ -9,9 +9,13 @@ namespace VenusDigital.Models
         [Key]
         public int CompareId { get; set; }
         [Required]
+        public int UserId { get; set; }
+        [Required]
         public int ProductId { get; set; }
         //Nav
         [ForeignKey("ProductId")]
         public Products Products { get; set; }
+        [ForeignKey("UserId")]
+        public Users Users { get; set; }
     }
 }

@@ -35,5 +35,6 @@ namespace VenusDigital.Models
         public List<WishLists> WishLists { get; set; }
         public List<Reviews> Reviews { get; set; }
         public List<Order> Orders { get; set; }
+        public List<Compare> Compares { get; set; }
     }
 }
