@@ -3,21 +3,38 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VenusDigital.Data;
 
 namespace VenusDigital.Migrations
 {
     [DbContext(typeof(VenusDigitalContext))]
-    partial class VenusDigitalContextModelSnapshot : ModelSnapshot
+    [Migration("20220225103757_editnewTable")]
+    partial class editnewTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CompareProducts", b =>
+                {
+                    b.Property<int>("CompareId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompareId", "ProductsProductId");
+
+                    b.HasIndex("ProductsProductId");
+
+                    b.ToTable("CompareProducts");
+                });
 
             modelBuilder.Entity("VenusDigital.Models.Categories", b =>
                 {
@@ -58,8 +75,6 @@ namespace VenusDigital.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CompareId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Compare");
                 });
@@ -536,6 +551,21 @@ namespace VenusDigital.Migrations
                     b.ToTable("WishLists");
                 });
 
+            modelBuilder.Entity("CompareProducts", b =>
+                {
+                    b.HasOne("VenusDigital.Models.Compare", null)
+                        .WithMany()
+                        .HasForeignKey("CompareId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VenusDigital.Models.Products", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("VenusDigital.Models.Categories", b =>
                 {
                     b.HasOne("VenusDigital.Models.Categories", "Category")
@@ -545,17 +575,6 @@ namespace VenusDigital.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("VenusDigital.Models.Compare", b =>
-                {
-                    b.HasOne("VenusDigital.Models.Products", "Products")
-                        .WithMany("Compare")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("VenusDigital.Models.Features", b =>
@@ -704,8 +723,6 @@ namespace VenusDigital.Migrations
 
             modelBuilder.Entity("VenusDigital.Models.Products", b =>
                 {
-                    b.Navigation("Compare");
-
                     b.Navigation("Features");
 
                     b.Navigation("Items");

@@ -51,6 +51,7 @@ namespace VenusDigital
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICouponRepository, CouponRepository>();
             services.AddScoped<IFeaturesRepository, FeatureRepository>();
+            services.AddScoped<ICompareRepository, CompareRepository>();
 
             #endregion
 

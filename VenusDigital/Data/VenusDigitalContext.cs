@@ -27,5 +27,6 @@ namespace VenusDigital.Data
         public DbSet<WishLists> WishLists { get; set; }
         public DbSet<SelectedCategory> SelectedCategory { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Compare> Compare { get; set; }
     }
 }

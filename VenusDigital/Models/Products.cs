@@ -45,5 +45,6 @@ namespace VenusDigital.Models
         public List<Items> Items { get; set; }
         public List<SelectedCategory> SelectedCategory { get; set; }
         public List<OrderDetails> OrderDetails { get; set; }
+        public List<Compare> Compare { get; set; }
     }
 }
