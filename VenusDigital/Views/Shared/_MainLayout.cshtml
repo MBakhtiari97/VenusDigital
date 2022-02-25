@@ -58,6 +58,7 @@
                         <ul class="list-unstyled">
                             <li class="myaccount"><a href="MyAccount"><span>My Account</span></a></li>
                             <li class="wishlist"><a href="/Wishlist"><span>Wishlist</span></a></li>
+                            <li class="wishlist"><a href="/Compare"><span>Compare List</span></a></li>
                             <li class="header_cart hidden-xs"><a href="/Cart"><span>My Cart</span></a></li>
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -121,18 +122,6 @@
                         <div class="search-area">
                             <form action="Search">
                                 <div class="control-group">
-                                  @*  <ul class="categories-filter animate-dropdown">
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li class="menu-header">Computer</li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>*@
                                     <input class="search-field" name="q" placeholder="Search here..." />
                                     <button type="submit" class="search-button" href="#"></button>
                                 </div>

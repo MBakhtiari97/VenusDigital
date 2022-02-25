@@ -1,69 +1,109 @@
-﻿@model IEnumerable<Products>
+﻿@model IEnumerable<Compare>
 @{
     ViewData["Title"] = "ShowCompareList";
 }
+@if (Model.Count() != 0)
+{
+    <div class="body-content outer-top-xs" style="padding-right: 0px;text-align: center">
+        <div class="container">
+            <div class="product-comparison">
+                <div>
+                    <h1>Product Comparison</h1>
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table compare-table inner-top-vs">
+                            <tbody>
+                                <tr>
+                                    <th>Products</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td>
+                                            <div>
+                                                <div class="product-image">
+                                                    <div class="image" align="center">
+                                                        <a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@item.ProductId">
+                                                            <img alt="@item.Products.ProductTitle" src="/images/pics/@item.Products.ProductGalleries.First().ImageName">
+                                                        </a>
+                                                    </div>
 
-<div class="body-content outer-top-xs" style="padding-right: 0px;text-align: center">
-    <div class="container">
-        <div class="product-comparison">
-            <div>
-                <h1>Product Comparison</h1>
-                <hr />
-                <div class="table-responsive">
-                    <table class="table compare-table inner-top-vs">
-                        <tbody>
-                            <tr>
-                                <th>Products</th>
-                                <td>
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="image">
-                                                <a href="detail.html">
-                                                    <img alt="" src="assets/images/products/p1.jpg">
-                                                </a>
-                                            </div>
-
-                                            <div class="product-info">
-                                                <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                                <div class="action">
-                                                    <a class="lnk btn btn-primary" href="#">Add To Cart</a>
+                                                    <div class="product-info">
+                                                        <h3 class="name"><a asp-action="ShowProductDetails" asp-controller="Products" asp-route-productId="@item.ProductId">@item.Products.ProductTitle</a></h3>
+                                                        <div class="action">
+                                                            <a class="lnk btn btn-primary" asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.ProductId">Add To Cart</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Price</th>
-                                <td>
-                                    <div class="product-price">
-                                        <span class="price"> $300.00 </span>
-                                        <span class="price-before-discount">$500.00</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Description</th>
-                                <td>
-                                    <p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida. Proin sem per eros ac posuere ultrices. Nulla quis mi in risus.</p>
-                                    <p></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Availability</th>
-                                <td>
-                                    <p class="in-stock">In Stock</p>
-                                </td>
-                            </tr>
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td>
+                                            <div class="product-price">
+                                                @if (@item.Products.ProductOnSalePrice != 0)
+                                                {
+                                                    <span class="price"> $@item.Products.ProductOnSalePrice </span>
+                                                    <span class="price-before-discount">$@item.Products.ProductMainPrice</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="price">$@item.Products.ProductMainPrice</span>
+                                                }
 
-                            <tr>
-                                <th>Remove</th>
-                                <td class="text-center"><a href="#" class="remove-icon"><i class="fa fa-times"></i></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td>
+                                            <p class="text">@item.Products.ProductShortDescription</p>
+                                            <p></p>
+                                        </td>
+                                    }
+
+                                </tr>
+                                <tr>
+                                    <th>Availability</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td>
+                                            <p class="in-stock">@item.Products.ProductInStock</p>
+                                        </td>
+                                    }
+                                </tr>
+
+                                <tr>
+                                    <th>Remove</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <td class="text-center"><a asp-action="RemoveFromCompare" asp-controller="Compare" asp-route-compareId="@item.CompareId" class="remove-icon"><i class="fa fa-times"></i></a></td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div class="body-content outer-top-xs" style="padding-right: 0px;text-align: center">
+        <div class="container">
+            <div class="product-comparison">
+                <div>
+                    <h1>Product Comparison</h1>
+                    <hr />
+                    <h3>Your Compare List Is Empty !</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -205,7 +205,7 @@
                                                                         </li>
                                                                     }
                                                                     <li class="lnk wishlist"> <a class="add-to-cart" asp-action="AddToWishlist" asp-controller="Wishlist" asp-route-productId="@product.ProductId" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                                    <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+                                                                    <li class="lnk"> <a class="add-to-cart" asp-action="AddToCompare" asp-controller="Compare" asp-route-productId="@product.ProductId" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->

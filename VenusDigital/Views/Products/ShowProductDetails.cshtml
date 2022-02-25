@@ -125,7 +125,7 @@
                                     <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-productId="@Model.ProductId" data-original-title="Wishlist" id="wishlist-compare-buttons">
                                         <i class="fa fa-heart"></i>
                                     </a>
-                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" href="#" data-original-title="Add to Compare" id="wishlist-compare-buttons">
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" asp-action="AddToCompare" asp-controller="Compare" asp-route-productId="@Model.ProductId" data-original-title="Add to Compare" id="wishlist-compare-buttons">
                                         <i class="fa fa-signal"></i>
                                     </a>
                                 </div>
