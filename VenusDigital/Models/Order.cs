@@ -16,6 +16,8 @@ namespace VenusDigital.Models
         public bool IsFinally { get; set; }
         [Required]
         public decimal TotalOrderPrice { get; set; }
+        public decimal? TotalPriceWithCoupon { get; set; }
+        public bool AppliedCoupon { get; set; }
         public DateTime? PaymentDate { get; set; }
         public string? PaymentTraceCode { get; set; }
         

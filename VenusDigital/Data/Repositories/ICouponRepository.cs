@@ -6,7 +6,7 @@ namespace VenusDigital.Data.Repositories
 {
     public interface ICouponRepository
     {
-        IEnumerable<Coupons> GetCoupons();
+        Coupons GetCoupons(string coupon);
     }
 
     public class CouponRepository : ICouponRepository
@@ -18,10 +18,10 @@ namespace VenusDigital.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<Coupons> GetCoupons()
+        public Coupons GetCoupons(string coupon)
         {
             return _context.Coupons
-                .ToList();
+                .FirstOrDefault(c=>c.CouponCode==coupon);
         }
     }
 }

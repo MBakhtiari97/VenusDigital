@@ -189,7 +189,7 @@ namespace VenusDigital.Controllers
 
         #region MyAccount
         [Authorize]
-        public IActionResult ShowUserInfo()
+        public IActionResult MyInformations()
         {
             //Getting UserId
             int userId = int.Parse(User
@@ -204,6 +204,11 @@ namespace VenusDigital.Controllers
                 .GetUserByUserId(userId);
 
             return View(user);
+        }
+
+        public IActionResult MyAccount()
+        {
+            return View();
         }
 
         #endregion
