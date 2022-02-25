@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VenusDigital.Models
@@ -19,7 +20,9 @@ namespace VenusDigital.Models
         public string ReviewDescription { get; set; }
         [Required]
         public float ReviewScore { get; set; }
-        
+        [Required]
+        public DateTime ReviewCreateDate { get; set; }
+
         //Nav
         [ForeignKey("UserId")]
         public Users Users { get; set; }

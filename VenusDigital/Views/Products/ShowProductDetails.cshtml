@@ -198,7 +198,7 @@
             <div id="review" class="tab-pane">
                 <div class="product-tab">
 
-                    <partial name="_Reviews" />
+                    @await Component.InvokeAsync("ReviewsComponent",Model.ProductId)
 
                 </div><!-- /.product-tab -->
             </div><!-- /.tab-pane -->
