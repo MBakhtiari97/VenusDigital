@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace VenusDigital.Data.Repositories
         PostalInformations GetPostalInformation(int userId);
         void UpdatePassword(ChangePasswordViewModel password);
         void UpdateInformations(ChangeInfoViewModel info, int userId);
+        ChangeInfoViewModel GetChangeInfo(int userId);
     }
 
 
@@ -96,8 +98,9 @@ namespace VenusDigital.Data.Repositories
             if (user != null)
             {
                 user.Password = password.Password;
-                _context.SaveChanges();
                 _notyfService.Success("Your Password Successfully Updated !");
+                _context.SaveChanges();
+
             }
             else
             {
@@ -108,7 +111,9 @@ namespace VenusDigital.Data.Repositories
 
         public void UpdateInformations(ChangeInfoViewModel info, int userId)
         {
-            var user = _context.Users.Include(u=>u.PostalInformations).FirstOrDefault(u=>u.UserId==userId);
+            var user = _context.Users
+                .Include(u => u.PostalInformations)
+                .FirstOrDefault(u => u.UserId == userId);
             if (user != null)
             {
                 user.EmailAddress = info.Email;
@@ -116,13 +121,33 @@ namespace VenusDigital.Data.Repositories
                 user.PostalInformations.First().Address = info.Address;
                 user.PostalInformations.First().TelephoneNumber = info.TelephoneNumber;
                 user.PostalInformations.First().ZipCode = info.ZipCode;
-                _context.SaveChanges();
+                user.UserIdentifierCode = Guid.NewGuid().ToString();
                 _notyfService.Success("Your Information's Has Successfully Updated !");
+                _context.SaveChanges();
+                
             }
             else
             {
                 _notyfService.Error("Cannot Verify Your Identity , Please Login Again And Then Try !");
             }
+        }
+
+        public ChangeInfoViewModel GetChangeInfo(int userId)
+        {
+            var userInfos = _context.Users
+                .Include(u => u.PostalInformations)
+                .FirstOrDefault(u => u.UserId == userId);
+
+            ChangeInfoViewModel info = new ChangeInfoViewModel()
+            {
+                ZipCode = userInfos.PostalInformations.First().ZipCode,
+                TelephoneNumber = userInfos.PostalInformations.First().TelephoneNumber,
+                Address = userInfos.PostalInformations.First().Address,
+                Email = userInfos.EmailAddress,
+                PhoneNumber = userInfos.PhoneNumber
+            };
+
+            return info;
         }
     }
 }

@@ -257,9 +257,12 @@ namespace VenusDigital.Controllers
         #endregion
 
         #region ChangeAccountInfo's
+        [Authorize]
         [Route("/ChangeInformations")]
         public IActionResult ChangeInfo()
         {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            ViewBag.CurrentInfo = _userRepository.GetChangeInfo(userId);
             return View();
         }
         [HttpPost]
