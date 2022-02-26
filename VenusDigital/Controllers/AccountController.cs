@@ -255,5 +255,21 @@ namespace VenusDigital.Controllers
         }
 
         #endregion
+
+        #region ChangeAccountInfo's
+        [Route("/ChangeInformations")]
+        public IActionResult ChangeInfo()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("/ChangeInformations")]
+        public IActionResult ChangeInfo(ChangeInfoViewModel change)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            _userRepository.UpdateInformations(change,userId);
+            return RedirectToAction("MyAccount");
+        }
+        #endregion
     }
 }

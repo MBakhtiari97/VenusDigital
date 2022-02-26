@@ -18,6 +18,7 @@ namespace VenusDigital.Data.Repositories
         Users GetUserByUserId(int userId);
         PostalInformations GetPostalInformation(int userId);
         void UpdatePassword(ChangePasswordViewModel password);
+        void UpdateInformations(ChangeInfoViewModel info, int userId);
     }
 
 
@@ -103,6 +104,25 @@ namespace VenusDigital.Data.Repositories
                 _notyfService.Error("Invalid Credentials Please Check Fields !");
             }
 
+        }
+
+        public void UpdateInformations(ChangeInfoViewModel info, int userId)
+        {
+            var user = _context.Users.Include(u=>u.PostalInformations).FirstOrDefault(u=>u.UserId==userId);
+            if (user != null)
+            {
+                user.EmailAddress = info.Email;
+                user.PhoneNumber = info.PhoneNumber;
+                user.PostalInformations.First().Address = info.Address;
+                user.PostalInformations.First().TelephoneNumber = info.TelephoneNumber;
+                user.PostalInformations.First().ZipCode = info.ZipCode;
+                _context.SaveChanges();
+                _notyfService.Success("Your Information's Has Successfully Updated !");
+            }
+            else
+            {
+                _notyfService.Error("Cannot Verify Your Identity , Please Login Again And Then Try !");
+            }
         }
     }
 }

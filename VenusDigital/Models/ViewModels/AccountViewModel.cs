@@ -120,4 +120,29 @@ namespace VenusDigital.Models.ViewModels
         [Compare("Password",ErrorMessage = "Password and confirm password does not match !")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class ChangeInfoViewModel
+    {
+        [Required]
+        [Display(Name = "Phone")]
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "Email Address")]
+        [Required]
+        [MaxLength(250)]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address !")]
+        public string Email { get; set; }
+        [Display(Name = "Postal Address")]
+        [Required]
+        [MaxLength(800)]
+        public string Address { get; set; }
+        [Display(Name = "Zip Code")]
+        [Required]
+        [MaxLength(20)]
+        public string ZipCode { get; set; }
+        [Display(Name = "Telephone")]
+        [Required]
+        [MaxLength(20)]
+        public string TelephoneNumber { get; set; }
+    }
 }

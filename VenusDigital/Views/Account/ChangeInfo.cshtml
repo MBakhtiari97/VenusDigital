@@ -1,0 +1,47 @@
+﻿@model VenusDigital.Models.ViewModels.ChangeInfoViewModel
+
+@{
+    ViewData["Title"] = "Change Account Information's";
+}
+
+<div class="row">
+    <div class="col-md-12" style="padding-left: 200px; text-align: center; margin: 20px;">
+        <h2>ChangeInfo</h2>
+        <hr />
+        <form asp-action="ChangeInfo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control"/>
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelephoneNumber" class="control-label"></label>
+                <input asp-for="TelephoneNumber" class="form-control"/>
+                <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
