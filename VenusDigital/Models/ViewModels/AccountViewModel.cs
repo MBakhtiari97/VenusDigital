@@ -95,4 +95,29 @@ namespace VenusDigital.Models.ViewModels
         public string ZipCode { get; set; }
         public string TelephoneNumber { get; set; }
     }
+
+    public class ChangePasswordViewModel
+    {
+        [Display(Name = "Email Address")]
+        [Required]
+        [MaxLength(250)]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address !")]
+        public string Email { get; set; }
+        [Required]
+        [Display(Name = "Current Password")]
+        [MaxLength(50)]
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
+        [Required]
+        [Display(Name = "New Password")]
+        [MaxLength(50)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [Required]
+        [Display(Name = "Confirm Password")]
+        [MaxLength(50)]
+        [DataType(DataType.Password)]
+        [Compare("Password",ErrorMessage = "Password and confirm password does not match !")]
+        public string ConfirmPassword { get; set; }
+    }
 }

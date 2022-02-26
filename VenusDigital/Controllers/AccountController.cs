@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -215,14 +216,44 @@ namespace VenusDigital.Controllers
         {
             return View();
         }
+
+        [Authorize]
         [Route("MyAccount/OrderHistory")]
         public IActionResult OrderHistory()
         {
             int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             return View(_orderRepository.GetFinishedOrderByUserId(userId));
         }
-
+        [Authorize]
+        [Route("OrderDetails/{orderId}")]
+        public IActionResult OrderHistoryDetails(int orderId)
+        {
+            return View(_orderRepository.GetOrderDetails(orderId));
+        }
         #endregion
 
+        #region ChangePassword
+
+        [Authorize]
+        [Route("/ChangePassword")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        public IActionResult ChangePassword(ChangePasswordViewModel updatePassword)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(updatePassword);
+            }
+
+            _userRepository.UpdatePassword(updatePassword);
+            return RedirectToAction("MyAccount");
+        }
+
+        #endregion
     }
 }

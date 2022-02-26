@@ -21,7 +21,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td><a>VD-@DateTime.Now.Year-@item.OrderId</a></td>
+                <td><a href="/OrderDetails/@item.OrderId">VD-@DateTime.Now.Year-@item.OrderId</a></td>
                 <td>@item.PaymentDate</td>
                 <td>@item.PaymentTraceCode</td>
                 @if (@item.TotalPriceWithCoupon != 0)

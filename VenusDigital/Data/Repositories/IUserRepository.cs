@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Models;
 using VenusDigital.Models.ViewModels;
@@ -16,16 +17,19 @@ namespace VenusDigital.Data.Repositories
         void SaveChanges();
         Users GetUserByUserId(int userId);
         PostalInformations GetPostalInformation(int userId);
+        void UpdatePassword(ChangePasswordViewModel password);
     }
 
 
     public class UserRepository : IUserRepository
     {
         private VenusDigitalContext _context;
+        public INotyfService _notyfService { get; }
 
-        public UserRepository(VenusDigitalContext context)
+        public UserRepository(VenusDigitalContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;
         }
 
         public void AddUser(Users user)
@@ -48,7 +52,7 @@ namespace VenusDigital.Data.Repositories
 
         public Users GetUserByUserId(int userId)
         {
-            
+
             return _context.Users
                 .Find(userId);
         }
@@ -62,7 +66,7 @@ namespace VenusDigital.Data.Repositories
         public PostalInformations GetPostalInformation(int userId)
         {
             return _context.PostalInformations
-                .FirstOrDefault(p=>p.UserId==userId);
+                .FirstOrDefault(p => p.UserId == userId);
         }
 
         public Users RecoverPasswordByIdentifier(string identifierCode)
@@ -81,6 +85,24 @@ namespace VenusDigital.Data.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public void UpdatePassword(ChangePasswordViewModel password)
+        {
+            var user = _context.Users
+                .FirstOrDefault(u => u.EmailAddress == password.Email && u.Password == password.CurrentPassword);
+
+            if (user != null)
+            {
+                user.Password = password.Password;
+                _context.SaveChanges();
+                _notyfService.Success("Your Password Successfully Updated !");
+            }
+            else
+            {
+                _notyfService.Error("Invalid Credentials Please Check Fields !");
+            }
+
         }
     }
 }

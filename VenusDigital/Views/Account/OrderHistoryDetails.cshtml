@@ -1,7 +1,40 @@
-﻿
+﻿@model IEnumerable<OrderDetails>
 @{
     ViewData["Title"] = "OrderHistoryDetails";
 }
 
-<h2>OrderHistoryDetails</h2>
-
+<div style="padding-left: 200px; text-align: center; font-size: 16px;" align="center">
+    
+    <h2 style="font-weight: bold">'VD-@DateTime.Now.Year-@Model.First().OrderId' Detail's</h2>
+    <hr/>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Product Image</th>
+            <th>Product Title</th>
+            <th>Quantity</th>
+            <th>Price (Per)</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" class="img-thumbnail" style="width: 100px; height: 100px;"/></td>
+                <td>@item.Product.ProductTitle</td>
+                <td>@item.Count</td>
+                @if (@item.Product.ProductOnSalePrice != 0)
+                {
+                    <td>$@item.Product.ProductOnSalePrice</td>
+                }
+                else
+                {
+                    <td>$@item.Product.ProductMainPrice</td>
+                }
+                <td>@item.Color</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

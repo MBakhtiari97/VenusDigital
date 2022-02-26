@@ -19,6 +19,7 @@ namespace VenusDigital.Data.Repositories
         void RemoveOrderDetail(OrderDetails detail);
         void EmptyCart(int orderId);
         IEnumerable<Order> GetFinishedOrderByUserId(int userId);
+        IEnumerable<OrderDetails> GetOrderDetails(int orderId);
     }
 
     public class OrderRepository : IOrderRepository
@@ -91,6 +92,15 @@ namespace VenusDigital.Data.Repositories
         {
             return _context.OrderDetails
                     .FirstOrDefault(d => d.OrderId == orderId && d.ProductId == productId);
+        }
+
+        public IEnumerable<OrderDetails> GetOrderDetails(int orderId)
+        {
+            return _context.OrderDetails
+                .Where(od => od.OrderId == orderId)
+                .Include(od=>od.Product)
+                .ThenInclude(od=>od.ProductGalleries)
+                .ToList();
         }
 
         public void RemoveOrderDetail(OrderDetails detail)
