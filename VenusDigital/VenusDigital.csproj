@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Review\" />
     <Folder Include="wwwroot\images\pics\" />
   </ItemGroup>
 

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "OrderHistory";
+}
+
+
+
+<div style="padding-left:200px; text-align: center; font-size: 16px;" align="center">
+    <h2>OrderHistory</h2>
+    <hr/>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Payment Date</th>
+            <th>Order Payment Tracking Code</th>
+            <th>Order Total Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a>VD-@DateTime.Now.Year-@item.OrderId</a></td>
+                <td>@item.PaymentDate</td>
+                <td>@item.PaymentTraceCode</td>
+                @if (@item.TotalPriceWithCoupon != 0)
+                {
+                    <td>$@item.TotalPriceWithCoupon</td>
+                }
+                else
+                {
+                    <td>$@item.TotalOrderPrice</td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

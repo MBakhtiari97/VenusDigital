@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using VenusDigital.Models;
@@ -9,13 +10,13 @@ namespace VenusDigital.Data.Repositories
     public interface IReviewsRepository
     {
         int GetTotalReviewsCount(int productId);
-        bool AddReview(Reviews review);
+        void AddReview(SingleReviewViewModel review, int userId, int productId);
         IEnumerable<Reviews> GetAllReviews();
         IEnumerable<SingleReviewViewModel> GetReviewsForProduct(int productId);
 
     }
 
-    public class ReviewRepository:IReviewsRepository
+    public class ReviewRepository : IReviewsRepository
     {
         private VenusDigitalContext _context;
 
@@ -29,10 +30,6 @@ namespace VenusDigital.Data.Repositories
                 .Count(r => r.ProductId == productId);
         }
 
-        public bool AddReview(Reviews review)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public IEnumerable<Reviews> GetAllReviews()
         {
@@ -51,6 +48,20 @@ namespace VenusDigital.Data.Repositories
                     ReviewDate = r.ReviewCreateDate,
                     ReviewId = r.ReviewId
                 }).ToList();
+        }
+
+        public void AddReview(SingleReviewViewModel review, int userId, int productId)
+        {
+            _context.Reviews.Add(new Reviews()
+            {
+                ReviewCreateDate = DateTime.Now,
+                ReviewDescription = review.ReviewDescription,
+                ReviewScore = review.ReviewScore,
+                ReviewTitle = review.ReviewTitle,
+                UserId = userId,
+                ProductId = productId
+            });
+            _context.SaveChanges();
         }
     }
 }

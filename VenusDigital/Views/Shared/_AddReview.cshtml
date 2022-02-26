@@ -1,0 +1,47 @@
+﻿@model VenusDigital.Models.ViewModels.SingleReviewViewModel
+
+<div class="product-add-review">
+    <h4 class="title">Write your own review</h4>
+    <hr />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="review-form">
+            <div class="form-container">
+                <form class="cnt-form" asp-action="AddReview" asp-controller="Review" asp-route-productId="@ViewBag.ProductId">
+                    <lable asp-for="ReviewScore" style="font-weight: bold;">Overal Score</lable><span class="astk">*</span><input asp-for="ReviewScore" type="number" min="1" max="5" value="3" class="form-control" style="text-align: center; font-weight: bold; margin: 10px 0px;"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="ReviewTitle" for="exampleInputSummary">Summary <span class="astk">*</span></label>
+                                <input asp-for="ReviewTitle" type="text" class="form-control txt" id="exampleInputSummary" placeholder="">
+                            </div><!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ReviewDescription" for="exampleInputReview">Review <span class="astk">*</span></label>
+                                <textarea asp-for="ReviewDescription" class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder=""></textarea>
+                            </div><!-- /.form-group -->
+                        </div>
+                    </div><!-- /.row -->
+
+                    <div class="action text-right">
+                        <button type="submit" class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                    </div><!-- /.action -->
+
+                </form><!-- /.cnt-form -->
+            </div><!-- /.form-container -->
+
+        </div><!-- /.review-form -->
+    }
+    else
+    {
+        <div style="font-size: 18px;text-align: center"><p>Please Login To Submit A Review !</p> 
+            <a href="/Login" class="btn btn-primary">Login</a>
+        </div>
+    }
+</div><!-- /.product-add-review -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

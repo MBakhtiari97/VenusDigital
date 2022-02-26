@@ -4,20 +4,22 @@
     ViewData["Title"] = "AddUserToNewsLetter";
 }
 
-<h2 style="text-align: center">Subscribe To Newsletter</h2>
 
-<hr />
-<div class="row" align="center">
+
+
+<div class="row" align="center" style="padding-left: 150px;">
+    <h2 style="text-align: center">Subscribe To Newsletter</h2>
+    <hr />
     <div class="col-12">
         <form asp-action="AddUserToNewsLetter">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NewslettersSubedUserEmail" class="control-label"></label>
-                <input asp-for="NewslettersSubedUserEmail" class="form-control" />
+                <input asp-for="NewslettersSubedUserEmail" class="form-control"/>
                 <span asp-validation-for="NewslettersSubedUserEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Subscribe" class="btn btn-primary" />
+                <input type="submit" value="Subscribe" class="btn btn-primary"/>
             </div>
         </form>
     </div>

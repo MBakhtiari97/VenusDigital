@@ -9,5 +9,6 @@ namespace VenusDigital.Models.ViewModels
         public string ReviewTitle { get; set; }
         public string ReviewDescription { get; set; }
         public DateTime ReviewDate { get; set; }
+        public int ReviewScore { get; set; }
     }
 }

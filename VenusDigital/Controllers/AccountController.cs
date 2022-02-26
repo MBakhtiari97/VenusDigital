@@ -22,11 +22,15 @@ namespace VenusDigital.Controllers
 
         private IUserRepository _userRepository;
         private IViewRenderService _viewRenderService;
+        private IOrderRepository _orderRepository;
 
-        public AccountController(IUserRepository userRepository, IViewRenderService viewRenderService)
+        public AccountController(IUserRepository userRepository
+            , IViewRenderService viewRenderService
+            ,IOrderRepository orderRepository)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
+            _orderRepository = orderRepository;
         }
 
         #endregion
@@ -210,6 +214,12 @@ namespace VenusDigital.Controllers
         public IActionResult MyAccount()
         {
             return View();
+        }
+        [Route("MyAccount/OrderHistory")]
+        public IActionResult OrderHistory()
+        {
+            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            return View(_orderRepository.GetFinishedOrderByUserId(userId));
         }
 
         #endregion

@@ -18,6 +18,7 @@ namespace VenusDigital.Data.Repositories
         OrderDetails getOrderDetail(int detailId);
         void RemoveOrderDetail(OrderDetails detail);
         void EmptyCart(int orderId);
+        IEnumerable<Order> GetFinishedOrderByUserId(int userId);
     }
 
     public class OrderRepository : IOrderRepository
@@ -60,6 +61,14 @@ namespace VenusDigital.Data.Repositories
 
             _context.SaveChanges();
 
+        }
+
+        public IEnumerable<Order> GetFinishedOrderByUserId(int userId)
+        {
+            return _context.Order
+                .Where(o => o.UserId == userId && o.IsFinally)
+                .OrderByDescending(o => o.CreateDate)
+                .ToList();
         }
 
         public Order GetOrderByUserId(int userId)
