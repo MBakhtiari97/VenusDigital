@@ -33,8 +33,6 @@ namespace VenusDigital.Models
         public int SalePercent { get; set; }
         [Required]
         public int FeatureId { get; set; }
-        [Required]
-        public int ItemId { get; set; }
         public DateTime CreateDate { get; set; }
 
         //Nav
@@ -42,7 +40,6 @@ namespace VenusDigital.Models
         public List<Features> Features { get; set; }
         public List<Tags> Tags { get; set; }
         public List<Reviews> Reviews { get; set; }
-        public List<Items> Items { get; set; }
         public List<SelectedCategory> SelectedCategory { get; set; }
         public List<OrderDetails> OrderDetails { get; set; }
         public List<Compare> Compare { get; set; }

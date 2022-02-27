@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Models;
 using VenusDigital.Models.ViewModels;
@@ -32,79 +33,106 @@ namespace VenusDigital.Data.Repositories
 
         public IEnumerable<SingleProductViewModel> GetNewHardwareProducts()
         {
-            var hardwareProducts = _context.SelectedCategory
+            //First get all product id's that exist in categoryId 11
+            var productIds = _context.SelectedCategory
                 .Where(c => c.CategoryId == 11)
-                .Select(c => c.Products)
-                .OrderByDescending(c => c.CreateDate)
-                .Take(4)
+                .Select(c => c.ProductId)
                 .ToList();
 
+            //Then collecting all products by product id's
+            List<Products> listProducts = new List<Products>();
+            foreach (var productId in productIds)
+            {
+                listProducts.Add(_context.Products
+                    .Include(p => p.ProductGalleries)
+                    .FirstOrDefault(p => p.ProductId == productId));
+            }
+
+            //Finally filling a list of single product view model
             List<SingleProductViewModel> newHardware = new List<SingleProductViewModel>();
-            foreach (var product in hardwareProducts)
+            foreach (var item in listProducts.OrderByDescending(p=>p.CreateDate).Take(4))
             {
                 newHardware.Add(new SingleProductViewModel()
                 {
-                    MainImage = product.ProductGalleries.First().ImageName,
-                    MainPrice = product.ProductMainPrice,
-                    ProductId = product.ProductId,
-                    Quantiny = product.ProductQuantityInStock,
-                    Score = product.ProductScore,
-                    Title = product.ProductTitle,
-                    OnSalePrice = product.ProductOnSalePrice
+                    MainImage = item.ProductGalleries.First().ImageName,
+                    MainPrice = item.ProductMainPrice,
+                    ProductId = item.ProductId,
+                    Quantiny = item.ProductQuantityInStock,
+                    Score = item.ProductScore,
+                    Title = item.ProductTitle,
+                    OnSalePrice = item.ProductOnSalePrice
                 });
             }
-
             return newHardware;
         }
 
         public IEnumerable<SingleProductViewModel> GetNewPcAccessoriesProducts()
         {
-            var PcProducts = _context.SelectedCategory
+
+            var productIds = _context.SelectedCategory
                 .Where(c => c.CategoryId == 104)
-                .Select(c => c.Products)
-                .OrderByDescending(c => c.CreateDate)
-                .Take(4)
+                .Select(c => c.ProductId)
                 .ToList();
+            List<Products> listProducts = new List<Products>();
+            foreach (var productId in productIds)
+            {
+                listProducts.Add(_context.Products
+                    .Include(p => p.ProductGalleries)
+                    .FirstOrDefault(p => p.ProductId == productId));
+            }
+
 
             List<SingleProductViewModel> newAccessories = new List<SingleProductViewModel>();
-            foreach (var product in PcProducts)
+            foreach (var item in listProducts.OrderByDescending(p => p.CreateDate).Take(4))
             {
                 newAccessories.Add(new SingleProductViewModel()
                 {
-                    MainImage = product.ProductGalleries.First().ImageName,
-                    MainPrice = product.ProductMainPrice,
-                    ProductId = product.ProductId,
-                    Quantiny = product.ProductQuantityInStock,
-                    Score = product.ProductScore,
-                    Title = product.ProductTitle,
-                    OnSalePrice = product.ProductOnSalePrice
+                    MainImage = item.ProductGalleries.First().ImageName,
+                    MainPrice = item.ProductMainPrice,
+                    ProductId = item.ProductId,
+                    Quantiny = item.ProductQuantityInStock,
+                    Score = item.ProductScore,
+                    Title = item.ProductTitle,
+                    OnSalePrice = item.ProductOnSalePrice
                 });
             }
-
             return newAccessories;
         }
 
         public IEnumerable<SingleProductViewModel> GetNewPhonesProducts()
         {
-            var products = _context.SelectedCategory
+            //var products = _context.SelectedCategory
+            //    .Where(c => c.CategoryId == 2)
+            //    .Select(c => c.Products)
+            //    .OrderByDescending(c=>c.CreateDate)
+            //    .Take(4)
+            //    .ToList();
+
+            var productIds = _context.SelectedCategory
                 .Where(c => c.CategoryId == 2)
-                .Select(c => c.Products)
-                .OrderByDescending(c=>c.CreateDate)
-                .Take(4)
+                .Select(c => c.ProductId)
                 .ToList();
+            List<Products> listProducts = new List<Products>();
+            foreach (var productId in productIds)
+            {
+                listProducts.Add(_context.Products
+                    .Include(p=>p.ProductGalleries)
+                    .FirstOrDefault(p=>p.ProductId==productId));
+            }
+
 
             List<SingleProductViewModel> newPhones = new List<SingleProductViewModel>();
-            foreach (var product in products)
+            foreach (var item in listProducts.OrderByDescending(p => p.CreateDate).Take(4))
             {
                 newPhones.Add(new SingleProductViewModel()
                 {
-                    MainImage = product.ProductGalleries.First().ImageName,
-                    MainPrice = product.ProductMainPrice,
-                    ProductId = product.ProductId,
-                    Quantiny = product.ProductQuantityInStock,
-                    Score = product.ProductScore,
-                    Title = product.ProductTitle,
-                    OnSalePrice = product.ProductOnSalePrice
+                    MainImage = item.ProductGalleries.First().ImageName,
+                    MainPrice = item.ProductMainPrice,
+                    ProductId = item.ProductId,
+                    Quantiny = item.ProductQuantityInStock,
+                    Score = item.ProductScore,
+                    Title = item.ProductTitle,
+                    OnSalePrice = item.ProductOnSalePrice
                 });
             }
 

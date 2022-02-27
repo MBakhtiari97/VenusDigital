@@ -16,7 +16,6 @@ namespace VenusDigital.Data
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Coupons> Coupons { get; set; }
         public DbSet<Features> Features { get; set; }
-        public DbSet<Items> Items { get; set; }
         public DbSet<Newsletters> Newsletters { get; set; }
         public DbSet<PostalInformations> PostalInformations { get; set; }
         public DbSet<ProductGalleries> ProductGalleries { get; set; }
