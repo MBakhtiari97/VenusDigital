@@ -1,0 +1,77 @@
+﻿@model IEnumerable<VenusDigital.Models.Products>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Manage Products</h2>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="Create">Add New Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantityInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductMainPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOnSalePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalePercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantityInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductMainPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductOnSalePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalePercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

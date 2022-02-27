@@ -1,0 +1,84 @@
+﻿@model VenusDigital.Models.Products
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Product Details</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Image
+        </dt>
+        <dd>
+            <img src="/images/pics/@ViewBag.image" id="imageInDetailProduct" class="img-thumbnail"/>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductLongDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductLongDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductInStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductInStock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQuantityInStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductQuantityInStock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductMainPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductMainPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductOnSalePrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductOnSalePrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalePercent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalePercent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

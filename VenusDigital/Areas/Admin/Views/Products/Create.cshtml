@@ -1,0 +1,72 @@
+﻿@model VenusDigital.Models.Products
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h2>Add New Product</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductTitle" class="control-label"></label>
+                <input asp-for="ProductTitle" class="form-control" />
+                <span asp-validation-for="ProductTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductShortDescription" class="control-label"></label>
+                <input asp-for="ProductShortDescription" class="form-control" />
+                <span asp-validation-for="ProductShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductLongDescription" class="control-label"></label>
+                <input asp-for="ProductLongDescription" class="form-control" />
+                <span asp-validation-for="ProductLongDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductInStock" class="control-label"></label>
+                <input asp-for="ProductInStock" class="form-control" />
+                <span asp-validation-for="ProductInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductQuantityInStock" class="control-label"></label>
+                <input asp-for="ProductQuantityInStock" class="form-control" />
+                <span asp-validation-for="ProductQuantityInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductMainPrice" class="control-label"></label>
+                <input asp-for="ProductMainPrice" class="form-control" />
+                <span asp-validation-for="ProductMainPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductScore" class="control-label"></label>
+                <input asp-for="ProductScore" class="form-control" />
+                <span asp-validation-for="ProductScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductOnSalePrice" class="control-label"></label>
+                <input asp-for="ProductOnSalePrice" class="form-control" />
+                <span asp-validation-for="ProductOnSalePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalePercent" class="control-label"></label>
+                <input asp-for="SalePercent" class="form-control" />
+                <span asp-validation-for="SalePercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Product" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
