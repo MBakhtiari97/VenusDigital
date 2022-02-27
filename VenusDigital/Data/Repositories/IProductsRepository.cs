@@ -14,8 +14,11 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<SingleProductViewModel> GetProductByString(string q);
         IEnumerable<Products> GetOnSaleProducts();
         IEnumerable<SpecialOffersViewModel> GetSpecialOffers();
-        IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId);
+        IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max, int categoryId);
         Products GetProductForCart(int productId);
+        IEnumerable<SingleProductViewModel> GetNewPhonesProducts();
+        IEnumerable<SingleProductViewModel> GetNewHardwareProducts();
+        IEnumerable<SingleProductViewModel> GetNewPcAccessoriesProducts();
     }
 
     public class ProductsRepository : IProductsRepository
@@ -27,13 +30,91 @@ namespace VenusDigital.Data.Repositories
             _context = context;
         }
 
+        public IEnumerable<SingleProductViewModel> GetNewHardwareProducts()
+        {
+            var hardwareProducts = _context.SelectedCategory
+                .Where(c => c.CategoryId == 11)
+                .Select(c => c.Products)
+                .OrderByDescending(c => c.CreateDate)
+                .Take(4)
+                .ToList();
+
+            List<SingleProductViewModel> newHardware = new List<SingleProductViewModel>();
+            foreach (var product in hardwareProducts)
+            {
+                newHardware.Add(new SingleProductViewModel()
+                {
+                    MainImage = product.ProductGalleries.First().ImageName,
+                    MainPrice = product.ProductMainPrice,
+                    ProductId = product.ProductId,
+                    Quantiny = product.ProductQuantityInStock,
+                    Score = product.ProductScore,
+                    Title = product.ProductTitle
+                });
+            }
+
+            return newHardware;
+        }
+
+        public IEnumerable<SingleProductViewModel> GetNewPcAccessoriesProducts()
+        {
+            var PcProducts = _context.SelectedCategory
+                .Where(c => c.CategoryId == 104)
+                .Select(c => c.Products)
+                .OrderByDescending(c => c.CreateDate)
+                .Take(4)
+                .ToList();
+
+            List<SingleProductViewModel> newAccessories = new List<SingleProductViewModel>();
+            foreach (var product in PcProducts)
+            {
+                newAccessories.Add(new SingleProductViewModel()
+                {
+                    MainImage = product.ProductGalleries.First().ImageName,
+                    MainPrice = product.ProductMainPrice,
+                    ProductId = product.ProductId,
+                    Quantiny = product.ProductQuantityInStock,
+                    Score = product.ProductScore,
+                    Title = product.ProductTitle
+                });
+            }
+
+            return newAccessories;
+        }
+
+        public IEnumerable<SingleProductViewModel> GetNewPhonesProducts()
+        {
+            var products = _context.SelectedCategory
+                .Where(c => c.CategoryId == 2)
+                .Select(c => c.Products)
+                .OrderByDescending(c=>c.CreateDate)
+                .Take(4)
+                .ToList();
+
+            List<SingleProductViewModel> newPhones = new List<SingleProductViewModel>();
+            foreach (var product in products)
+            {
+                newPhones.Add(new SingleProductViewModel()
+                {
+                    MainImage = product.ProductGalleries.First().ImageName,
+                    MainPrice = product.ProductMainPrice,
+                    ProductId = product.ProductId,
+                    Quantiny = product.ProductQuantityInStock,
+                    Score = product.ProductScore,
+                    Title = product.ProductTitle
+                });
+            }
+
+            return newPhones;
+        }
+
         public IEnumerable<Products> GetNewProducts()
         {
             return _context.Products
                 .OrderByDescending(p => p.CreateDate)
                 .Where(p => p.ProductQuantityInStock != 0)
                 .Include(p => p.ProductGalleries)
-                .Take(9)
+                .Take(4)
                 .ToList();
         }
 
@@ -77,17 +158,13 @@ namespace VenusDigital.Data.Repositories
                 .Find(productId);
         }
 
-        public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max,int categoryId)
+        public IEnumerable<Products> GetProductsByPriceFilter(decimal min, decimal max, int categoryId)
         {
-            //return _context.Products
-            //    .Include(p => p.ProductGalleries)
-            //    .Where(p => p.ProductMainPrice >= min && p.ProductMainPrice <= max)
-            //    .ToList();
 
             return _context.SelectedCategory
                 .Where(c => c.CategoryId == categoryId)
                 .Include(p => p.Products)
-                .ThenInclude(p=>p.ProductGalleries)
+                .ThenInclude(p => p.ProductGalleries)
                 .Select(c => c.Products)
                 .Where(p => p.ProductMainPrice >= min && p.ProductMainPrice <= max)
                 .ToList();

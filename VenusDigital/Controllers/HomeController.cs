@@ -22,6 +22,7 @@ namespace VenusDigital.Controllers
             _productsRepository = productsRepository;
         }
 
+        //Showing New Items In Home Page
         public IActionResult Index()
         {
             var vm = new List<SingleProductViewModel>();
@@ -38,7 +39,10 @@ namespace VenusDigital.Controllers
                     Quantiny = product.ProductQuantityInStock
                 });
             }
-            
+
+            ViewBag.NewPhones = _productsRepository.GetNewPhonesProducts();
+            ViewBag.NewHardware = _productsRepository.GetNewHardwareProducts();
+            ViewBag.NewPcAccessories = _productsRepository.GetNewPcAccessoriesProducts();
             return View(vm);
         }
 
