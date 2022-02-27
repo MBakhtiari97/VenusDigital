@@ -52,16 +52,20 @@ namespace VenusDigital.Data.Repositories
 
         public void AddReview(SingleReviewViewModel review, int userId, int productId)
         {
-            _context.Reviews.Add(new Reviews()
-            {
-                ReviewCreateDate = DateTime.Now,
-                ReviewDescription = review.ReviewDescription,
-                ReviewScore = review.ReviewScore,
-                ReviewTitle = review.ReviewTitle,
-                UserId = userId,
-                ProductId = productId
-            });
+            Reviews reviews = new Reviews();
+            reviews.ProductId = productId;
+            reviews.ReviewCreateDate=DateTime.Now;
+            reviews.ReviewScore = reviews.ReviewScore;
+            reviews.ReviewTitle=review.ReviewTitle;
+            reviews.UserId = userId;
+            reviews.ReviewDescription = review.ReviewDescription;
+
+            _context.Reviews.Add(reviews);
             _context.SaveChanges();
+
+            //var product = _context.Products.Find(productId);
+            //product.ProductScore = (reviews.ReviewScore / product.Reviews.Count);
+
         }
     }
 }

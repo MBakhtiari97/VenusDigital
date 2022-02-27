@@ -49,7 +49,8 @@ namespace VenusDigital.Data.Repositories
                     ProductId = product.ProductId,
                     Quantiny = product.ProductQuantityInStock,
                     Score = product.ProductScore,
-                    Title = product.ProductTitle
+                    Title = product.ProductTitle,
+                    OnSalePrice = product.ProductOnSalePrice
                 });
             }
 
@@ -75,7 +76,8 @@ namespace VenusDigital.Data.Repositories
                     ProductId = product.ProductId,
                     Quantiny = product.ProductQuantityInStock,
                     Score = product.ProductScore,
-                    Title = product.ProductTitle
+                    Title = product.ProductTitle,
+                    OnSalePrice = product.ProductOnSalePrice
                 });
             }
 
@@ -101,7 +103,8 @@ namespace VenusDigital.Data.Repositories
                     ProductId = product.ProductId,
                     Quantiny = product.ProductQuantityInStock,
                     Score = product.ProductScore,
-                    Title = product.ProductTitle
+                    Title = product.ProductTitle,
+                    OnSalePrice = product.ProductOnSalePrice
                 });
             }
 
@@ -148,7 +151,8 @@ namespace VenusDigital.Data.Repositories
                     ProductId = p.ProductId,
                     Quantiny = p.ProductQuantityInStock,
                     Score = p.ProductScore,
-                    Title = p.ProductTitle
+                    Title = p.ProductTitle,
+                    OnSalePrice = p.ProductOnSalePrice
                 }).ToList();
         }
 
@@ -190,7 +194,8 @@ namespace VenusDigital.Data.Repositories
                     Price = p.ProductMainPrice,
                     ProductScore = p.ProductScore,
                     ProductTitle = p.ProductTitle,
-                    ProductId = p.ProductId
+                    ProductId = p.ProductId,
+                    OnSalePrice = p.ProductOnSalePrice
                 }).Take(3).ToList();
         }
     }

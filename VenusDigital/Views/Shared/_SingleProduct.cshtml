@@ -55,7 +55,15 @@
         <span class="review">@Model.Score</span>
     </div>
     <div class="description"></div>
-    <div class="product-price"> <span class="price">$ @Model.MainPrice </span></div>
+    @if (Model.OnSalePrice != 0)
+    {
+        <div class="product-price"> <span class="price">$ @Model.OnSalePrice </span><span style="text-decoration: line-through;color: grey">$ @Model.MainPrice </span></div>
+    }
+    else
+    {
+        <div class="product-price"> <span class="price">$ @Model.MainPrice </span></div>  
+    }
+    
     <!-- /.product-price -->
 
 </div>
