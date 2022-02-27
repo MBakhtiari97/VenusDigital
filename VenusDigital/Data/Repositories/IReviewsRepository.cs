@@ -63,9 +63,10 @@ namespace VenusDigital.Data.Repositories
             _context.Reviews.Add(reviews);
             _context.SaveChanges();
 
-            //var product = _context.Products.Find(productId);
-            //product.ProductScore = (reviews.ReviewScore / product.Reviews.Count);
-
+            var product = _context.Products.Find(productId);
+            product.ProductScore = (float)Math.Round((product.ProductScore*product.Reviews.Count)
+                                    +review.ReviewScore)/(product.Reviews.Count+1);
+            _context.SaveChanges();
         }
     }
 }
