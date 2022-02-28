@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.AccessControl;
+using Microsoft.AspNetCore.Http;
 
 namespace VenusDigital.Models
 {
@@ -18,6 +19,7 @@ namespace VenusDigital.Models
         [Required]
         [MaxLength(250)]
         public string ImageAltName { get; set; }
+
 
         //NAV
         [ForeignKey("ProductId")]

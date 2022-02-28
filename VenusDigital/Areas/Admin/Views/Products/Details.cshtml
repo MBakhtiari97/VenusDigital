@@ -4,18 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Product Details</h2>
+<h2>Details</h2>
 
 <div>
-
+    <h4>Products</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Image
-        </dt>
-        <dd>
-            <img src="/images/pics/@ViewBag.image" id="imageInDetailProduct" class="img-thumbnail"/>
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductTitle)
         </dt>
@@ -53,10 +47,28 @@
             @Html.DisplayFor(model => model.ProductMainPrice)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.GalleryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GalleryId)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.ProductScore)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProductScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TagId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TagId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReviewId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductOnSalePrice)
@@ -71,6 +83,12 @@
             @Html.DisplayFor(model => model.SalePercent)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.FeatureId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FeatureId)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.CreateDate)
         </dt>
         <dd>
@@ -79,6 +97,6 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

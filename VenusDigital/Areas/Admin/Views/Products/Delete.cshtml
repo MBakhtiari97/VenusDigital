@@ -1,7 +1,7 @@
 ﻿@model VenusDigital.Models.Products
 
 @{
-    ViewData["Title"] = "Remove Product";
+    ViewData["Title"] = "Product";
 }
 
 <h2>Remove Product</h2>
@@ -15,6 +15,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProductTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductShortDescription)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductInStock)

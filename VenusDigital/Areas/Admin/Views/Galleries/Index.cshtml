@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VenusDigital.Models.ProductGalleries>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageRefersTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageAltName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageRefersTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageAltName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Products.ProductInStock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GalleryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GalleryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GalleryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

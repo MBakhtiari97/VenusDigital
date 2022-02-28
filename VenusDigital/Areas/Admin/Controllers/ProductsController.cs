@@ -20,6 +20,10 @@ namespace VenusDigital.Areas.Admin.Controllers
             _context = context;
         }
 
+        [BindProperty]
+        public List<int> selectedGroups { get; set; }
+
+
         // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
@@ -33,13 +37,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             var products = await _context.Products
                 .FirstOrDefaultAsync(m => m.ProductId == id);
-            ViewBag.image = _context.ProductGalleries
-                .Where(p => p.ProductId == id)
-                .Select(p => p.ImageName)
-                .First();
-
             if (products == null)
             {
                 return NotFound();
@@ -51,6 +51,7 @@ namespace VenusDigital.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
+            ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
 
@@ -63,9 +64,29 @@ namespace VenusDigital.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                products.CreateDate = DateTime.Now;
                 _context.Add(products);
                 await _context.SaveChangesAsync();
+                ProductGalleries newGallery = new ProductGalleries()
+                {
+                    ImageName = "Default.jpg",
+                    ProductId = products.ProductId,
+                    ImageAltName = products.ProductTitle
+                };
+                _context.ProductGalleries.Add(newGallery);
+                await _context.SaveChangesAsync();
+
+                if (selectedGroups.Any() && selectedGroups.Count>0)
+                {
+                    foreach (var CategoryId in selectedGroups)
+                    {
+                        _context.SelectedCategory.Add(new SelectedCategory()
+                        {
+                            ProductId = products.ProductId,
+                            CategoryId = CategoryId
+                        });
+                    }
+                }
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(products);
@@ -84,6 +105,16 @@ namespace VenusDigital.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Categories = _context
+                .Categories
+                .ToList();
+
+            ViewBag.SelectedCategories = _context.SelectedCategory
+                .Where(c => c.ProductId == id)
+                .Select(c => c.CategoryId)
+                .ToList();
+
             return View(products);
         }
 
@@ -117,6 +148,20 @@ namespace VenusDigital.Areas.Admin.Controllers
                         throw;
                     }
                 }
+
+                if (selectedGroups.Any() && selectedGroups.Count > 0)
+                {
+                    foreach (var CategoryId in selectedGroups)
+                    {
+                        _context.SelectedCategory.Add(new SelectedCategory()
+                        {
+                            ProductId = products.ProductId,
+                            CategoryId = CategoryId
+                        });
+                    }
+                }
+                _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(products);

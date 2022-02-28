@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<VenusDigital.Models.Products>
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Manage Products";
 }
 
 <h2>Manage Products</h2>
 
 <p>
-    <a class="btn btn-outline-primary" asp-action="Create">Add New Product</a>
+    <a class="btn btn-outline-primary" asp-action="Create">Add Product</a>
 </p>
 <table class="table">
     <thead>
@@ -68,6 +68,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Create" asp-controller="Galleries" asp-route-id="@item.ProductId">Gallery</a> |
                 <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>

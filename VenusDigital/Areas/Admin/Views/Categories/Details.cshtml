@@ -1,0 +1,48 @@
+﻿@model VenusDigital.Models.Categories
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categories</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParentId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentCategoryBanner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParentCategoryBanner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryBanner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryBanner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoryId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

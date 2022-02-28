@@ -1,10 +1,13 @@
 ﻿@model VenusDigital.Models.Products
 
 @{
-    ViewData["Title"] = "Update Product";
+    ViewData["Title"] = "Product";
+    List<int> selectedCategories = ViewBag.SelectedCategories;
+    List<Categories> categories = ViewBag.Categories;
 }
 
 <h2>Update Product</h2>
+
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -58,11 +61,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" readonly/>
+                <input asp-for="CreateDate" class="form-control" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
+            
+        <label>Categories</label><br/>
+        @foreach (var category in categories.Where(c => c.ParentId == null))
+        {
+            <div class="dropdown">
+                <a class="dropbtn"> <input type="checkbox" name="selectedGroups" value="@category.CategoryId" @((selectedCategories.Any(c=>c==category.CategoryId)?"checked":""))/><span>&nbsp;@category.CategoryName</span></a>
+                <div class="dropdown-content">
+                    @foreach (var subCategory in categories.Where(c => c.ParentId == category.CategoryId))
+                    {
+                        <p class="subCategoryStyle"><input type="checkbox" name="selectedGroups" value="@subCategory.CategoryId" @((selectedCategories.Any(c=>c==subCategory.CategoryId)?"checked":""))/><span>&nbsp;@subCategory.CategoryName</span></p>
+                    }
+                </div>
+            </div>
+        }
+
             <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-outline-primary" />
+                <input type="submit" value="Update" class="btn btn-outline-warning" />
             </div>
         </form>
     </div>

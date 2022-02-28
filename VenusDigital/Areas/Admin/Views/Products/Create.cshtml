@@ -1,10 +1,12 @@
 ﻿@model VenusDigital.Models.Products
 
 @{
-    ViewData["Title"] = "Add Product";
+    ViewData["Title"] = "Product";
+    List<Categories> categories = ViewBag.Categories;
 }
 
-<h2>Add New Product</h2>
+<h2>New Product</h2>
+
 
 <hr />
 <div class="row">
@@ -57,7 +59,27 @@
                 <span asp-validation-for="SalePercent" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add Product" class="btn btn-outline-primary" />
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+
+            <label>Categories</label><br/>
+            @foreach (var category in categories.Where(c => c.ParentId == null))
+            {
+                <div class="dropdown">
+                    <a class="dropbtn"> <input type="checkbox" name="selectedGroups" value="@category.CategoryId"/><span>&nbsp;@category.CategoryName</span></a>
+                    <div class="dropdown-content">
+                        @foreach (var subCategory in categories.Where(c => c.ParentId == category.CategoryId))
+                        {
+                            <p class="subCategoryStyle"><input type="checkbox" name="selectedGroups" value="@subCategory.CategoryId"/><span>&nbsp;@subCategory.CategoryName</span></p>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
@@ -68,5 +90,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
