@@ -16,16 +16,10 @@
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ParentId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ParentCategoryBanner)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CategoryBanner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th></th>
         </tr>
@@ -37,16 +31,10 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ParentId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ParentCategoryBanner)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryBanner)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
