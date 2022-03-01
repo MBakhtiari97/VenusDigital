@@ -1,38 +1,34 @@
 ﻿@model VenusDigital.Models.ProductGalleries
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Gallery";
 }
 
-<h2>Create</h2>
+<h2>New Gallery</h2>
 
-<h4>ProductGalleries</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductId"/>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label>
-                <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="ImageName" class="control-label"></label>
-                <input asp-for="ImageName" class="form-control" />
+                <input type="file" asp-for="ImageName" class="form-control"/>
                 <span asp-validation-for="ImageName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ImageRefersTo" class="control-label"></label>
-                <input asp-for="ImageRefersTo" class="form-control" />
+                <input asp-for="ImageRefersTo" class="form-control"/>
                 <span asp-validation-for="ImageRefersTo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ImageAltName" class="control-label"></label>
-                <input asp-for="ImageAltName" class="form-control" />
+                <input asp-for="ImageAltName" class="form-control"/>
                 <span asp-validation-for="ImageAltName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Insert Gallery" class="btn btn-outline-primary"/>
             </div>
         </form>
     </div>

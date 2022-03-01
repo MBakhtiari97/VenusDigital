@@ -11,13 +11,15 @@ namespace VenusDigital.Models
         public int GalleryId { get; set; }
         [Required]
         public int ProductId { get; set; }
-        [Required]
-        [MaxLength(50)]
+        [Display(Name = "Image")]
         public string ImageName { get; set; }
         [MaxLength(250)]
+        [Display(Name = "Refer To")]
         public string ImageRefersTo { get; set; }
+
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Image Alternate Text")]
         public string ImageAltName { get; set; }
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace VenusDigital.Areas.Admin.Controllers
 
         #endregion
 
-        #region MyRegion
+        #region GalleryDetails
 
         // GET: Admin/Galleries/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -58,12 +59,11 @@ namespace VenusDigital.Areas.Admin.Controllers
 
         #endregion
 
-
+        #region CreateGallery
 
         // GET: Admin/Galleries/Create
-        public IActionResult Create()
+        public IActionResult Create(int productId)
         {
-            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductInStock");
             return View();
         }
 
@@ -72,17 +72,49 @@ namespace VenusDigital.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GalleryId,ProductId,ImageName,ImageRefersTo,ImageAltName")] ProductGalleries productGalleries)
+        public async Task<IActionResult> Create([Bind("GalleryId,ProductId,ImageName,ImageRefersTo,ImageAltName")] ProductGalleries productGalleries, int productId)
         {
+
             if (ModelState.IsValid)
             {
+                //Creating a unique name for image name and set it for file name 
+                var imageGalleryName = Guid.NewGuid().ToString();
+                if (Gallery.ImageName?.Length > 0)
+                    productGalleries.ImageName = imageGalleryName
+                                                 + Path.GetExtension(Gallery.ImageName.FileName);
+                else
+                {
+                    productGalleries.ImageName = "Default.jpg";
+                }
                 _context.Add(productGalleries);
                 await _context.SaveChangesAsync();
+
+                if (Gallery.ImageName?.Length > 0)
+                {
+                    string filePath = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "pics",
+                        imageGalleryName
+                        + Path.GetExtension(Gallery.ImageName.FileName)
+                    );
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        Gallery.ImageName.CopyTo(stream);
+                    }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductInStock", productGalleries.ProductId);
             return View(productGalleries);
         }
+
+
+        #endregion
+
+        #region UpdateGallery
 
         // GET: Admin/Galleries/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -117,6 +149,21 @@ namespace VenusDigital.Areas.Admin.Controllers
             {
                 try
                 {
+                    var currentImgName = _context.ProductGalleries
+                            .Find(productGalleries.GalleryId)
+                            .ImageName;
+                    string filePath = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "Images",
+                        "pics",
+                        currentImgName
+                    );
+                    
+                    //TODO:YOU SHOULD DELETE CURRENT IMAGE AND THEN ADD NEW IMAGE
+
+
+
                     _context.Update(productGalleries);
                     await _context.SaveChangesAsync();
                 }
@@ -136,6 +183,11 @@ namespace VenusDigital.Areas.Admin.Controllers
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductInStock", productGalleries.ProductId);
             return View(productGalleries);
         }
+
+
+        #endregion
+
+        #region RemoveGallery
 
         // GET: Admin/Galleries/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -166,6 +218,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        #endregion
 
         private bool ProductGalleriesExists(int id)
         {
