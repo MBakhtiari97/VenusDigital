@@ -63,3 +63,9 @@
 .subCategoryStyle {
     padding-left: 5px;
 }
+
+#imgCategoryDetail {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+}

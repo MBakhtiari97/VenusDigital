@@ -18,28 +18,10 @@
             @Html.DisplayFor(model => model.CategoryName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ParentId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ParentId)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.ParentCategoryBanner)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ParentCategoryBanner)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryBanner)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CategoryBanner)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
+            <img src="~/images/categoriesBanner/@Model.ParentCategoryBanner" id="imgCategoryDetail" alt="@Model.CategoryName" class="img-thumbnail"/>
         </dd>
     </dl>
     
