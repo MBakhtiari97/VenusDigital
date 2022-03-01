@@ -149,20 +149,46 @@ namespace VenusDigital.Areas.Admin.Controllers
             {
                 try
                 {
+                    //Getting old image name inorder to deleting image from server 
                     var currentImgName = _context.ProductGalleries
-                            .Find(productGalleries.GalleryId)
-                            .ImageName;
-                    string filePath = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot",
-                        "Images",
-                        "pics",
-                        currentImgName
-                    );
-                    
-                    //TODO:YOU SHOULD DELETE CURRENT IMAGE AND THEN ADD NEW IMAGE
+                        .Find(productGalleries.GalleryId)
+                        .ImageName;
+
+                    //Checking if user want to change the image
+                    if (Gallery.ImageName != null)
+                    {
+                        string oldFilePath = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot",
+                            "Images",
+                            "pics",
+                            currentImgName
+                        );
+                        if (System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+
+                        //Giving new name to photo and saving it on server
+                        var newImgName = Guid.NewGuid().ToString();
+                        string newFilePath = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot",
+                            "Images",
+                            "pics",
+                            newImgName + Path.GetExtension(Gallery.ImageName.FileName)
+                        );
 
 
+                        productGalleries.ImageName = newImgName
+                                                     + Path.GetExtension(Gallery.ImageName.FileName);
+                        await using var stream = new FileStream(newFilePath, FileMode.Create);
+                        await Gallery.ImageName.CopyToAsync(stream);
+                    }
+                    else
+                    {
+                        productGalleries.ImageName = currentImgName;
+                    }
 
                     _context.Update(productGalleries);
                     await _context.SaveChangesAsync();
