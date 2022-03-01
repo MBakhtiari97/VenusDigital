@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using VenusDigital.Areas.Admin.Models;
 using VenusDigital.Data;
 using VenusDigital.Models;
 
@@ -20,12 +21,21 @@ namespace VenusDigital.Areas.Admin.Controllers
             _context = context;
         }
 
+        [BindProperty]
+        public GalleriesViewModel Gallery { get; set; }
+
+        #region GalleryIndex
+
         // GET: Admin/Galleries
         public async Task<IActionResult> Index()
         {
             var venusDigitalContext = _context.ProductGalleries.Include(p => p.Products);
             return View(await venusDigitalContext.ToListAsync());
         }
+
+        #endregion
+
+        #region MyRegion
 
         // GET: Admin/Galleries/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,6 +55,10 @@ namespace VenusDigital.Areas.Admin.Controllers
 
             return View(productGalleries);
         }
+
+        #endregion
+
+
 
         // GET: Admin/Galleries/Create
         public IActionResult Create()

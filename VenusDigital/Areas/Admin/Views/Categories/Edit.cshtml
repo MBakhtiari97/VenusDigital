@@ -1,16 +1,15 @@
 ﻿@model VenusDigital.Models.Categories
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Category";
     List<Categories> parents = ViewBag.ParentGroups;
 }
 
-<h2>Edit</h2>
+<h2>Update</h2>
 
-<h4>Categories</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CategoryId" />
@@ -48,7 +47,7 @@
             }
           
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Update" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
