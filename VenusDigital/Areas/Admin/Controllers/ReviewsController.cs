@@ -25,7 +25,10 @@ namespace VenusDigital.Areas.Admin.Controllers
         // GET: Admin/Reviews
         public async Task<IActionResult> Index()
         {
-            var venusDigitalContext = _context.Reviews.Include(r => r.Products).Include(r => r.Users);
+            var venusDigitalContext = _context.Reviews
+                .Include(r => r.Products)
+                .Include(r => r.Users);
+
             return View(await venusDigitalContext.ToListAsync());
         }
 
@@ -104,6 +107,7 @@ namespace VenusDigital.Areas.Admin.Controllers
             }
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductInStock", reviews.ProductId);
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "EmailAddress", reviews.UserId);
+            ViewBag.UserId = reviews.UserId;
             return View(reviews);
         }
 

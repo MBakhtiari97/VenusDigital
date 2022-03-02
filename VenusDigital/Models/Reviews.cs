@@ -12,16 +12,21 @@ namespace VenusDigital.Models
         public int ProductId { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Title")]
         public string ReviewTitle { get; set; }
         [Required]
         public int UserId { get; set; }
         [Required]
         [MaxLength(800)]
+        [Display(Name = "Description")]
         public string ReviewDescription { get; set; }
         [Required]
+        [Display(Name = "Score")]
         public float ReviewScore { get; set; }
         [Required]
+        [Display(Name = "Create Date")]
         public DateTime ReviewCreateDate { get; set; }
+        [Display(Name = "Publish Status")]
         public bool IsPublished { get; set; }
 
         //Nav
