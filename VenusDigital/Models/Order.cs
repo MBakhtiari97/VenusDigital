@@ -24,7 +24,8 @@ namespace VenusDigital.Models
         //Nav
         [ForeignKey("UserId")]
         public Users Users { get; set; }
-
         public List<OrderDetails> OrderDetails { get; set; }
+        [ForeignKey("OrderProcessId")]
+        public OrderProcess OrderProcess { get; set; }
     }
 }
