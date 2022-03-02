@@ -22,6 +22,7 @@ namespace VenusDigital.Models
         public float ReviewScore { get; set; }
         [Required]
         public DateTime ReviewCreateDate { get; set; }
+        public bool IsPublished { get; set; }
 
         //Nav
         [ForeignKey("UserId")]

@@ -1,0 +1,58 @@
+﻿@using System.Security.Claims
+@model VenusDigital.Models.Reviews
+
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h2>New Review</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId"/>
+            <input type="hidden" asp-for="UserId" value="@int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString())"/>
+
+            <div class="form-group">
+                <label asp-for="ReviewTitle" class="control-label"></label>
+                <input asp-for="ReviewTitle" class="form-control" />
+                <span asp-validation-for="ReviewTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewDescription" class="control-label"></label>
+                <input asp-for="ReviewDescription" class="form-control" />
+                <span asp-validation-for="ReviewDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewScore" class="control-label"></label>
+                <input asp-for="ReviewScore" type="number" class="form-control" min="1" max="5" value="3" />
+                <span asp-validation-for="ReviewScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewCreateDate" class="control-label"></label>
+                <input asp-for="ReviewCreateDate" class="form-control" />
+                <span asp-validation-for="ReviewCreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Insert" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
