@@ -1,0 +1,78 @@
+﻿@model VenusDigital.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFinally)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsFinally)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalOrderPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalOrderPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPriceWithCoupon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPriceWithCoupon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppliedCoupon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppliedCoupon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentTraceCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentTraceCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsProcessed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsProcessed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelivered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDelivered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Users.EmailAddress)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

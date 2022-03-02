@@ -20,12 +20,13 @@ namespace VenusDigital.Models
         public bool AppliedCoupon { get; set; }
         public DateTime? PaymentDate { get; set; }
         public string? PaymentTraceCode { get; set; }
-        
+        public bool IsProcessed { get; set; }
+        public bool IsDelivered { get; set; }
+
         //Nav
         [ForeignKey("UserId")]
         public Users Users { get; set; }
         public List<OrderDetails> OrderDetails { get; set; }
-        [ForeignKey("OrderProcessId")]
-        public OrderProcess OrderProcess { get; set; }
+
     }
 }

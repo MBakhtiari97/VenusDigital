@@ -1,0 +1,87 @@
+﻿@model VenusDigital.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsFinally" /> @Html.DisplayNameFor(model => model.IsFinally)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalOrderPrice" class="control-label"></label>
+                <input asp-for="TotalOrderPrice" class="form-control" />
+                <span asp-validation-for="TotalOrderPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPriceWithCoupon" class="control-label"></label>
+                <input asp-for="TotalPriceWithCoupon" class="form-control" />
+                <span asp-validation-for="TotalPriceWithCoupon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="AppliedCoupon" /> @Html.DisplayNameFor(model => model.AppliedCoupon)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDate" class="control-label"></label>
+                <input asp-for="PaymentDate" class="form-control" />
+                <span asp-validation-for="PaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTraceCode" class="control-label"></label>
+                <input asp-for="PaymentTraceCode" class="form-control" />
+                <span asp-validation-for="PaymentTraceCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsProcessed" /> @Html.DisplayNameFor(model => model.IsProcessed)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsDelivered" /> @Html.DisplayNameFor(model => model.IsDelivered)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
