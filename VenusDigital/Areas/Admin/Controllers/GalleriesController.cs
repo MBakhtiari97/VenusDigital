@@ -149,10 +149,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             {
                 try
                 {
-                    //Getting old image name inorder to deleting image from server 
-                    var currentImgName = _context.ProductGalleries
-                        .Find(productGalleries.GalleryId)
-                        .ImageName;
+                    //Gathering current name
+                    var currentName = _context.ProductGalleries.AsNoTracking()
+                        .FirstOrDefault(pg => pg.GalleryId == id);
 
                     //Checking if user want to change the image
                     if (Gallery.ImageName != null)
@@ -162,8 +161,9 @@ namespace VenusDigital.Areas.Admin.Controllers
                             "wwwroot",
                             "Images",
                             "pics",
-                            currentImgName
+                            currentName.ImageName
                         );
+                        //Deleting existed image
                         if (System.IO.File.Exists(oldFilePath))
                         {
                             System.IO.File.Delete(oldFilePath);
@@ -187,7 +187,7 @@ namespace VenusDigital.Areas.Admin.Controllers
                     }
                     else
                     {
-                        productGalleries.ImageName = currentImgName;
+                        productGalleries.ImageName = currentName.ImageName;
                     }
 
                     _context.Update(productGalleries);
@@ -240,7 +240,26 @@ namespace VenusDigital.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var productGalleries = await _context.ProductGalleries.FindAsync(id);
+
+            //Gathering imgName and path
+            var imgName=productGalleries.ImageName;
+            string path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "Images",
+                "pics",
+                imgName
+            );
+
+            //Deleting existed image
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
             _context.ProductGalleries.Remove(productGalleries);
+
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
