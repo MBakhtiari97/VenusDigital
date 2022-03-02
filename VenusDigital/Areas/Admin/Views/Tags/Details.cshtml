@@ -1,0 +1,30 @@
+﻿@model VenusDigital.Models.Tags
+
+@{
+    ViewData["Title"] = "Tag";
+}
+
+<h2>Tag Details</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tag)
+        </dd>
+        <dt>
+            Product
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Products.ProductTitle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TagId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

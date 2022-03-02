@@ -30,7 +30,9 @@ namespace VenusDigital.Areas.Admin.Controllers
         // GET: Admin/Galleries
         public async Task<IActionResult> Index()
         {
-            var venusDigitalContext = _context.ProductGalleries.Include(p => p.Products);
+            var venusDigitalContext = _context.ProductGalleries
+                .Include(p => p.Products);
+
             return View(await venusDigitalContext.ToListAsync());
         }
 
