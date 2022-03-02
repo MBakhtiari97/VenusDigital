@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VenusDigital.Models.PostalInformations>
+
+@{
+    ViewData["Title"] = "User Info";
+}
+
+<h2>Manage User's Post Information's</h2>
+
+<p>
+@*    <a asp-action="Create">Create New</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelephoneNumber)
+            </th>
+            <th>
+                Email Address
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelephoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.EmailAddress)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostalInformationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostalInformationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostalInformationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
