@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VenusDigital.Models.Coupons>
+
+@{
+    ViewData["Title"] = "Coupons";
+}
+
+<h2>Manage Coupons</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponPercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponCodeCount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponPercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponCodeCount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CouponId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CouponId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CouponId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿@model VenusDigital.Models.Coupons
+
+@{
+    ViewData["Title"] = "Coupon";
+}
+
+<h2>Remove Coupon</h2>
+
+<h3>Are you sure you want to delete this coupon code?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponPercent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponPercent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCodeCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponCodeCount)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CouponId" />
+        <input type="submit" value="Remove" class="btn btn-outline-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

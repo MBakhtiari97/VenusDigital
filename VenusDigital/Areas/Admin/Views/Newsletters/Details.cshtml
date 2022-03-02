@@ -1,0 +1,23 @@
+﻿@model VenusDigital.Models.Newsletters
+
+@{
+    ViewData["Title"] = "Newsletter";
+}
+
+<h2>Newsletter Subscription User</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NewslettersSubedUserEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewslettersSubedUserEmail)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NewsletterId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

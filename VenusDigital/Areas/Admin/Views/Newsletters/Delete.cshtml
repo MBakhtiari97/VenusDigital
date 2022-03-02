@@ -1,0 +1,27 @@
+﻿@model VenusDigital.Models.Newsletters
+
+@{
+    ViewData["Title"] = "Newsletter";
+}
+
+<h2>Remove User</h2>
+
+<h3>Are you sure you want to delete this user from newsletter subscription?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NewslettersSubedUserEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewslettersSubedUserEmail)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="NewsletterId" />
+        <input type="submit" value="Remove" class="btn btn-outline-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+﻿@model VenusDigital.Models.Newsletters
+
+@{
+    ViewData["Title"] = "Newsletter";
+}
+
+<h2>Update Subscribed User</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NewsletterId" />
+            <div class="form-group">
+                <label asp-for="NewslettersSubedUserEmail" class="control-label"></label>
+                <input asp-for="NewslettersSubedUserEmail" class="form-control" />
+                <span asp-validation-for="NewslettersSubedUserEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

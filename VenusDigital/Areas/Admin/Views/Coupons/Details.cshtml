@@ -1,0 +1,41 @@
+﻿@model VenusDigital.Models.Coupons
+
+@{
+    ViewData["Title"] = "Coupon";
+}
+
+<h2>Coupon Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponPercent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponPercent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCodeCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponCodeCount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CouponId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
