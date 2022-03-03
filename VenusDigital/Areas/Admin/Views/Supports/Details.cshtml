@@ -1,0 +1,66 @@
+﻿@model VenusDigital.Models.Supports
+
+@{
+    ViewData["Title"] = "Support";
+}
+
+<h2>Request Detail's</h2>
+
+<div>
+    <h4>Supports</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserFullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserFullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmailAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserEmailAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAnswered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsAnswered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ContactId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<VenusDigital.Models.Supports>
+
+@{
+    ViewData["Title"] = "Support";
+}
+
+<h2>Manage Request's</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserIpAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAnswered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserIpAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAnswered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContactId">Update</a> |
+                <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

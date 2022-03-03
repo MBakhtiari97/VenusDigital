@@ -1,0 +1,75 @@
+﻿@model VenusDigital.Models.Supports
+
+@{
+    ViewData["Title"] = "Support";
+}
+
+<h2>Remove Request</h2>
+
+<h3>Are you sure you want to delete this request?</h3>
+<div>
+    <h4>Supports</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserFullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserFullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmailAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserEmailAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAnswered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsAnswered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserIpAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserIpAddress)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ContactId" />
+        <input type="submit" value="Remove" class="btn btn-outline-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

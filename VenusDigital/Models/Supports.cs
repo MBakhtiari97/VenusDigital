@@ -33,5 +33,7 @@ namespace VenusDigital.Models
         public string? AnswerDescription { get; set; }
         [Display(Name = "Answer Date")]
         public DateTime? AnswerDate { get; set; }
+        [Display(Name = "IP Address")]
+        public string? UserIpAddress { get; set; }
     }
 }
