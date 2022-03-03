@@ -91,3 +91,11 @@
     height: 200px;
     margin: 10px;
 }
+.imgInIndexSlider {
+    width: 200px;
+    height: 100px;
+}
+.sliderInfo {
+    color: #157ed2;
+    font-size: 12px;
+}

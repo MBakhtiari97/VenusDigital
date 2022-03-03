@@ -21,6 +21,9 @@
             <th>
                 Refers To
             </th>
+            <th>
+                Image
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +38,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SlideRefersTo)
+            </td>
+            <td>
+                <img src="/images/slider/@item.SlideName" class="imgInIndexSlider img-thumbnail" alt="@item.SlideAltName"/>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SlideId">Edit</a> |
