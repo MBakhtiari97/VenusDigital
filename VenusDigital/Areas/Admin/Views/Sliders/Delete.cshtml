@@ -1,0 +1,44 @@
+﻿@model VenusDigital.Models.Slider
+
+@{
+    ViewData["Title"] = "Slider";
+}
+
+<h2>Remove Slide</h2>
+
+<h3>Are you sure you want to delete this slide?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideAltName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideAltName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideRefersTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideRefersTo)
+        </dd>
+        <dt>
+            Slide
+        </dt>
+        <dd>
+            <img src="/images/slider/@Model.SlideName" class="imgInDeleteSlider img-thumbnail" alt="@Model.SlideAltName"/>
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="SlideId" />
+        <input type="submit" value="Remove" class="btn btn-outline-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

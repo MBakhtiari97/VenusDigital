@@ -86,3 +86,8 @@
 #printOrderBtn {
     margin-bottom: 10px;
 }
+.imgInDeleteSlider {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+}

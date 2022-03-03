@@ -1,0 +1,43 @@
+﻿@model VenusDigital.Models.Slider
+
+@{
+    ViewData["Title"] = "Slider";
+}
+
+<h2>New Slide</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SlideName" class="control-label"></label>
+                <input type="file" asp-for="SlideName" class="form-control" />
+                <span asp-validation-for="SlideName" class="text-danger"></span>
+                <h5>*Note:Image size must be 880*220px</h5>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlideAltName" class="control-label"></label>
+                <input asp-for="SlideAltName" class="form-control" />
+                <span asp-validation-for="SlideAltName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlideRefersTo" class="control-label"></label>
+                <input asp-for="SlideRefersTo" class="form-control" />
+                <span asp-validation-for="SlideRefersTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Insert" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

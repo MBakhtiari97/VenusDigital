@@ -1,0 +1,47 @@
+﻿@model IEnumerable<VenusDigital.Models.Slider>
+
+@{
+    ViewData["Title"] = "Slider";
+}
+
+<h2>Manage Slider</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">New Slide</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Slide Name
+            </th>
+            <th>
+                Alt Name
+            </th>
+            <th>
+                Refers To
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideAltName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideRefersTo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SlideId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SlideId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SlideId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

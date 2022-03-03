@@ -1,0 +1,42 @@
+﻿@model VenusDigital.Models.Slider
+
+@{
+    ViewData["Title"] = "Slider";
+}
+
+<h2>Slide Detail's</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideAltName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideAltName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideRefersTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlideRefersTo)
+        </dd>
+        <dt>
+            Slide
+        </dt>
+        <dd>
+            <img src="/images/slider/@Model.SlideName" class="imgInDeleteSlider img-thumbnail" alt="@Model.SlideAltName"/>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SlideId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
