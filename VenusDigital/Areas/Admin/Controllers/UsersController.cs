@@ -20,11 +20,18 @@ namespace VenusDigital.Areas.Admin.Controllers
             _context = context;
         }
 
+        #region User'sIndex
+
         // GET: Admin/Users
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
+
+        #endregion
+
+        #region UserDetail's
+
 
         // GET: Admin/Users/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -43,6 +50,12 @@ namespace VenusDigital.Areas.Admin.Controllers
 
             return View(users);
         }
+
+
+        #endregion
+
+        #region NewUser
+
 
         // GET: Admin/Users/Create
         public IActionResult Create()
@@ -67,6 +80,12 @@ namespace VenusDigital.Areas.Admin.Controllers
             }
             return View(users);
         }
+
+
+        #endregion
+
+        #region UpdateUser
+
 
         // GET: Admin/Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -119,6 +138,11 @@ namespace VenusDigital.Areas.Admin.Controllers
             return View(users);
         }
 
+        #endregion
+
+        #region RemoveUser
+
+
         // GET: Admin/Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -147,6 +171,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        #endregion
+
 
         private bool UsersExists(int id)
         {

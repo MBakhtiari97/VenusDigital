@@ -23,12 +23,18 @@ namespace VenusDigital.Areas.Admin.Controllers
         [BindProperty]
         public List<int> selectedGroups { get; set; }
 
+        #region Product'sIndex
 
         // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
             return View(await _context.Products.ToListAsync());
         }
+
+        #endregion
+
+        #region ProductDetail's
+
 
         // GET: Admin/Products/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -47,6 +53,12 @@ namespace VenusDigital.Areas.Admin.Controllers
 
             return View(products);
         }
+
+
+        #endregion
+
+        #region NewProduct
+
 
         // GET: Admin/Products/Create
         public IActionResult Create()
@@ -75,7 +87,7 @@ namespace VenusDigital.Areas.Admin.Controllers
                 _context.ProductGalleries.Add(newGallery);
                 await _context.SaveChangesAsync();
 
-                if (selectedGroups.Any() && selectedGroups.Count>0)
+                if (selectedGroups.Any() && selectedGroups.Count > 0)
                 {
                     foreach (var CategoryId in selectedGroups)
                     {
@@ -91,6 +103,12 @@ namespace VenusDigital.Areas.Admin.Controllers
             }
             return View(products);
         }
+
+
+        #endregion
+
+        #region UpdateProduct
+
 
         // GET: Admin/Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -167,6 +185,11 @@ namespace VenusDigital.Areas.Admin.Controllers
             return View(products);
         }
 
+        #endregion
+
+        #region RemoveProduct
+
+
         // GET: Admin/Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -195,6 +218,11 @@ namespace VenusDigital.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        #endregion
+
+
 
         private bool ProductsExists(int id)
         {

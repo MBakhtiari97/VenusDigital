@@ -99,3 +99,11 @@
     color: #157ed2;
     font-size: 12px;
 }
+.adminIndex {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.dateInAdminIndex {
+    text-align: center;
+    font-size: 14px;
+}

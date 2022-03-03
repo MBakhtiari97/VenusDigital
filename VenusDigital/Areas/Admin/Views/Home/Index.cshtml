@@ -1,7 +1,155 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
+    List<Order> unProcessedOrders = ViewBag.Orders;
+    List<Reviews> latestReviews = ViewBag.Reviews;
+    List<Users> latestUsers = ViewBag.Users;
+    List<Supports> latestTickets = ViewBag.SupportTickets;
+
 }
 
-<h2>Index</h2>
+<h1 class="adminIndex">Admin Panel</h1>
+<h5 class="dateInAdminIndex">@DateTime.Now.ToString("MM/dd/yyyy")</h5>
+<hr />
 
+<div class="card">
+    <div class="card-header">
+        <h4 class="adminIndex">Unprocessed Order's</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-md">
+                <tbody>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Payment Date</th>
+                        <th>Process Status</th>
+                        <th>Action</th>
+
+                    </tr>
+                    @foreach (var order in unProcessedOrders)
+                    {
+                        <tr>
+                            <td>VD-@DateTime.Now.Year-@order.OrderId</td>
+                            <td>@order.PaymentDate</td>
+                            <td>
+                                <div class="badge badge-success">Need To Process</div>
+                            </td>
+                            <td><a asp-action="ProcessOrder" asp-controller="Orders" class="btn btn-primary">Process</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="adminIndex">Latest Review's</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-md">
+                <tbody>
+                <tr>
+                    <th>Review ID</th>
+                    <th>User Email</th>
+                    <th>Review Title</th>
+                    <th>Review Date</th>
+                    <th>Review Status</th>
+                    <th>Action</th>
+
+                </tr>
+                @foreach (var review in latestReviews)
+                {
+                    <tr>
+                        <td>@review.ReviewId</td>
+                        <td>@review.Users.EmailAddress</td>
+                        <td>@review.ReviewTitle</td>
+                        <td>@review.ReviewCreateDate</td>
+                        <td>
+                            <div class="badge badge-info">Not Published</div>
+                        </td>
+                        <td><a href="/admin/reviews/edit/@review.ReviewId" class="btn btn-primary">Publish</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="adminIndex">Latest User's</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-md">
+                <tbody>
+                <tr>
+                    <th>User ID</th>
+                    <th>Email Address</th>
+                    <th>Username</th>
+                    <th>Register Date</th>
+                    <th>Active Status</th>
+
+                </tr>
+                @foreach (var user in latestUsers)
+                {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td>@user.EmailAddress</td>
+                        <td>@user.UserName</td>
+                        <td>@user.RegisterDate</td>
+                        <td>
+                            <div class="badge badge-info">Activated</div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="adminIndex">Latest Support Ticket's</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-md">
+                <tbody>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>User Name</th>
+                    <th>User Email Address</th>
+                    <th>User IP Address</th>
+                    <th>Ticket Title</th>
+                    <th>Answer Status</th>
+                    <th>Action</th>
+
+
+                </tr>
+                @foreach (var ticket in latestTickets)
+                {
+                    <tr>
+                        <td>@ticket.ContactId</td>
+                        <td>@ticket.UserFullName</td>
+                        <td>@ticket.UserEmailAddress</td>
+                        <td>@ticket.UserIpAddress</td>
+                        <td>@ticket.RequestTitle</td>
+                        <td>
+                            <div class="badge badge-danger">Not Answered</div>
+                        </td>
+                        <td><a class="btn btn-primary" href="/Admin/Supports/Edit/@ticket.ContactId">Answer</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
