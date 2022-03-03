@@ -27,6 +27,7 @@ namespace VenusDigital.Data
         public DbSet<SelectedCategory> SelectedCategory { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Compare> Compare { get; set; }
+        public DbSet<Slider> Slider { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
