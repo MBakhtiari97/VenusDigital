@@ -1,0 +1,36 @@
+﻿@model VenusDigital.Models.Features
+
+@{
+    ViewData["Title"] = "Feature";
+}
+
+<h2>Feature Details</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FeatureTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FeatureValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Products.ProductTitle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FeatureId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

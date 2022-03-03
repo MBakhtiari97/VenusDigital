@@ -1,0 +1,44 @@
+﻿@model IEnumerable<VenusDigital.Models.Features>
+
+@{
+    ViewData["Title"] = "Features";
+}
+
+<h2>Manage Features</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeatureTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeatureValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Products.ProductTitle)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FeatureId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FeatureId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FeatureId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

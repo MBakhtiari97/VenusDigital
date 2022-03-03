@@ -1,0 +1,39 @@
+﻿@model VenusDigital.Models.Features
+
+@{
+    ViewData["Title"] = "Feature";
+}
+
+<h2>Remove Feature</h2>
+
+<h3>Are you sure you want to delete this feature?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FeatureTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FeatureValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Products.ProductTitle)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="FeatureId" />
+        <input type="submit" value="Remove" class="btn btn-outline-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
