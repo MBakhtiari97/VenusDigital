@@ -11,9 +11,11 @@ namespace VenusDigital.Models
         public int ProductId { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Feature Title")]
         public string FeatureTitle { get; set; }
         [Required]
         [MaxLength(250)]
+        [Display(Name = "Feature Value")]
         public string FeatureValue { get; set; }
 
         //Nav
