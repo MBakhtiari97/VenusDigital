@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using VenusDigital.Areas.Admin.Models;
 using VenusDigital.Data;
 using VenusDigital.Models;
 
@@ -20,18 +22,64 @@ namespace VenusDigital.Areas.Admin.Controllers
             _context = context;
         }
 
+        #region OrderIndex
+
         // GET: Admin/Orders
         public async Task<IActionResult> Index()
         {
-            var venusDigitalContext = _context.Order.Include(o => o.Users).Where(o => o.IsFinally);
+            var venusDigitalContext = _context.Order
+                .Include(o => o.Users)
+                .Where(o => o.IsFinally);
+
             return View(await venusDigitalContext.ToListAsync());
         }
+
+        #endregion
+
+        #region ProcessOrder
+
         public async Task<IActionResult> ProcessOrder()
         {
-            //TODO: IN PROCESS ORDER WE SHOULD HAVE USER INFORMATION'S IN ORDER TO SHOWING IT TO ADMIN TO SENDING PRODUCT FOR USER ! 
-            var venusDigitalContext = _context.Order.Include(o => o.Users).Where(o=>o.IsFinally && !o.IsProcessed);
+            var venusDigitalContext = _context.Order
+                .Include(o => o.Users)
+                .Where(o => o.IsFinally && !o.IsProcessed);
+
             return View(await venusDigitalContext.ToListAsync());
         }
+
+        #endregion
+
+        #region PrintOrder
+
+        public IActionResult OrderPrint(int orderId)
+        {
+            var details = _context.Order
+                .Where(o => o.OrderId == orderId)
+                .Include(o => o.OrderDetails)
+                .ThenInclude(o => o.Product)
+                .Include(o => o.Users)
+                .ThenInclude(o => o.PostalInformations)
+                .Select(s => new PurchaseInvoiceViewModel()
+                {
+                    ProductTitle = s.OrderDetails.First().Product.ProductTitle,
+                    Count = s.OrderDetails.First().Count,
+                    OrderId = s.OrderId,
+                    Address = s.Users.PostalInformations.First().Address,
+                    ZipCode = s.Users.PostalInformations.First().ZipCode,
+                    UserName = s.Users.UserName,
+                    PhoneNumber = s.Users.PhoneNumber,
+                    Email = s.Users.EmailAddress,
+                    OrderTotalPrice = s.TotalOrderPrice,
+                    ProductPrice = s.OrderDetails.First().Product.ProductMainPrice
+                }).ToList();
+
+            return View(details);
+        }
+
+
+        #endregion
+
+        #region OrderDetail's
 
         // GET: Admin/Orders/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -44,6 +92,7 @@ namespace VenusDigital.Areas.Admin.Controllers
             var order = await _context.Order
                 .Include(o => o.Users)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
+
             if (order == null)
             {
                 return NotFound();
@@ -52,29 +101,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             return View(order);
         }
 
-        // GET: Admin/Orders/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "EmailAddress");
-            return View();
-        }
+        #endregion
 
-        // POST: Admin/Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,UserId,CreateDate,IsFinally,TotalOrderPrice,TotalPriceWithCoupon,AppliedCoupon,PaymentDate,PaymentTraceCode,IsProcessed,IsDelivered")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "EmailAddress", order.UserId);
-            return View(order);
-        }
+        #region UpdateOrderStatus
 
         // GET: Admin/Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -90,6 +119,7 @@ namespace VenusDigital.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "EmailAddress", order.UserId);
+            ViewBag.UserId = order.UserId;
             return View(order);
         }
 
@@ -129,6 +159,11 @@ namespace VenusDigital.Areas.Admin.Controllers
             return View(order);
         }
 
+
+        #endregion
+
+        #region RemoveOrder
+
         // GET: Admin/Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -158,6 +193,9 @@ namespace VenusDigital.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        #endregion
 
         private bool OrderExists(int id)
         {

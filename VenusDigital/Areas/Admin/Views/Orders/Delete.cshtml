@@ -1,14 +1,13 @@
 ﻿@model VenusDigital.Models.Order
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Order";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h2>Remove Order</h2>
+<h3>Note that , after deleting an order you can't undo your action.</h3>
+<h3>Are you sure you want to delete this order?</h3>
 <div>
-    <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -75,7 +74,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="OrderId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

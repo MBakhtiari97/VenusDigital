@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VenusDigital.Areas.Admin.Models.PurchaseInvoiceViewModel>
+@{
+    ViewData["Title"] = "More Detail's";
+}
+<h2>User Information's</h2>
+<a class="btn btn-primary" href="javascript:window.print()" id="printOrderBtn">Print</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Email Address</th>
+            <th scope="col">Username</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Zip Code</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr class="table-active">
+            <td>@Model.First().Email</td>
+            <td>@Model.First().UserName</td>
+            <td>@Model.First().PhoneNumber</td>
+            <td>@Model.First().Address</td>
+            <td>@Model.First().ZipCode</td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+<h2>Order Detail's</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Order Total Price</th>
+            <th scope="col">Product Title</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var info in Model)
+        {
+            <tr class="table-active">
+                <td>VD-@DateTime.Now.Year-@info.OrderId</td>
+                <td>@info.OrderTotalPrice</td>
+                <td>@info.ProductTitle</td>
+                <td>@info.ProductPrice</td>
+                <td>@info.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
