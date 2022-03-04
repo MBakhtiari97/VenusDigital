@@ -21,6 +21,7 @@ namespace VenusDigital.Data.Repositories
         void UpdatePassword(ChangePasswordViewModel password);
         void UpdateInformations(ChangeInfoViewModel info, int userId);
         ChangeInfoViewModel GetChangeInfo(int userId);
+        void ActiveAccount(string identifierCode, string email);
     }
 
 
@@ -148,6 +149,27 @@ namespace VenusDigital.Data.Repositories
             };
 
             return info;
+        }
+
+        public void ActiveAccount(string identifierCode,string email)
+        {
+            if (_context.Users.Any(u => 
+                    u.EmailAddress == email && u.UserIdentifierCode == identifierCode))
+            {
+                var user = _context.Users
+                    .FirstOrDefault(u => 
+                        u.EmailAddress == email && u.UserIdentifierCode == identifierCode);
+                user.IsActive = true;
+                _context.Update(user);
+
+                //TODO: TRUE VALUE WASNT SAVE ON DB , CHECK WHATS THE PROBLEM AND SOLVE THAT ASAP ! ACTIVE EMAIL COMPLETED !
+
+                _notyfService.Success("Your Account Is Active Now !");
+            }
+            else
+            {
+                _notyfService.Error("Cannot Find Any User By This Credentials");
+            }
         }
     }
 }

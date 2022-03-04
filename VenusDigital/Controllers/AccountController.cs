@@ -45,7 +45,7 @@ namespace VenusDigital.Controllers
         }
         [HttpPost]
         [Route("/Register")]
-        public IActionResult Register(RegisterViewModel register)
+        public async Task<IActionResult> RegisterAsync(RegisterViewModel register)
         {
             if (!ModelState.IsValid)
                 return View(register);
@@ -66,7 +66,8 @@ namespace VenusDigital.Controllers
                 UserIdentifierCode = Guid.NewGuid().ToString()
             };
             _userRepository.AddUser(user);
-
+            var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_ActivateAccount", user);
+            SendEmail.Send(user.EmailAddress, "Activating Account", body);
             return View("_SuccessRegistration", register.UserName);
         }
 
@@ -98,7 +99,8 @@ namespace VenusDigital.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, user.EmailAddress),
-                new Claim("IsAdmin", user.IsAdmin.ToString())
+                new Claim("IsAdmin", user.IsAdmin.ToString()),
+                new Claim("IsActive", user.IsActive.ToString())
             };
 
             var identifier = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -291,6 +293,16 @@ namespace VenusDigital.Controllers
             _userRepository.UpdateInformations(change,userId);
             return RedirectToAction("MyAccount");
         }
+        #endregion
+
+        #region ActivateAccount
+        [Route("/Active/{email}/{identifierCode}")]
+        public IActionResult ActivateAccount(string identifierCode,string email)
+        {
+            _userRepository.ActiveAccount(identifierCode,email);
+            return RedirectToAction("Login");
+        }
+
         #endregion
     }
 }

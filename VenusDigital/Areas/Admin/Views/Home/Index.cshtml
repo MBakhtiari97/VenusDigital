@@ -52,28 +52,28 @@
         <div class="table-responsive">
             <table class="table table-bordered table-md">
                 <tbody>
-                <tr>
-                    <th>Review ID</th>
-                    <th>User Email</th>
-                    <th>Review Title</th>
-                    <th>Review Date</th>
-                    <th>Review Status</th>
-                    <th>Action</th>
-
-                </tr>
-                @foreach (var review in latestReviews)
-                {
                     <tr>
-                        <td>@review.ReviewId</td>
-                        <td>@review.Users.EmailAddress</td>
-                        <td>@review.ReviewTitle</td>
-                        <td>@review.ReviewCreateDate</td>
-                        <td>
-                            <div class="badge badge-info">Not Published</div>
-                        </td>
-                        <td><a href="/admin/reviews/edit/@review.ReviewId" class="btn btn-primary">Publish</a></td>
+                        <th>Review ID</th>
+                        <th>User Email</th>
+                        <th>Review Title</th>
+                        <th>Review Date</th>
+                        <th>Review Status</th>
+                        <th>Action</th>
+
                     </tr>
-                }
+                    @foreach (var review in latestReviews)
+                    {
+                        <tr>
+                            <td>@review.ReviewId</td>
+                            <td>@review.Users.EmailAddress</td>
+                            <td>@review.ReviewTitle</td>
+                            <td>@review.ReviewCreateDate</td>
+                            <td>
+                                <div class="badge badge-info">Not Published</div>
+                            </td>
+                            <td><a href="/admin/reviews/edit/@review.ReviewId" class="btn btn-primary">Publish</a></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -89,26 +89,35 @@
         <div class="table-responsive">
             <table class="table table-bordered table-md">
                 <tbody>
-                <tr>
-                    <th>User ID</th>
-                    <th>Email Address</th>
-                    <th>Username</th>
-                    <th>Register Date</th>
-                    <th>Active Status</th>
-
-                </tr>
-                @foreach (var user in latestUsers)
-                {
                     <tr>
-                        <td>@user.UserId</td>
-                        <td>@user.EmailAddress</td>
-                        <td>@user.UserName</td>
-                        <td>@user.RegisterDate</td>
-                        <td>
-                            <div class="badge badge-info">Activated</div>
-                        </td>
+                        <th>User ID</th>
+                        <th>Email Address</th>
+                        <th>Username</th>
+                        <th>Register Date</th>
+                        <th>Active Status</th>
+
                     </tr>
-                }
+                    @foreach (var user in latestUsers)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.EmailAddress</td>
+                            <td>@user.UserName</td>
+                            <td>@user.RegisterDate</td>
+                            @if (user.IsActive)
+                            {
+                                <td>
+                                    <div class="badge badge-success">Active</div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <div class="badge badge-danger">DeActive</div>
+                                </td>
+                            }
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -123,31 +132,31 @@
         <div class="table-responsive">
             <table class="table table-bordered table-md">
                 <tbody>
-                <tr>
-                    <th>Ticket ID</th>
-                    <th>User Name</th>
-                    <th>User Email Address</th>
-                    <th>User IP Address</th>
-                    <th>Ticket Title</th>
-                    <th>Answer Status</th>
-                    <th>Action</th>
-
-
-                </tr>
-                @foreach (var ticket in latestTickets)
-                {
                     <tr>
-                        <td>@ticket.ContactId</td>
-                        <td>@ticket.UserFullName</td>
-                        <td>@ticket.UserEmailAddress</td>
-                        <td>@ticket.UserIpAddress</td>
-                        <td>@ticket.RequestTitle</td>
-                        <td>
-                            <div class="badge badge-danger">Not Answered</div>
-                        </td>
-                        <td><a class="btn btn-primary" href="/Admin/Supports/Edit/@ticket.ContactId">Answer</a></td>
+                        <th>Ticket ID</th>
+                        <th>User Name</th>
+                        <th>User Email Address</th>
+                        <th>User IP Address</th>
+                        <th>Ticket Title</th>
+                        <th>Answer Status</th>
+                        <th>Action</th>
+
+
                     </tr>
-                }
+                    @foreach (var ticket in latestTickets)
+                    {
+                        <tr>
+                            <td>@ticket.ContactId</td>
+                            <td>@ticket.UserFullName</td>
+                            <td>@ticket.UserEmailAddress</td>
+                            <td>@ticket.UserIpAddress</td>
+                            <td>@ticket.RequestTitle</td>
+                            <td>
+                                <div class="badge badge-danger">Not Answered</div>
+                            </td>
+                            <td><a class="btn btn-primary" href="/Admin/Supports/Edit/@ticket.ContactId">Answer</a></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

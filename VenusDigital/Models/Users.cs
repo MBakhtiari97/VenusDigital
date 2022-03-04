@@ -33,6 +33,7 @@ namespace VenusDigital.Models
         public DateTime RegisterDate { get; set; }
         [MaxLength(50)]
         public string UserIdentifierCode { get; set; }
+        public bool IsActive { get; set; }
 
         //Nav
         public List<PostalInformations> PostalInformations { get; set; }
