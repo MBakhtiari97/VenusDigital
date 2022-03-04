@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Security.Claims;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -85,6 +86,19 @@ namespace VenusDigital
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.StartsWithSegments("/Admin"))
+                {
+                    if (!context.User.Identity.IsAuthenticated || !bool.Parse(context.User.FindFirstValue("IsAdmin")))
+                    {
+                        context.Response.Redirect("/Login");
+                    }
+                }
+
+                await next.Invoke();
+            });
 
             app.UseNotyf();
 

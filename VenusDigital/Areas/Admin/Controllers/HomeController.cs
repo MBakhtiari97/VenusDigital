@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
 using VenusDigital.Data;
@@ -14,6 +15,8 @@ namespace VenusDigital.Areas.Admin.Controllers
         {
             _context = context;
         }
+
+        #region HomeIndex
 
         public IActionResult Index()
         {
@@ -35,5 +38,20 @@ namespace VenusDigital.Areas.Admin.Controllers
 
             return View();
         }
+
+        #endregion
+
+        #region ShowProfile
+
+        public IActionResult ShowProfile()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)
+                .ToString());
+            ViewBag.User = _context.Users.Find(userId);
+            return View();
+        }
+
+        #endregion
+
     }
 }
