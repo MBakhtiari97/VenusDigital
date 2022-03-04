@@ -23,7 +23,6 @@ namespace VenusDigital.Models
         [MaxLength(1500)]
         [Display(Name = "Description")]
         public string RequestDescription { get; set; }
-        [Required]
         [MaxLength(50)]
         public string RequestCode { get; set; }
         [Required]

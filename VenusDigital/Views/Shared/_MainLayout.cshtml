@@ -61,9 +61,9 @@
                             <li class="wishlist"><a href="/Wishlist"><span>Wishlist</span></a></li>
                             <li class="wishlist"><a href="/Compare"><span>Compare List</span></a></li>
                             <li class="header_cart hidden-xs"><a href="/Cart"><span>My Cart</span></a></li>
-                            @if (User.Identity.IsAuthenticated && User.FindFirst("IsAdmin"))
+                            @if (User.Identity.IsAuthenticated && bool.Parse(User.FindFirstValue("IsAdmin")))
                             {
-                                
+                                <li class="login"><a href="/admin"><span>Admin Panel</span></a></li>
                             }
                             @if (User.Identity.IsAuthenticated)
                             {

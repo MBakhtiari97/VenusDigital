@@ -8,6 +8,7 @@ using System.Security.Claims;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using VenusDigital.Data;
 using VenusDigital.Data.Repositories;
@@ -53,6 +54,7 @@ namespace VenusDigital
             services.AddScoped<ICouponRepository, CouponRepository>();
             services.AddScoped<IFeaturesRepository, FeatureRepository>();
             services.AddScoped<ICompareRepository, CompareRepository>();
+            services.AddScoped<ISupportRepository, SupportRepository>();
 
             #endregion
 
@@ -86,6 +88,12 @@ namespace VenusDigital
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                                   ForwardedHeaders.XForwardedProto
+            });
 
             app.Use(async (context, next) =>
             {
