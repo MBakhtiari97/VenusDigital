@@ -43,5 +43,20 @@ namespace VenusDigital.Controllers
             _notyfService.Success("Your Support Ticket Has Been Sent Successfully !");
             return RedirectToAction("HelpCenter");
         }
+        [Route("FAQ")]
+        public IActionResult Faq()
+        {
+            return View();
+        }
+        [Route("ContactUs")]
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+        [Route("AboutUs")]
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }
