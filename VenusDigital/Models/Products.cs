@@ -18,6 +18,7 @@ namespace VenusDigital.Models
         public string ProductShortDescription { get; set; }
         [Display(Name = "Description")]
         [Required]
+        [DataType(DataType.MultilineText)]
         public string ProductLongDescription { get; set; }
         [Required]
         [MaxLength(150)]

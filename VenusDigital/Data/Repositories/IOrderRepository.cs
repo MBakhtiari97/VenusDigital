@@ -20,6 +20,7 @@ namespace VenusDigital.Data.Repositories
         void EmptyCart(int orderId);
         IEnumerable<Order> GetFinishedOrderByUserId(int userId);
         IEnumerable<OrderDetails> GetOrderDetails(int orderId);
+        bool GetOrderStatus(int userId);
     }
 
     public class OrderRepository : IOrderRepository
@@ -101,6 +102,19 @@ namespace VenusDigital.Data.Repositories
                 .Include(od=>od.Product)
                 .ThenInclude(od=>od.ProductGalleries)
                 .ToList();
+        }
+
+        public bool GetOrderStatus(int userId)
+        {
+            if (_context.Order.Any(o => o.UserId == userId && !o.IsFinally))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public void RemoveOrderDetail(OrderDetails detail)

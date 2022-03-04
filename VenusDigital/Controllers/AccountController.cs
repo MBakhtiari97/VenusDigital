@@ -110,6 +110,24 @@ namespace VenusDigital.Controllers
 
             HttpContext.SignInAsync(principal, properties);
 
+
+            if (!_orderRepository.GetOrderStatus(user.UserId))
+            {
+                Order newOrder = new Order()
+                {
+                    AppliedCoupon = false,
+                    CreateDate = DateTime.Now,
+                    IsDelivered = false,
+                    IsFinally = false,
+                    IsProcessed = false,
+                    TotalOrderPrice = 0,
+                    TotalPriceWithCoupon = 0,
+                    UserId = user.UserId
+                };
+                _orderRepository.AddOrder(newOrder);
+                _orderRepository.SaveChanges();
+            }
+
             return Redirect("/");
         }
 
