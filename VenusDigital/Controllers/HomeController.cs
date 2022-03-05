@@ -44,6 +44,7 @@ namespace VenusDigital.Controllers
             ViewBag.NewPhones = _productsRepository.GetNewPhonesProducts();
             ViewBag.NewHardware = _productsRepository.GetNewHardwareProducts();
             ViewBag.NewPcAccessories = _productsRepository.GetNewPcAccessoriesProducts();
+            ViewBag.MostSale = _productsRepository.GetMostSaleProducts();
             return View(vm);
         }
 

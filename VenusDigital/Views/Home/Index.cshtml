@@ -6,7 +6,7 @@
 
 @section SideBar
 {
-    <partial name="_LeftSideBar"/>
+<partial name="_LeftSideBar" />
 }
 <div class="col-md-12" style="text-align: center; font-size: 16px;font-weight: bold;">
     <div class="row" style="background: #fff; border-radius: 5px;margin: 10px;">
@@ -25,18 +25,34 @@
     <div class="row">
         <div class="col-md-8">
             <a href="/Search?q=Mac">
-                <img src="/assets/images/banners/Mac.png" style="width: 880px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/Mac.png" style="width: 880px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
         <div class="col-md-4">
             <a href="/Search?q=Apple Watch">
-                <img src="/assets/images/banners/Watch.png" style="width: 415px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/Watch.png" style="width: 415px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
     </div>
 </div>
 
-
+<!--Banner-->
+<div class="col col-md-12" style="padding-left: 25px;">
+    <a href="/BestSelling">
+            <img src="/assets/images/banners/BestSelling.png" style="width: 1323px; height: 220px; border-radius: 10px;margin-top: 10px" />
+        </a>
+</div>
+<div class="col-md-12" style="text-align: center; font-size: 16px;font-weight: bold;">
+    <div class="row" style="background: #fff; border-radius: 5px;margin: 10px;">
+        <p style="font-size: 24px; margin-top: 10px;">Best Selling</p>
+        @foreach (var item in @ViewBag.MostSale)
+        {
+            <div class="col-md-3" style="margin: 20px 0 20px 0; ">
+                <partial name="_SingleProduct" model="@item" />
+            </div>
+        }
+    </div>
+</div>
 
 <div class="col-md-12" style="text-align: center; font-size: 16px;font-weight: bold;">
     <div class="row" style="background: #fff; border-radius: 5px;margin: 10px;">
@@ -56,12 +72,12 @@
     <div class="row">
         <div class="col-md-8">
             <a href="/Search?q=Razer">
-                <img src="/assets/images/banners/Razer.png" style="width: 880px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/Razer.png" style="width: 880px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
         <div class="col-md-4">
             <a href="/Search?q=Monitor">
-                <img src="/assets/images/banners/Monitor.png" style="width: 415px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/Monitor.png" style="width: 415px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
     </div>
@@ -86,12 +102,12 @@
     <div class="row">
         <div class="col-md-8">
             <a href="/Search?q=Alder Lake">
-                <img src="/assets/images/banners/AlderLake.png" style="width: 880px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/AlderLake.png" style="width: 880px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
         <div class="col-md-4">
             <a href="/Search?q=Console">
-                <img src="/assets/images/banners/Console.png" style="width: 415px; height: 220px; border-radius: 10px;"/>
+                <img src="/assets/images/banners/Console.png" style="width: 415px; height: 220px; border-radius: 10px;" />
             </a>
         </div>
     </div>

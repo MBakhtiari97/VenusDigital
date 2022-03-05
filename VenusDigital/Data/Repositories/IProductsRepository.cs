@@ -20,6 +20,9 @@ namespace VenusDigital.Data.Repositories
         IEnumerable<SingleProductViewModel> GetNewPhonesProducts();
         IEnumerable<SingleProductViewModel> GetNewHardwareProducts();
         IEnumerable<SingleProductViewModel> GetNewPcAccessoriesProducts();
+        IEnumerable<SingleProductViewModel> GetMostSaleProducts();
+        IEnumerable<Products> GetBestSellingProducts();
+
     }
 
     public class ProductsRepository : IProductsRepository
@@ -29,6 +32,33 @@ namespace VenusDigital.Data.Repositories
         public ProductsRepository(VenusDigitalContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Products> GetBestSellingProducts()
+        {
+            return _context.Products
+                .OrderByDescending(p => p.SaleCount)
+                .Include(p=>p.ProductGalleries)
+                .Take(12)
+                .ToList();
+        }
+
+        public IEnumerable<SingleProductViewModel> GetMostSaleProducts()
+        {
+            return _context.Products
+                .OrderByDescending(p => p.SaleCount)
+                .Include(p=>p.ProductGalleries)
+                .Take(4)
+                .Select(p=> new SingleProductViewModel()
+                {
+                    MainImage = p.ProductGalleries.First().ImageName,
+                    MainPrice = p.ProductMainPrice,
+                    OnSalePrice = p.ProductOnSalePrice,
+                    ProductId = p.ProductId,
+                    Quantiny = p.ProductQuantityInStock,
+                    Score = p.ProductScore,
+                    Title = p.ProductTitle
+                }).ToList();
         }
 
         public IEnumerable<SingleProductViewModel> GetNewHardwareProducts()

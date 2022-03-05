@@ -119,6 +119,17 @@ namespace VenusDigital.Controllers
 
         #endregion
 
+        #region ShowBestSellingProducts
+
+        [Route("BestSelling")]
+        public IActionResult ShowBestSellingProducts()
+        {
+            return View("ShowProductsByCategory", _productsRepository.GetBestSellingProducts());
+        }
+
+
+        #endregion
+
         #region FilterProducts
         [Route("Filter")]
         public IActionResult FilterProductsByPrice(decimal min, decimal max, int categoryId)

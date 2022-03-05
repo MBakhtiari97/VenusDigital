@@ -46,6 +46,8 @@ namespace VenusDigital.Models
         [Display(Name = "Create Date")]
         public DateTime CreateDate { get; set; }
 
+        public int? SaleCount { get; set; }
+
         //Nav
         public List<ProductGalleries> ProductGalleries { get; set; }
         public List<Features> Features { get; set; }
