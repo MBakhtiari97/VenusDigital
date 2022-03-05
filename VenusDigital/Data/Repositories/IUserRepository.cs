@@ -157,13 +157,12 @@ namespace VenusDigital.Data.Repositories
                     u.EmailAddress == email && u.UserIdentifierCode == identifierCode))
             {
                 var user = _context.Users
-                    .FirstOrDefault(u => 
+                    .First(u => 
                         u.EmailAddress == email && u.UserIdentifierCode == identifierCode);
+
                 user.IsActive = true;
-                _context.Update(user);
-
-                //TODO: TRUE VALUE WASNT SAVE ON DB , CHECK WHATS THE PROBLEM AND SOLVE THAT ASAP ! ACTIVE EMAIL COMPLETED !
-
+                user.UserIdentifierCode = Guid.NewGuid().ToString();
+                _context.SaveChanges();
                 _notyfService.Success("Your Account Is Active Now !");
             }
             else
