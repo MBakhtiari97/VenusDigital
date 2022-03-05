@@ -16,12 +16,14 @@ namespace VenusDigital.Controllers
         private IOrderRepository _orderRepository;
         private IProductsRepository _productsRepository;
         public INotyfService _notiService;
+        public IUserRepository _userRepository;
 
-        public CartController(IOrderRepository orderRepository, IProductsRepository productsRepository, INotyfService notiService)
+        public CartController(IOrderRepository orderRepository, IProductsRepository productsRepository, INotyfService notiService, IUserRepository userRepository)
         {
             _orderRepository = orderRepository;
             _productsRepository = productsRepository;
             _notiService = notiService;
+            _userRepository = userRepository;
         }
 
         #endregion
@@ -39,7 +41,7 @@ namespace VenusDigital.Controllers
 
         #region AddToCart
 
-        public IActionResult AddToCart(int productId, string? color="")
+        public IActionResult AddToCart(int productId, string? color = "")
         {
             var product = _productsRepository.GetProductForCart(productId);
 
@@ -194,7 +196,50 @@ namespace VenusDigital.Controllers
             _notiService.Information("Your Is Empty Now");
             return RedirectToAction("ShowCart");
         }
+        #endregion 
+
+        #region CheckOut
+
+        public IActionResult CheckOut(int userId)
+        {
+            var billingAddress = _userRepository.GetPostalInformation(userId);
+            if (billingAddress == null)
+            {
+                billingAddress = new PostalInformations()
+                {
+                    Address = "Not Set",
+                    TelephoneNumber = "Not Set",
+                    UserId = userId,
+                    ZipCode = "Not Set"
+                };
+            }
+
+            return View(billingAddress);
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(PostalInformations information, int userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(information);
+            }
+
+            information.UserId = userId;
+            _userRepository.InsertPostalInformation(information);
+            return Redirect($"/PayBill");
+        }
+
         #endregion
 
+        #region PayBill
+
+        public IActionResult PayBill(decimal price, int orderId)
+        {
+            //Complete for paying price
+            return View();
+        }
+
+        #endregion
     }
 }

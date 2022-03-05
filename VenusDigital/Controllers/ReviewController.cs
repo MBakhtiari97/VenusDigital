@@ -20,9 +20,15 @@ namespace VenusDigital.Controllers
         public IActionResult AddReview(SingleReviewViewModel review,int productId)
         {
             int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            _reviewsRepository.AddReview(review,userId,productId);
-            _notyfService.Success("Your Review Has Successfully Published !");
-
+            if (_reviewsRepository.IsSubmittedReview(userId,productId))
+            {
+                _notyfService.Error("You Already Submit A Review For This Product !");
+            }
+            else
+            {
+                _reviewsRepository.AddReview(review, userId, productId);
+                _notyfService.Success("Your Review Has Successfully Published !");
+            }
             return Redirect($"/Product-{productId}");
         }
     }

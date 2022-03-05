@@ -114,7 +114,7 @@
                                 <tr>
                                     <td>
                                         <div class="cart-checkout-btn pull-right">
-                                            <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+                                            <a class="btn btn-primary checkout-btn" asp-action="CheckOut" asp-controller="Cart" asp-route-userId="@Model.UserId">PROCCED TO CHEKOUT</a>
                                         </div>
                                     </td>
                                 </tr>

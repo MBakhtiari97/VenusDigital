@@ -22,6 +22,8 @@ namespace VenusDigital.Data.Repositories
         void UpdateInformations(ChangeInfoViewModel info, int userId);
         ChangeInfoViewModel GetChangeInfo(int userId);
         void ActiveAccount(string identifierCode, string email);
+        void InsertPostalInformation(PostalInformations info);
+        PostalInformations userBillingAddress(int userId);
     }
 
 
@@ -169,6 +171,34 @@ namespace VenusDigital.Data.Repositories
             {
                 _notyfService.Error("Cannot Find Any User By This Credentials");
             }
+        }
+
+        public void InsertPostalInformation(PostalInformations info)
+        {
+            if (_context.PostalInformations.Any(b => b.UserId == info.UserId))
+            {
+                var billingAddress = _context
+                    .PostalInformations
+                    .FirstOrDefault(b => b.UserId == info.UserId);
+                billingAddress.Address = info.Address;
+                billingAddress.TelephoneNumber = info.TelephoneNumber;
+                billingAddress.ZipCode = info.ZipCode;
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.PostalInformations.Add(info);
+                _context.SaveChanges();
+            }
+           
+            _notyfService.Success("Your Billing Address Has Been Updated Successfully !");
+        }
+
+        public PostalInformations userBillingAddress(int userId)
+        {
+            return _context
+                .PostalInformations
+                .FirstOrDefault(b => b.UserId == userId);
         }
     }
 }

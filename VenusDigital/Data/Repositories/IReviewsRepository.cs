@@ -13,7 +13,7 @@ namespace VenusDigital.Data.Repositories
         void AddReview(SingleReviewViewModel review, int userId, int productId);
         IEnumerable<Reviews> GetAllReviews();
         IEnumerable<SingleReviewViewModel> GetReviewsForProduct(int productId);
-
+        bool IsSubmittedReview(int userId, int productId);
     }
 
     public class ReviewRepository : IReviewsRepository
@@ -71,6 +71,14 @@ namespace VenusDigital.Data.Repositories
             product.ProductScore = (float)Math.Round((product.ProductScore * product.Reviews.Count)
                                     + review.ReviewScore) / (product.Reviews.Count + 1);
             _context.SaveChanges();
+        }
+
+        public bool IsSubmittedReview(int userId, int productId)
+        {
+            if(_context.Reviews.Any(r=>r.ProductId==productId && r.UserId==userId))
+                return true;
+
+            return false;
         }
     }
 }
