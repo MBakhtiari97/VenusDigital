@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VenusDigital.Data.Repositories;
@@ -10,14 +11,20 @@ namespace VenusDigital.Controllers
     [Authorize]
     public class CartController : Controller
     {
+        #region Injection
+
         private IOrderRepository _orderRepository;
         private IProductsRepository _productsRepository;
+        public INotyfService _notiService;
 
-        public CartController(IOrderRepository orderRepository, IProductsRepository productsRepository)
+        public CartController(IOrderRepository orderRepository, IProductsRepository productsRepository, INotyfService notiService)
         {
             _orderRepository = orderRepository;
             _productsRepository = productsRepository;
+            _notiService = notiService;
         }
+
+        #endregion
 
         #region ShowCart
 
@@ -103,7 +110,7 @@ namespace VenusDigital.Controllers
 
                 _orderRepository.SaveChanges();
             }
-
+            _notiService.Success("Product Added To Your Cart !");
             return RedirectToAction("ShowCart");
         }
 
@@ -142,6 +149,7 @@ namespace VenusDigital.Controllers
                 {
                     order.TotalOrderPrice -= product.ProductMainPrice;
                 }
+                _notiService.Information("Item Removed From Your Cart");
             }
 
 
@@ -158,6 +166,7 @@ namespace VenusDigital.Controllers
                 {
                     order.TotalOrderPrice -= product.ProductMainPrice;
                 }
+                _notiService.Information("Item Quantity Has Decreased");
             }
 
             _orderRepository.SaveChanges();
@@ -182,11 +191,10 @@ namespace VenusDigital.Controllers
             }
 
             _orderRepository.EmptyCart(orderId);
-
+            _notiService.Information("Your Is Empty Now");
             return RedirectToAction("ShowCart");
         }
         #endregion
-
 
     }
 }
