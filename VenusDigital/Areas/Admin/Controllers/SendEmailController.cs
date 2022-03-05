@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using MyEshop;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using VenusDigital.Areas.Admin.Models;
+using VenusDigital.Data;
 using VenusDigital.Utilities;
 
 namespace VenusDigital.Areas.Admin.Controllers
@@ -11,12 +13,13 @@ namespace VenusDigital.Areas.Admin.Controllers
     public class SendEmailController : Controller
     {
         #region Injection
-
+        private VenusDigitalContext _context;
         private IViewRenderService _viewRenderService;
-        public INotyfService _notyfService;
+        public INotyfService _notyfService { get; }
 
-        public SendEmailController(IViewRenderService viewRenderService, INotyfService notyfService)
+        public SendEmailController(VenusDigitalContext context, IViewRenderService viewRenderService, INotyfService notyfService)
         {
+            _context = context;
             _viewRenderService = viewRenderService;
             _notyfService = notyfService;
         }
@@ -41,6 +44,30 @@ namespace VenusDigital.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        #endregion
+
+        #region SendNewsletter
+
+        public IActionResult SendNews()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendNews(SendNewslettersViewModel news)
+        {
+            var emails = _context.Newsletters
+                .Select(n => n.NewslettersSubedUserEmail)
+                .ToList();
+
+            foreach (var sendEmail in emails)
+            {
+                SendEmail.Send(sendEmail, news.Title, news.Description);
+            }
+
+            _notyfService.Information("Newsletter Email Has Been Sent To All Subscribed User's !");
+            return RedirectToAction("Index", "Home");
+        }
         #endregion
 
     }
