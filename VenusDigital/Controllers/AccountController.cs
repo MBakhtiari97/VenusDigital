@@ -24,14 +24,17 @@ namespace VenusDigital.Controllers
         private IUserRepository _userRepository;
         private IViewRenderService _viewRenderService;
         private IOrderRepository _orderRepository;
+        public INotyfService _notyfService;
 
         public AccountController(IUserRepository userRepository
             , IViewRenderService viewRenderService
-            ,IOrderRepository orderRepository)
+            ,IOrderRepository orderRepository
+            ,INotyfService notyfService)
         {
             _userRepository = userRepository;
             _viewRenderService = viewRenderService;
             _orderRepository = orderRepository;
+            _notyfService = notyfService;
         }
 
         #endregion
@@ -165,7 +168,8 @@ namespace VenusDigital.Controllers
             {
                 var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_RecoverPassword", user);
                 SendEmail.Send(forget.Email, "Recover Password", body);
-                return View("SuccesForgotPassword", user);
+                _notyfService.Success("Recover Password Email Has Been Sent To Your Email Address !");
+                return Redirect("/Login");
 
             }
             else
@@ -202,8 +206,8 @@ namespace VenusDigital.Controllers
 
                 var body = await _viewRenderService.RenderToStringAsync("ManageEmails/_RecoveryPasswordNotification", user);
                 SendEmail.Send(user.EmailAddress, "Recover Password", body);
-
-                return View("_SuccessRecovery");
+                _notyfService.Success("Your Password has been recovered !");
+                return Redirect("/");
             }
             else
             {
