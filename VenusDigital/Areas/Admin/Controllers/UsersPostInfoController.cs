@@ -23,10 +23,18 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region UserInfoIndex
 
         // GET: Admin/UsersPostInfo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.PostalInformations.Include(p => p.User);
-            return View(await venusDigitalContext.ToListAsync());
+            var billingInfo = _context.PostalInformations
+                .Include(p => p.User);
+            var allBillingInfo = await billingInfo.ToListAsync();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allBillingInfo.Count() / (double)take);
+
+            return View(allBillingInfo.Skip(skip).Take(take).ToList());
         }
 
 

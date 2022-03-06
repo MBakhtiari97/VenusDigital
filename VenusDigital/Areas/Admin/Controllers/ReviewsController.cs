@@ -23,13 +23,19 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region ReviewsIndex
 
         // GET: Admin/Reviews
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.Reviews
+            var reviews = _context.Reviews
                 .Include(r => r.Products)
                 .Include(r => r.Users);
+            var allReviews = await reviews.ToListAsync();
 
-            return View(await venusDigitalContext.ToListAsync());
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allReviews.Count() / (double)take);
+
+            return View(allReviews.Skip(skip).Take(take).ToList());
         }
 
         #endregion

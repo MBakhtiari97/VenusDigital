@@ -23,9 +23,16 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region NewsletterIndex
 
         // GET: Admin/Newsletters
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            return View(await _context.Newsletters.ToListAsync());
+            var newsLetter = await _context.Newsletters.ToListAsync();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(newsLetter.Count() / (double)take);
+
+            return View(newsLetter.Skip(skip).Take(take).ToList());
+
         }
 
         #endregion

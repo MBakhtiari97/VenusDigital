@@ -26,10 +26,17 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region TagIndex
 
         // GET: Admin/Tags
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.Tags.Include(t => t.Products);
-            return View(await venusDigitalContext.ToListAsync());
+            var tags = _context.Tags
+                .Include(t => t.Products);
+            var allTags = await tags.ToListAsync();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allTags.Count() / (double)take);
+            return View(allTags.Skip(skip).Take(take).ToList());
         }
 
 

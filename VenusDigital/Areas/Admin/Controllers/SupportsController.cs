@@ -26,9 +26,14 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region SupportRequestIndex
 
         // GET: Admin/Supports
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            return View(await _context.Supports.ToListAsync());
+            var tickets = await _context.Supports.ToListAsync();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(tickets.Count() / (double)take);
+            return View(tickets.Skip(skip).Take(take).ToList());
         }
 
         #endregion

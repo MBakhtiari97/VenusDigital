@@ -25,13 +25,20 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region OrderIndex
 
         // GET: Admin/Orders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.Order
+            var orders = _context.Order
                 .Include(o => o.Users)
                 .Where(o => o.IsFinally);
 
-            return View(await venusDigitalContext.ToListAsync());
+            var allOrders = await orders.ToListAsync();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allOrders.Count() / (double)take);
+
+            return View(allOrders.Skip(skip).Take(take).ToList());
         }
 
         #endregion

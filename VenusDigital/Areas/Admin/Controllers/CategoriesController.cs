@@ -27,10 +27,18 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region CategoryIndex
 
         // GET: Admin/Categories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.Categories.Include(c => c.Category);
-            return View(await venusDigitalContext.ToListAsync());
+            var categories = _context.Categories
+                .Include(c => c.Category);
+
+            var allCategories = await categories.ToListAsync();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allCategories.Count() / (double)take);
+
+            return View(allCategories.Skip(skip).Take(take).ToList());
         }
 
 

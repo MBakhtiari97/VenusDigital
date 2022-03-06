@@ -23,9 +23,15 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region User'sIndex
 
         // GET: Admin/Users
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId=1)
         {
-            return View(await _context.Users.ToListAsync());
+            var users = await _context.Users.ToListAsync();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(users.Count() / (double)take);
+
+            return View(users.Skip(skip).Take(take).ToList());
         }
 
         #endregion
