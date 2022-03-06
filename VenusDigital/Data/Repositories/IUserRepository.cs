@@ -127,7 +127,7 @@ namespace VenusDigital.Data.Repositories
                 user.UserIdentifierCode = Guid.NewGuid().ToString();
                 _notyfService.Success("Your Information's Has Successfully Updated !");
                 _context.SaveChanges();
-                
+
             }
             else
             {
@@ -141,25 +141,40 @@ namespace VenusDigital.Data.Repositories
                 .Include(u => u.PostalInformations)
                 .FirstOrDefault(u => u.UserId == userId);
 
-            ChangeInfoViewModel info = new ChangeInfoViewModel()
+            if (userInfos.PostalInformationId != 0)
             {
-                ZipCode = userInfos.PostalInformations.First().ZipCode,
-                TelephoneNumber = userInfos.PostalInformations.First().TelephoneNumber,
-                Address = userInfos.PostalInformations.First().Address,
-                Email = userInfos.EmailAddress,
-                PhoneNumber = userInfos.PhoneNumber
-            };
+                ChangeInfoViewModel info = new ChangeInfoViewModel()
+                {
+                    ZipCode = userInfos.PostalInformations.First().ZipCode,
+                    TelephoneNumber = userInfos.PostalInformations.First().TelephoneNumber,
+                    Address = userInfos.PostalInformations.First().Address,
+                    Email = userInfos.EmailAddress,
+                    PhoneNumber = userInfos.PhoneNumber
 
-            return info;
+                };
+                return info;
+            }
+            else
+            {
+                ChangeInfoViewModel info = new ChangeInfoViewModel()
+                {
+                    ZipCode = "Empty",
+                    TelephoneNumber = "Empty",
+                    Address = "Empty",
+                    Email = userInfos.EmailAddress,
+                    PhoneNumber = userInfos.PhoneNumber
+                };
+                return info;
+            }
         }
 
-        public void ActiveAccount(string identifierCode,string email)
+        public void ActiveAccount(string identifierCode, string email)
         {
-            if (_context.Users.Any(u => 
+            if (_context.Users.Any(u =>
                     u.EmailAddress == email && u.UserIdentifierCode == identifierCode))
             {
                 var user = _context.Users
-                    .First(u => 
+                    .First(u =>
                         u.EmailAddress == email && u.UserIdentifierCode == identifierCode);
 
                 user.IsActive = true;
@@ -190,7 +205,7 @@ namespace VenusDigital.Data.Repositories
                 _context.PostalInformations.Add(info);
                 _context.SaveChanges();
             }
-           
+
             _notyfService.Success("Your Billing Address Has Been Updated Successfully !");
         }
 

@@ -6,7 +6,7 @@
     <hr />
     @if (User.Identity.IsAuthenticated)
     {
-        @if (bool.Parse(User.FindFirstValue("IsActive")))
+        @if (bool.Parse(User.FindFirstValue("IsActive").ToString()))
         {
             <div class="review-form">
                 <div class="form-container">
