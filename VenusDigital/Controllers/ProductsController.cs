@@ -95,7 +95,7 @@ namespace VenusDigital.Controllers
             }
 
             ViewBag.Banner = _categoryRepository.GetCategoryBannerName(categoryId);
-
+            ViewBag.CategoryId = categoryId;
             //ViewBag.CategoryId = categoryId;
             //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
 
@@ -134,7 +134,7 @@ namespace VenusDigital.Controllers
         [Route("Filter")]
         public IActionResult FilterProductsByPrice(decimal min, decimal max, int categoryId)
         {
-            //TODO:FIX CATEGORY ID BUG
+            //TODO:Fix Pagination
             return View("ShowProductsByCategory", _productsRepository.GetProductsByPriceFilter(min, max, categoryId));
         }
         #endregion

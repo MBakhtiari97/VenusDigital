@@ -26,9 +26,17 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region Product'sIndex
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId=1)
         {
-            return View(await _context.Products.ToListAsync());
+
+            var products = await _context.Products.ToListAsync();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(products.Count() / (double)take);
+
+            return View(products.Skip(skip).Take(take).ToList());
         }
 
         #endregion
