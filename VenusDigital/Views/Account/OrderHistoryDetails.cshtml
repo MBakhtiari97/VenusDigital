@@ -3,9 +3,9 @@
     ViewData["Title"] = "OrderHistoryDetails";
 }
 
-<div style="padding-left: 200px; text-align: center; font-size: 16px;" align="center">
+<div class="orderhistorydetails">
     
-    <h2 style="font-weight: bold">'VD-@DateTime.Now.Year-@Model.First().OrderId' Detail's</h2>
+    <h2 >'VD-@DateTime.Now.Year-@Model.First().OrderId' Detail's</h2>
     <hr/>
     <table class="table table-striped">
         <thead>
@@ -21,7 +21,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" class="img-thumbnail" style="width: 100px; height: 100px;"/></td>
+                <td><img src="/images/pics/@item.Product.ProductGalleries.First().ImageName" class="img-thumbnail" /></td>
                 <td>@item.Product.ProductTitle</td>
                 <td>@item.Count</td>
                 @if (@item.Product.ProductOnSalePrice != 0)

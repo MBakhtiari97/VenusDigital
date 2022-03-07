@@ -1,6 +1,84 @@
 ﻿.centerIt {
     text-align: center !important;
 }
+
 .userInfoTB {
     margin: 50px;
+}
+
+.changeInfo {
+    padding-left: 200px;
+    text-align: center;
+    margin: 20px;
+}
+
+.loginPage {
+    padding-left: 300px;
+    margin: 20px;
+}
+
+.loginPage h2 {
+    text-align: center;
+}
+
+.myaccountpg {
+    padding-left: 200px;
+}
+
+.myaccountpg h1 {
+    text-align: center
+}
+
+.myaccountpg nav {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.myinfopg {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-left: 200px;
+}
+.myinfopg table {
+    font-size: 14px;
+}
+.myinfopg table th {
+    text-align: center;
+}
+.orderhistorypg {
+    padding-left: 200px;
+    text-align: center;
+    font-size: 16px;
+}
+.orderhistorypg th {
+    text-align: center;
+}
+.orderhistorydetails {
+    padding-left: 200px;
+    text-align: center;
+    font-size: 16px;
+}
+.orderhistorydetails h2 {
+    font-weight: bold;
+}
+.orderhistorydetails img {
+    width: 100px;
+    height: 100px;
+}
+.orderhistorydetails th {
+    text-align: center;
+}
+.newpassword {
+    padding-left: 200px;
+}
+.newpassword h2 {
+    text-align: center;
+}
+.registerpg {
+    padding-left: 300px;
+    margin-bottom: 30px;
+}
+.registerpg h2 {
+    text-align: center;
 }
