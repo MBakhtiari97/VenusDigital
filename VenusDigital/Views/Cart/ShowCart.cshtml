@@ -3,7 +3,7 @@
     ViewData["Title"] = "ShowCart";
 }
 
-<div class="body-content outer-top-xs" style="padding-left: 200px; margin-bottom: 30px;">
+<div class="body-content outer-top-xs showcartdetails">
     <div class="container">
         @if (Model.OrderDetails.Count != 0)
         {
@@ -74,7 +74,7 @@
                                                 <span class="">
                                                     <a href="/" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
                                                     <a asp-action="EmptyCart" asp-controller="Cart" asp-route-orderId="@Model.OrderId" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
-                                                    <p style="font-size: 11px; margin-top: 10px;">*Note:Update shopping cart will empty your cart!</p>
+                                                    <p>*Note:Update shopping cart will empty your cart!</p>
                                                 </span>
                                             </div><!-- /.shopping-cart-btn -->
                                     </td>
@@ -126,8 +126,8 @@
         }
         else
         {
-            <h1 style="padding-left: 300px; font-weight: bold; margin: 20px;">Your Cart Is Empty !</h1>
-            <img src="/assets/images/Cart.png" alt="Empty Cart" class="emptyCart" style="margin-bottom: 50px; padding-left: 300px;" />
+            <h1 style="">Your Cart Is Empty !</h1>
+            <img src="/assets/images/Cart.png" alt="Empty Cart" class="emptyCart"/>
         }
     </div>
 </div>
