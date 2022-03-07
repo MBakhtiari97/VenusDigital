@@ -114,20 +114,43 @@ namespace VenusDigital.Data.Repositories
 
         public void UpdateInformations(ChangeInfoViewModel info, int userId)
         {
+            //Getting User
             var user = _context.Users
-                .Include(u => u.PostalInformations)
                 .FirstOrDefault(u => u.UserId == userId);
+
             if (user != null)
             {
+                //Changing user details based on input
                 user.EmailAddress = info.Email;
                 user.PhoneNumber = info.PhoneNumber;
-                user.PostalInformations.First().Address = info.Address;
-                user.PostalInformations.First().TelephoneNumber = info.TelephoneNumber;
-                user.PostalInformations.First().ZipCode = info.ZipCode;
+                //Checking if currently billing address is existed or not !
+                if (!_context.PostalInformations.Any(i => i.UserId == userId))
+                {
+                    //Creating new billing address
+                    PostalInformations pi = new PostalInformations()
+                    {
+                        Address = info.Address,
+                        UserId = userId,
+                        TelephoneNumber = info.TelephoneNumber,
+                        ZipCode = info.ZipCode
+                    };
+                    _context.PostalInformations.Add(pi);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    //Changing current billing address
+                    var postInfo = _context.PostalInformations
+                        .First(i => i.UserId == userId);
+
+                    postInfo.Address = info.Address;
+                    postInfo.TelephoneNumber = info.TelephoneNumber;
+                    postInfo.ZipCode = info.ZipCode;
+                    _context.SaveChanges();
+                }
                 user.UserIdentifierCode = Guid.NewGuid().ToString();
                 _notyfService.Success("Your Information's Has Successfully Updated !");
                 _context.SaveChanges();
-
             }
             else
             {
