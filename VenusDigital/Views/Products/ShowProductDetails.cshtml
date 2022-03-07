@@ -10,19 +10,19 @@
     List<Features> ListFeatures = ViewBag.Features;
 }
 
-<div class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 250px; ">
+<div class="col-xs-12 col-sm-12 col-md-12 show-product-details">
     <div class="detail-block">
         <div class="row">
 
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 gallery-holder">
                 <div class="product-item-holder size-big single-product-gallery small-gallery">
 
-                    <div id="owl-single-product" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                    <div id="owl-single-product" class="owl-carousel owl-theme product-owl">
                         <div class="owl-wrapper-outer">
-                            <div class="owl-wrapper" style="width: 5796px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
+                            <div class="owl-wrapper product-owl-wrapper">
 
                                 <!--Showing Main Photo-->
-                                <div class="owl-item" style="width: 322px;">
+                                <div class="owl-item product-owl-wrapper-item">
                                     <div class="single-product-gallery-item">
                                         <a href="/images/pics/@Model.MainImage">
                                             <img class="img-responsive" alt="@Model.Title" src="/images/pics/@Model.MainImage">
@@ -36,13 +36,13 @@
 
                     <div class="single-product-gallery-thumbs gallery-thumbs">
 
-                        <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                        <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme thumb-owl-carousel">
                             <div class="owl-wrapper-outer">
-                                <div class="owl-wrapper" style="width: 1458px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px); margin-top: 10px;">
+                                <div class="owl-wrapper thumb-owl">
 
                                     @foreach (ProductGalleries pic in ViewBag.ImageGallery)
                                     {
-                                        <div style="width: 81px;">
+                                        <div class="small-gallary-img">
                                             @*<div class="item">*@
                                             <a href="/images/pics/@pic.ImageName">
                                                 <img class="img-responsive" alt="@pic.ImageAltName" src="/images/pics/@pic.ImageName">
@@ -161,7 +161,7 @@
                             </div><!-- /.row -->
                         </div><!-- /.quantity-container -->
                         <div class="col col-md-6">
-                            <ul style="margin: 10px; font-weight: bold; font-size: 14px;">
+                            <ul class="category-items">
                                 Categories:
                                 @foreach (var category in SelectedCategories)
                                 {
@@ -179,7 +179,7 @@
     </div><!-- /.product-tabs -->
 </div>
 
-<div style="padding-left: 220px;">
+<div class="tabs-titles">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
             <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
@@ -187,7 +187,7 @@
             <li><a data-toggle="tab" href="#tags">TAGS</a></li>
         </ul><!-- /.nav-tabs #product-tabs -->
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12" id="more-details" style="margin-bottom: 20px;">
+    <div class="col-sm-12 col-md-12 col-lg-12 show-best-selling" id="more-details">
 
         <div class="tab-content">
 
