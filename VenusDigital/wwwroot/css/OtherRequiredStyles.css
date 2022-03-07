@@ -109,3 +109,42 @@
     padding-left: 200px;
     text-align: center
 }
+.product-in-home {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.product-in-home-div {
+    background: #fff;
+    border-radius: 5px;
+    margin: 10px;
+}
+.product-in-home-div p {
+    font-size: 24px;
+    margin-top: 10px;
+}
+.single-product-home {
+    margin: 20px 0 20px 0;
+}
+.image-banner {
+    padding-left: 25px;
+}
+.img-big-banner {
+    width: 880px;
+    height: 220px;
+    border-radius: 10px;
+}
+.img-small-banner {
+    width: 415px;
+    height: 220px;
+    border-radius: 10px;
+}
+.img-single-banner {
+    width: 1323px;
+    height: 220px;
+    border-radius: 10px;
+    margin-top: 10px
+}
+.privacy {
+    padding-left: 300px;
+}

@@ -47,7 +47,7 @@ namespace VenusDigital.Controllers
             ViewBag.MostSale = _productsRepository.GetMostSaleProducts();
             return View(vm);
         }
-
+        [Route("Privacy")]
         public IActionResult Privacy()
         {
             return View();
