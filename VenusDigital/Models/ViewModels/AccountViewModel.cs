@@ -14,7 +14,7 @@ namespace VenusDigital.Models.ViewModels
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(50)]
-        //[RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", ErrorMessage = "Password must contain character and numbers")]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", ErrorMessage = "Password must contain minimum eight characters, at least one letter, one number and one special character")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
