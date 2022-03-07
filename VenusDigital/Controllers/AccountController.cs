@@ -218,6 +218,7 @@ namespace VenusDigital.Controllers
 
         #region MyAccount
         [Authorize]
+        [Route("MyInfo")]
         public IActionResult MyInformations()
         {
             //Getting UserId
@@ -242,7 +243,7 @@ namespace VenusDigital.Controllers
         }
 
         [Authorize]
-        [Route("MyAccount/OrderHistory")]
+        [Route("OrderHistory")]
         public IActionResult OrderHistory()
         {
             int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());

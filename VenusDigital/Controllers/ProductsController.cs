@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using VenusDigital.Data.Repositories;
@@ -70,13 +71,20 @@ namespace VenusDigital.Controllers
 
         #region Search
         [Route("Search")]
-        public IActionResult Search(string q)
+        public IActionResult Search(string q , int pageId)
         {
             List<SingleProductViewModel> ResultProduct = new List<SingleProductViewModel>();
             ResultProduct.AddRange(_productsRepository.GetProductByString(q));
             ViewBag.Count = ResultProduct.Count;
             ViewBag.Search = q.ToUpper();
-            return View(ResultProduct.Distinct());
+
+            var result = ResultProduct.Distinct();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(result.Count() / (double)take);
+
+            return View(result.Skip(skip).Take(take).ToList());
         }
 
         #endregion
@@ -85,7 +93,7 @@ namespace VenusDigital.Controllers
         [Route("Category-{categoryId}")]
         public IActionResult ShowProductsByCategory(int categoryId, int pageId = 1)
         {
-            ViewBag.pageId = pageId;
+            //ViewBag.pageId = pageId;
 
             List<Products> productsByCategory = new List<Products>();
 
@@ -96,14 +104,12 @@ namespace VenusDigital.Controllers
 
             ViewBag.Banner = _categoryRepository.GetCategoryBannerName(categoryId);
             ViewBag.CategoryId = categoryId;
-            //ViewBag.CategoryId = categoryId;
-            //ViewBag.CategoryName = _categoryRepository.GetCategoryName(categoryId);
 
 
             //Paging
             int take = 9;
             int skip = (pageId - 1) * take;
-            ViewBag.PageCount = productsByCategory.Count() / take;
+            ViewBag.PageCount = (int)Math.Ceiling(productsByCategory.Count() / (double)take);
             return View(productsByCategory.Skip(skip).Take(take).ToList());
         }
         #endregion
@@ -111,9 +117,16 @@ namespace VenusDigital.Controllers
         #region ShowOnSaleProducts
 
         [Route("ShowOnSaleProducts")]
-        public IActionResult ShowOnSaleProducts()
+        public IActionResult ShowOnSaleProducts(int pageId)
         {
-            return View("ShowProductsByCategory", _productsRepository.GetOnSaleProducts());
+            var products = _productsRepository.GetOnSaleProducts();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(products.Count() / (double)take);
+
+            return View(products.Skip(skip).Take(take).ToList());
         }
 
 
@@ -122,9 +135,16 @@ namespace VenusDigital.Controllers
         #region ShowBestSellingProducts
 
         [Route("BestSelling")]
-        public IActionResult ShowBestSellingProducts()
+        public IActionResult ShowBestSellingProducts(int pageId)
         {
-            return View("ShowProductsByCategory", _productsRepository.GetBestSellingProducts());
+            var products = _productsRepository.GetBestSellingProducts();
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(products.Count() / (double)take);
+
+            return View(products.Skip(skip).Take(take).ToList());
         }
 
 

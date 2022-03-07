@@ -76,10 +76,42 @@ else
 
 
 
+<!--Paging-->
+<form asp-action="WishList" id="change">
+    <input type="hidden" value="1" name="pageId" id="pageId"/>
+</form>
+
+<ul class="pagination">
+    <li class="page-item disabled">
+        <a class="page-link">«</a>
+    </li>
+    @if (ViewBag.PageCount > 1)
+    {
+        @for (var i = 1; i <= ViewBag.PageCount;i++)
+        {
+            <li class="page-item active">
+                <a class="page-link" onclick="changePage(@i)">@i</a>
+            </li>
+        }
+    }
+    <li class="page-item">
+        <a class="page-link">»</a>
+    </li>
+</ul>
+
+
 
 
 @section Scripts {
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
+    }
+
+    <script>
+        function changePage(pageId)
+        {
+            $("#pageId").val(pageId);
+            $("#change").submit();
+        }
+    </script>
 }

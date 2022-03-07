@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using AspNetCoreHero.ToastNotification.Abstractions;
@@ -33,7 +34,7 @@ namespace VenusDigital.Controllers
 
         #region Wishlist
         [Route("Wishlist")]
-        public IActionResult WishList()
+        public IActionResult WishList(int pageId = 1)
         {
             //Retrieving all product id's
             var productIds =
@@ -69,7 +70,13 @@ namespace VenusDigital.Controllers
                     ProductId = product.ProductId
                 });
             }
-            return View(wishList);
+
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(wishList.Count() / (double)take);
+
+            return View(wishList.Skip(skip).Take(take).ToList());
         }
 
         #endregion

@@ -28,12 +28,18 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region GalleryIndex
 
         // GET: Admin/Galleries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.ProductGalleries
+            var galleries = _context.ProductGalleries
                 .Include(p => p.Products);
 
-            return View(await venusDigitalContext.ToListAsync());
+            var allGalleries = await galleries.ToListAsync();
+            //For Pagination
+            int take = 12;
+            int skip = (pageId - 1) * take;
+            ViewBag.PageCount = (int)Math.Ceiling(allGalleries.Count() / (double)take);
+            return View(allGalleries.Skip(skip).Take(take).ToList());
+
         }
 
         #endregion

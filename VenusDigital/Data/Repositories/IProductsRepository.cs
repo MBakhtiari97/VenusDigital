@@ -39,7 +39,7 @@ namespace VenusDigital.Data.Repositories
             return _context.Products
                 .OrderByDescending(p => p.SaleCount)
                 .Include(p=>p.ProductGalleries)
-                .Take(12)
+                .Take(72)
                 .ToList();
         }
 

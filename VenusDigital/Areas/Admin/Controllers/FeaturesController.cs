@@ -23,10 +23,16 @@ namespace VenusDigital.Areas.Admin.Controllers
         #region FeatureIndex
 
         // GET: Admin/Features
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageId)
         {
-            var venusDigitalContext = _context.Features.Include(f => f.Products);
-            return View(await venusDigitalContext.ToListAsync());
+            var features = _context.Features.Include(f => f.Products);
+            var allFeatures = await features.ToListAsync();
+
+            int take = 12;
+            int skip = (pageId-1) * take;
+
+            ViewBag.PageCount = (int)Math.Ceiling(allFeatures.Count() / (double)take);
+            return View(allFeatures.Skip(skip).Take(take).ToList());
         }
 
         #endregion

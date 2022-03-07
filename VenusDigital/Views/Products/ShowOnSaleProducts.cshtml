@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Products>
 @{
-    ViewData["Title"] = "ShowProductsByCategory";
+    ViewData["Title"] = "Show On Sale Products";
 }
-
 
 <div class="breadcrumb">
     <div class="container">
@@ -28,74 +27,7 @@
                 </div>
                 <!-- /.side-menu -->
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
-                <div class="sidebar-module-container">
-                    <div class="sidebar-filter">
-                        <!-- ============================================== PRICE SILDER============================================== -->
-                        <div class="sidebar-widget">
-                            <div class="widget-header">
-                                <h3 class="section-title">Filter By</h3>
-                                <h4 class="widget-title">Price</h4>
-                            </div>
-                            <div class="sidebar-widget-body m-t-10" align="center">
-
-                                <!-- /.price-range-holder -->
-                                <form action="/Filter" id="filterForm">
-                                    <input type="hidden" value="@ViewBag.pageId" id="pageId" name="pageId" />
-                                    <input type="hidden" value="@ViewBag.CategoryId" name="categoryId" />
-                                    Min Price ($)<br />
-                                    <input class="form-control" name="min" type="number" value="0" /><br />
-                                    Max Price ($)<br />
-                                    <input class="form-control" name="max" type="number" value="10000" /><br />
-                                    <button type="submit" class="lnk btn btn-primary form-control">Filter</button>
-                                </form>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== PRICE SILDER : END ============================================== -->
-                        <!-- ============================================== MANUFACTURES============================================== -->
-                        <div class="sidebar-widget" style="margin-bottom: 20px;">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Manufactures</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul class="list">
-                                    <li><a href="/Search?q=Apple">Apple</a></li>
-                                    <li><a href="/Search?q=Samsung">Samsung</a></li>
-                                    <li><a href="/Search?q=Asus">Asus</a></li>
-                                    <li><a href="/Search?q=Nokia">Nokia</a></li>
-                                    <li><a href="/Search?q=Xiaomi">Xiaomi</a></li>
-                                    <li><a href="/Search?q=Huawei">Huawei</a></li>
-                                    <li><a href="/Search?q=Sapphire">Sapphire</a></li>
-                                    <li><a href="/Search?q=Gigabyte">Gigabyte</a></li>
-                                    <li><a href="/Search?q=Intel">Intel</a></li>
-                                    <li><a href="/Search?q=Amd">Amd</a></li>
-                                    <li><a href="/Search?q=Logitech">Logitech</a></li>
-                                    <li><a href="/Search?q=Razer">Razer</a></li>
-                                    <li><a href="/Search?q=BioStar">BioStar</a></li>
-                                    <li><a href="/Search?q=Msi">Msi</a></li>
-                                    <li><a href="/Search?q=BenQ">BenQ</a></li>
-                                    <li><a href="/Search?q=AOC">AOC</a></li>
-                                    <li><a href="/Search?q=CoolerMaster">CoolerMaster</a></li>
-                                    <li><a href="/Search?q=Dell">Dell</a></li>
-                                    <li><a href="/Search?q=Lenovo">Lenovo</a></li>
-                                    <li><a href="/Search?q=HP">HP</a></li>
-                                    <li><a href="/Search?q=G-Plus">G-Plus</a></li>
-                                    <li><a href="/Search?q=LG">LG</a></li>
-
-                                </ul>
-                                <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
-                        <!-- ============================================== MANUFACTURES: END ============================================== -->
-                    </div>
-                    <!-- /.sidebar-filter -->
-                </div>
-                <!-- /.sidebar-module-container -->
             </div>
-        <!-- /.sidebar -->
 
             <div style="padding-right: 0px;">
                 <div class="col-xs-12 col-sm-12 col-md-9 rht-col">
@@ -126,21 +58,6 @@
                             <div class="col col-sm-12 col-md-5 col-lg-5 hidden-sm">
                                 <!-- /.col -->
                                 <div class="col col-sm-6 col-md-6 no-padding hidden-sm hidden-md">
-                                    @*<div class="lbl-cnt">
-                                        <span class="lbl">Show</span>
-                                        <div class="fld inline">
-                                            <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                                <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1 <span class="caret"></span> </button>
-                                                <ul role="menu" class="dropdown-menu">
-                                                    @for (int i = 1; i <= ViewBag.PageCount; i++)
-                                                    {
-                                                        <li role="presentation"><a onclick="changePage(@i)">@i</a></li>
-                                                    }
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- /.fld -->
-                                    </div>*@
                                     <!-- /.lbl-cnt -->
                                 </div>
                                 <!-- /.col -->
@@ -234,28 +151,6 @@
                             <!-- /.tab-pane #list-container -->
                         </div>
                         <!-- /.tab-content -->
-                        @*<div class="clearfix filters-container bottom-row">
-                            <div align="center">
-                                @if (ViewBag.PageCount > 1)
-                                {
-                                    <div class="pagination-container">
-                                        <ul class="list-inline list-unstyled">
-                                            <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                            @for (int i = 1; i <= ViewBag.PageCount; i++)
-                                            {
-                                                <li><a onclick="changePage(@i)">@i</a></li>
-                                            }
-                                            <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                        </ul>
-                                        <!-- /.list-inline -->
-                                </div>
-                                    <!-- /.pagination-container -->
-                                }
-                            </div>
-                            <!-- /.text-right -->
-
-                        </div>
-                        <!-- /.filters-container -->*@
 
                         <div>
                             <ul class="pagination">
@@ -264,7 +159,7 @@
                                 </li>
                                 @if (ViewBag.PageCount > 1)
                                 {
-                                    @for (var i = 1; i <= ViewBag.PageCount;i++)
+                                    @for (var i = 1; i <= ViewBag.PageCount; i++)
                                     {
                                         <li class="page-item active">
                                             <a class="page-link" onclick="changePageNo(@i)">@i</a>
@@ -276,27 +171,21 @@
                                 </li>
                             </ul>
                         </div>
-                        
-
                     </div>
                     <!-- /.search-result-container -->
-
                 </div>
                 <!-- /.col -->
             </div>
-
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.container -->
-
 </div>
 
 
 <!--Paging-->
-<form asp-action="ShowProductsByCategory" id="change">
-    <input type="hidden" value="1" name="pageId" id="pageNo"/>
+<form asp-action="ShowOnSaleProducts" id="change">
+    <input type="hidden" value="1" name="pageId" id="pageNo" />
 </form>
 
 
@@ -308,11 +197,3 @@
     }
 </script>
 <!--EndPaging-->
-@*
-<script>
-    function changePage(pageId)
-    {
-        $("#pageId").val(pageId);
-        $("#filterForm").submit();
-    }
-</script>*@
