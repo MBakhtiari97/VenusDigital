@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VenusDigital.Data;
 
 namespace VenusDigital.Areas.Admin.Controllers
@@ -26,6 +27,7 @@ namespace VenusDigital.Areas.Admin.Controllers
                 .ToList();
             ViewBag.Reviews = _context.Reviews
                 .Where(r => !r.IsPublished)
+                .Include(r=>r.Users)
                 .Take(9)
                 .ToList();
             ViewBag.Orders = _context.Order
