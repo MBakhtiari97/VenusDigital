@@ -41,7 +41,7 @@
 <div class="product-image">
     <div class="image">
         <a href="/Product-@Model.ProductId">
-            <img src="/images/pics/@Model.MainImage" alt="@Model.Title" style="width: 300px; height: 300px;" class="img-thumbnail">
+            <img src="/images/pics/@Model.MainImage" alt="@Model.Title" class="img-thumbnail img-single-product">
         </a>
     </div>
     <!-- /.image -->
@@ -57,7 +57,7 @@
     <div class="description"></div>
     @if (Model.OnSalePrice != 0)
     {
-        <div class="product-price"> <span class="price">$ @Model.OnSalePrice </span><span style="text-decoration: line-through;color: grey">$ @Model.MainPrice </span></div>
+        <div class="product-price"> <span class="price">$ @Model.OnSalePrice </span><span class="single-product-span">$ @Model.MainPrice </span></div>
     }
     else
     {
@@ -70,10 +70,10 @@
 <!-- /.product-info -->
 @if (Model.Quantiny != 0)
 {
-    <a class="btn btn-primary" style="margin: 10px;" asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@Model.ProductId">Add to cart</a>
+    <a class="btn btn-primary single-product-a" asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@Model.ProductId">Add to cart</a>
 }
 else
 {
-    <a class="btn btn-danger" style="margin: 10px;">Out Of Stock</a>
+    <a class="btn btn-danger single-product-a" >Out Of Stock</a>
 }
 <!-- /.action -->

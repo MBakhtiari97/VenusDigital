@@ -11,7 +11,7 @@
             <div class="review-form">
                 <div class="form-container">
                     <form class="cnt-form" asp-action="AddReview" asp-controller="Review" asp-route-productId="@ViewBag.ProductId">
-                        <lable asp-for="ReviewScore" style="font-weight: bold;">Overal Score</lable><span class="astk">*</span><input asp-for="ReviewScore" type="number" min="1" max="5" value="3" class="form-control" style="text-align: center; font-weight: bold; margin: 10px 0px;"/>
+                        <lable asp-for="ReviewScore" class="review-score-lbl">General Score</lable><span class="astk">*</span><input asp-for="ReviewScore" type="number" min="1" max="5" value="3" class="form-control input-score"/>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -38,7 +38,7 @@
         }
         else
         {
-            <div style="font-size: 18px; text-align: center">
+            <div class="cannot-review">
                 <p>You haven't activate your account yet , please active your account in order to submit a review!</p>
             </div>
         }
@@ -46,7 +46,7 @@
     }
     else
     {
-        <div style="font-size: 18px;text-align: center"><p>Please Login To Submit A Review !</p> 
+        <div class="cannot-review"><p>Please Login To Submit A Review !</p> 
             <a href="/Login" class="btn btn-primary">Login</a>
         </div>
     }

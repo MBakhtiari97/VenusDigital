@@ -220,3 +220,42 @@
 .tabs-titles {
     padding-left: 220px;
 }
+.review-score-lbl {
+    font-weight: bold;
+}
+.input-score {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+.cannot-review {
+    font-size: 18px;
+    text-align: center
+}
+.img-single-product {
+    width: 300px;
+    height: 300px;
+}
+.single-product-span {
+    text-decoration: line-through;
+    color: grey
+}
+.single-product-a {
+    margin: 10px;
+}
+.success-register {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 300px;
+}
+.success-register div {
+    margin-bottom: 30px;
+}
+.p-tag-register {
+    color: red;
+    font-size: 12px;
+}
+.notfound-page {
+    padding-left: 300px;
+}
