@@ -253,9 +253,82 @@
     margin-bottom: 30px;
 }
 .p-tag-register {
-    color: red;
+    color: #157ED2;
     font-size: 12px;
 }
 .notfound-page {
     padding-left: 300px;
+}
+.aboutus {
+    text-align: center;
+    padding-left: 200px;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+.contactus {
+    text-align: center;
+    padding-left: 200px;
+}
+.contactus-info {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+.faq-pg {
+    padding-left: 250px;
+}
+.faq-page-div {
+    margin-bottom: 30px;
+}
+.help-center {
+    padding-left: 200px;
+    text-align: center
+}
+.contactus-banner {
+    width: 1000px;
+    height: 550px;
+    margin-bottom: 50px;
+}
+.ticket-faq-banner {
+    width: 550px;
+    height: 300px;
+    margin-bottom: 50px;
+}
+.support-pg {
+    padding-left: 300px;
+}
+.review-pg {
+    border: 2px solid #157ED2;
+    border-radius: 10px;
+    margin: 15px;
+}
+.review-pg-down {
+    margin: 20px;
+}
+.span-review {
+    font-size: 18px;
+}
+.span-review-row {
+    padding-left: 65px;
+}
+.span-review-inner {
+    font-size: 18px;
+    font-weight: bold
+}
+.review-section-span {
+    padding-left: 20px;
+}
+.span-review-row p {
+    font-size: 16px;
+}
+.p-tag-littlebasket {
+    font-size: 10px;
+    text-align: center
+}
+.categories-img {
+    width: 250px;
+    margin-left: 650px;
+}
+.img-left-categories {
+    width: 200px;
+    margin: 16px;
 }

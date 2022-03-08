@@ -7,15 +7,15 @@
     <div class="reviews">
         @foreach (var review in Model)
         {
-            <div style="border: 2px solid #157ED2; border-radius: 10px; margin: 15px;">
-                <div class="row" style="margin: 20px;">
+            <div class="review-pg">
+                <div class="row review-pg-down">
                     <div class="col-2">
-                        <span style="font-size: 18px;">@review.Username:</span>
+                        <span class="span-review">@review.Username:</span>
                     </div>
-                    <div class="col-10" style="padding-left: 65px;">
-                        <span style="font-size: 18px; font-weight: bold">@review.ReviewTitle</span><span>&nbsp;(<i class="fa fa-star"></i>@review.ReviewScore)</span>
-                        <span style="padding-left: 20px;">@review.ReviewDate</span>
-                        <p style="font-size: 16px;">@review.ReviewDescription</p>
+                    <div class="col-10 span-review-row">
+                        <span class="span-review-inner">@review.ReviewTitle</span><span>&nbsp;(<i class="fa fa-star"></i>@review.ReviewScore)</span>
+                        <span class="review-section-span">@review.ReviewDate</span>
+                        <p>@review.ReviewDescription</p>
                     </div>
                 </div>
 
