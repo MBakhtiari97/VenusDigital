@@ -5,340 +5,89 @@
 
 <head>
     <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="MediaCenter, Template, eCommerce">
-    <meta name="robots" content="all">
-    <title>VenusDigital</title>
+    <partial name="_Metas" />
+    <!--CSS-->
+    <partial name="_Refrences" />
 
-    <!-- Bootstrap Core CSS -->
-@*    <link rel="stylesheet" href="assets/css/bootstrap.min.css">*@
-    <link type="text/css" rel="stylesheet" href="@Url.Content("~/assets/css/bootstrap.min.css")">
-
-    <!-- Customizable CSS -->   
-    @*@*  <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/blue.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/owl.transitions.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/rateit.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">*@
-@*    <link rel="stylesheet" href="~/css/CustomStyles.css" />*@
-    
-    
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/main.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/blue.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/owl.carousel.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/owl.transitions.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/animate.min.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/rateit.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/bootstrap-select.min.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/CustomStyles.css")" />
-    <link rel="stylesheet" href="~/css/OtherRequiredStyles.css" />
-    <!-- Icons/Glyphs -->
-    @*<link rel="stylesheet" href="assets/css/font-awesome.css">*@
-    <link rel="stylesheet" href="@Url.Content("~/assets/css/font-awesome.css")" >
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="cnt-home">
-    <!-- ============================================== HEADER ============================================== -->
+    <!--HEADER-->
     <header class="header-style-1">
-
-        <!-- ============================================== TOP MENU ============================================== -->
-        <div class="top-bar animate-dropdown">
-            <div class="container">
-                <div class="header-top-inner">
-                    <div class="cnt-account">
-                        <ul class="list-unstyled">
-                            <li class="myaccount"><a href="MyAccount"><span>My Account</span></a></li>
-                            <li class="wishlist"><a href="/Wishlist"><span>Wishlist</span></a></li>
-                            <li class="wishlist"><a href="/Compare"><span>Compare List</span></a></li>
-                            <li class="header_cart hidden-xs"><a href="/Cart"><span>My Cart</span></a></li>
-                            @if (User.Identity.IsAuthenticated && bool.Parse(User.FindFirstValue("IsAdmin")))
-                            {
-                                <li class="login"><a href="/admin"><span>Admin Panel</span></a></li>
-                            }
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li class="login"><a href="#"><span>@User.Identity.Name</span></a></li>
-                                <li class="login"><a href="/Logout"><span>Sign Out</span></a></li>
-                            }
-                            else
-                            {
-                                <li class="login"><a href="/Register"><span>Sign Up</span></a></li>
-                                <li class="login"><a href="/Login"><span>Sign In</span></a></li>
-                            }
-
-                        </ul>
-                    </div>
-                    <!-- /.cnt-account -->
-
-                    <div class="cnt-block">
-                        <ul class="list-unstyled list-inline">
-                            <li>
-                               <i class="fa fa-newspaper-o" style="color: whitesmoke"></i> <a href="/Newsletter"><span class="value">Join To Newsletter </span><b ></b></a>
-                            </li>
-                        </ul>
-                        <!-- /.list-unstyled -->
-                    </div>
-                    <!-- /.cnt-cart -->
-                    <div class="clearfix"></div>
-                </div>
-                <!-- /.header-top-inner -->
-            </div>
-            <!-- /.container -->
-        </div>
+        <!--TOP MENU-->
+        <partial name="_TopMenu" />
         <!-- /.header-top -->
-        <!-- ============================================== TOP MENU : END ============================================== -->
+        <!--TOP MENU : END-->
         <div class="main-header">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                        <!-- ============================================================= LOGO ============================================================= -->
+                        <!--LOGO-->
                         <div class="logo"> <a href="/"> <img src="/assets/images/logo2.png" alt="logo"> </a> </div>
                         <!-- /.logo -->
-                        <!-- ============================================================= LOGO : END ============================================================= -->
+                        <!--LOGO : END-->
                     </div>
                     <!-- /.logo-holder -->
 
                     <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12 top-search-holder">
                         <!-- /.contact-row -->
-                        <!-- ============================================================= SEARCH AREA ============================================================= -->
-                        <div class="search-area">
-                            <form action="Search">
-                                <div class="control-group">
-                                    <input class="search-field" name="q" placeholder="Search here..." />
-                                    <button type="submit" class="search-button" href="#"></button>
-                                </div>
-                            </form>
-                        </div>
+                        <!--SEARCH AREA-->
+                        <partial name="_SearchArea" />
                         <!-- /.search-area -->
-                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                        <!--SEARCH AREA : END-->
                     </div>
                     <!-- /.top-search-holder -->
 
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 animate-dropdown top-cart-row">
-                        <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                        <!--SHOPPING CART DROPDOWN-->
                         @if (User.Identity.IsAuthenticated)
                         {
                             @await Component.InvokeAsync("LittleBasket")
                         }
                         <!-- /.dropdown-cart -->
-                        <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+                        <!--SHOPPING CART DROPDOWN : END-->
                     </div>
                     <!-- /.top-cart-row -->
                 </div>
                 <!-- /.row -->
-
             </div>
             <!-- /.container -->
-
         </div>
         <!-- /.main-header -->
-        <!-- ============================================== NAVBAR ============================================== -->
-        <div class="header-nav animate-dropdown">
-            <div class="container">
-                <div class="yamm navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="nav-bg-class">
-                        <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
-                            <div class="nav-outer">
-                                <ul class="nav navbar-nav">
-                                    @await Component.InvokeAsync("CategoriesComponent")
-                                </ul>
-                                <!-- /.navbar-nav -->
-                                <div class="clearfix"></div>
-                            </div>
-                            <!-- /.nav-outer -->
-                        </div>
-                        <!-- /.navbar-collapse -->
-
-                    </div>
-                    <!-- /.nav-bg-class -->
-                </div>
-                <!-- /.navbar-default -->
-            </div>
-            <!-- /.container-class -->
-
-        </div>
+        <!--NAVBAR-->
+        <partial name="_Navbar" />
         <!-- /.header-nav -->
-        <!-- ============================================== NAVBAR : END ============================================== -->
+        <!--NAVBAR : END-->
 
     </header>
 
-    <!-- ============================================== HEADER : END ============================================== -->
+    <!--HEADER : END-->
     <div class="body-content outer-top-vs" id="top-banner-and-menu">
         <div class="container">
-        <div class="row">
-        @RenderSection("SideBar",false)
-        @*<partial name="_LeftSideBar"/>*@
-        <!-- ============================================== CONTENT ============================================== -->
-        <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-        <!-- ========================================== SECTION – HERO ========================================= -->
-        <!--SLIDER HERE-->
-        <!-- ========================================= SECTION – HERO : END ========================================= -->
-        @RenderBody()
-        </div>
-        <!-- /.homebanner-holder -->
-        <!-- ============================================== CONTENT : END ============================================== -->
-        </div>
+            <div class="row">
+                @RenderSection("SideBar",false)
+                @*<partial name="_LeftSideBar"/>*@
+                <!--CONTENT-->
+                <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+                    <!--SECTION – HERO-->
+                    <!--SLIDER HERE-->
+                    <!--SECTION – HERO : END-->
+                    @RenderBody()
+                </div>
+                <!-- /.homebanner-holder -->
+                <!--CONTENT : END-->
+            </div>
             <!-- /.row -->
-
         </div>
         <!-- /.container -->
     </div>
     <!-- /#top-banner-and-menu -->
-    <!-- ============================================== INFO BOXES ============================================== -->
-    <div class="row our-features-box">
-        <div class="container">
-            <ul>
-                <li>
-                    <div class="feature-box">
-                        <div class="icon-truck"></div>
-                        <div class="content-blocks">We ship worldwide</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="feature-box">
-                        <div class="icon-support"></div>
-                        <div class="content-blocks">
-                            call
-                            (604) 696-0040
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="feature-box">
-                        <div class="icon-money"></div>
-                        <div class="content-blocks">Money Back Guarantee</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="feature-box">
-                        <div class="icon-return"></div>
-                        <div class="content">7 days return</div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-    <!-- /.info-boxes -->
-    <!-- ============================================== INFO BOXES : END ============================================== -->
-    <!-- ============================================================= FOOTER ============================================================= -->
-    <footer id="footer" class="footer color-bg">
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="address-block">
-
-                            <!-- /.module-heading -->
-
-                            <div class="module-body">
-                                <ul class="toggle-footer" style="">
-                                    <li class="media">
-                                        <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
-                                        <div class="media-body">
-                                            <p style="padding-top: 10px;">1020 Granville St , Vancouver, British Columbia , Canada</p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
-                                        <div class="media-body">
-                                            <p style="padding-top: 10px;">(604) 696-0040</p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                                        <div class="media-body"> <span><a href="#">info@venusdigital.com</a></span> </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.module-body -->
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="module-heading">
-                            <h4 class="module-title">Customer Service</h4>
-                        </div>
-                        <!-- /.module-heading -->
-
-                        <div class="module-body">
-                            <ul class='list-unstyled'>
-                                <li class="first"><a href="/MyAccount" title="My Account">My Account</a></li>
-                                <li><a href="/OrderHistory" title="Order History">Order History</a></li>
-                                <li><a href="/FAQ" title="faq">FAQ</a></li>
-                                <li class="last"><a href="/HelpCenter" title="Need Help?">Help Center</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.module-body -->
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="module-heading">
-                            <h4 class="module-title">Corporation</h4>
-                        </div>
-                        <!-- /.module-heading -->
-
-                        <div class="module-body">
-                            <ul class='list-unstyled'>
-                                <li class="first"><a title="About Us" href="/AboutUs">About us</a></li>
-                                <li><a href="/ContactUs" title="Contact Us">Contact Us</a></li>
-                                <li><a href="/Privacy" title="Contact Us">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.module-body -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </div>
-        </div>
-        <div class="copyright-bar">
-            <div class="container">
-                <div class="col-xs-12 col-sm-4 no-padding social">
-                    <ul class="link">
-                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="https://facebook.com/VenusDigital" title="Facebook"></a></li>
-                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="https://twitter.com/VenusDigital" title="Twitter"></a></li>
-                        <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="https://google-plus.com/VenusDigital" title="GooglePlus"></a></li>
-                        <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="https://pinterest.com/VenusDigital" title="PInterest"></a></li>
-                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="https://youtube.com/VenusDigital" title="Youtube"></a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-4 no-padding copyright"><p>All Rights Reserved For Venus Digital , Designed By Marazzo , Customized & Coded By Hurr1cane </p> </div>
-                <div class="col-xs-12 col-sm-4 no-padding">
-                    <div class="clearfix payment-methods">
-                        <ul>
-                            <li><img src="/assets/images/payments/1.png" alt=""></li>
-                            <li><img src="/assets/images/payments/2.png" alt=""></li>
-                            <li><img src="/assets/images/payments/3.png" alt=""></li>
-                            <li><img src="/assets/images/payments/4.png" alt=""></li>
-                            <li><img src="/assets/images/payments/5.png" alt=""></li>
-                        </ul>
-                    </div>
-                    <!-- /.payment-methods -->
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ============================================================= FOOTER : END============================================================= -->
-    <!-- For demo purposes – can be removed on production -->
-    <!-- For demo purposes – can be removed on production : End -->
-    <!-- JavaScripts placed at the end of the document so the pages load faster -->
+    <!--INFO BOXES-->
+    <partial name="_InfoBox" />
+    <!--INFO BOXES : END-->
+    <!--FOOTER-->
+    <partial name="_Footer" />
+    <!--FOOTER : END-->
+    <!--Scripts-->
     <script src="/assets/js/jquery-1.11.1.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap-hover-dropdown.min.js"></script>

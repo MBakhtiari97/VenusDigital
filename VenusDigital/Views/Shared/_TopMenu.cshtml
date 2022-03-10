@@ -1,0 +1,44 @@
+﻿@using System.Security.Claims
+ <div class="top-bar animate-dropdown">
+            <div class="container">
+                <div class="header-top-inner">
+                    <div class="cnt-account">
+                        <ul class="list-unstyled">
+                            <li class="myaccount"><a href="MyAccount"><span>My Account</span></a></li>
+                            <li class="wishlist"><a href="/Wishlist"><span>Wishlist</span></a></li>
+                            <li class="wishlist"><a href="/Compare"><span>Compare List</span></a></li>
+                            <li class="header_cart hidden-xs"><a href="/Cart"><span>My Cart</span></a></li>
+                            @if (User.Identity.IsAuthenticated && bool.Parse(User.FindFirstValue("IsAdmin")))
+                            {
+                                <li class="login"><a href="/admin"><span>Admin Panel</span></a></li>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="login"><a href="#"><span>@User.Identity.Name</span></a></li>
+                                <li class="login"><a href="/Logout"><span>Sign Out</span></a></li>
+                            }
+                            else
+                            {
+                                <li class="login"><a href="/Register"><span>Sign Up</span></a></li>
+                                <li class="login"><a href="/Login"><span>Sign In</span></a></li>
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- /.cnt-account -->
+
+                    <div class="cnt-block">
+                        <ul class="list-unstyled list-inline">
+                            <li>
+                                <i class="fa fa-newspaper-o" style="color: whitesmoke"></i> <a href="/Newsletter"><span class="value">Join To Newsletter </span><b></b></a>
+                            </li>
+                        </ul>
+                        <!-- /.list-unstyled -->
+                    </div>
+                    <!-- /.cnt-cart -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.header-top-inner -->
+            </div>
+            <!-- /.container -->
+        </div>
